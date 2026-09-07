@@ -2,16 +2,26 @@
 
 import React, { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ShoppingBag, User, LogIn, LogOut, LayoutDashboard, Menu, X } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useCartStore } from "@/stores/useCartStore";
+import { showToast } from "@/lib/toast";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { UserDropdown } from "./UserDropdown";
 
 export function Navbar() {
+  const router = useRouter();
   const { user, isLoggedIn, logout } = useAuthStore();
   const items = useCartStore((state) => state.items);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    showToast.success("Logged out", "You have been signed out successfully.");
+    router.replace("/login");
+  };
 
   // Hydration-safe client check without cascading render effects
   const mounted = useSyncExternalStore(
@@ -88,24 +98,8 @@ export function Navbar() {
           )}
 
           {/* User Account / Login */}
-          {mounted && isLoggedIn ? (
-            <div className="flex items-center gap-2">
-              <Link href="/orders">
-                <Button variant="ghost" size="sm" className="gap-1.5 text-xs">
-                  <User className="h-3.5 w-3.5" />
-                  <span className="max-w-[120px] truncate">{user?.username}</span>
-                </Button>
-              </Link>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => logout()}
-                title="Log Out"
-                className="text-neutral-500 hover:text-red-600"
-              >
-                <LogOut className="h-4 w-4" />
-              </Button>
-            </div>
+          {mounted && isLoggedIn && user ? (
+            <UserDropdown user={user} onLogout={handleLogout} />
           ) : (
             <Link href="/login">
               <Button size="sm" className="gap-1.5 text-xs font-semibold">
@@ -115,6 +109,7 @@ export function Navbar() {
             </Link>
           )}
         </div>
+
 
         {/* Mobile Hamburger Toggle */}
         <div className="flex md:hidden items-center gap-2">
@@ -181,21 +176,51 @@ export function Navbar() {
             )}
 
             <div className="border-t border-neutral-100 pt-3 mt-1">
-              {mounted && isLoggedIn ? (
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-neutral-600 font-medium">
-                    Signed in as <strong className="text-neutral-900">{user?.username}</strong>
-                  </span>
+              {mounted && isLoggedIn && user ? (
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2.5 pb-2 border-b border-neutral-100">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-rose-600 to-pink-500 text-xs font-bold text-white shadow-sm shadow-rose-200">
+                      {(user.username || "U").substring(0, 2).toUpperCase()}
+                    </span>
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-sm font-bold text-neutral-900 truncate">
+                        {user.username}
+                      </span>
+                      <span className="text-[11px] text-neutral-500 truncate">
+                        {user.email}
+                      </span>
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/profile"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1.5 flex items-center gap-2"
+                  >
+                    <User className="h-4 w-4 text-rose-500" />
+                    <span>My Profile</span>
+                  </Link>
+
+                  <Link
+                    href="/orders"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1.5 flex items-center gap-2"
+                  >
+                    <ShoppingBag className="h-4 w-4 text-neutral-500" />
+                    <span>My Orders</span>
+                  </Link>
+
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      logout();
                       setMobileMenuOpen(false);
+                      handleLogout();
                     }}
-                    className="text-xs text-red-600 hover:text-red-700"
+                    className="w-full text-xs text-red-600 hover:text-red-700 hover:bg-red-50 mt-1 gap-1.5"
                   >
-                    Logout
+                    <LogOut className="h-3.5 w-3.5" />
+                    Sign Out
                   </Button>
                 </div>
               ) : (

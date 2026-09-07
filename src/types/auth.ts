@@ -25,3 +25,14 @@ export interface LoginFormData {
   usernameOrEmail: string;
   password: string;
 }
+
+export interface UpdateProfilePayload {
+  username?: string;
+  email?: string;
+}
+
+export interface ProfileFormData {
+  username: string;
+  email: string;
+}
+
