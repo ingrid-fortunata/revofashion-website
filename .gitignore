@@ -1,6 +1,7 @@
 # Project documentation directories requested to be ignored
 /docs/guideline/
 /docs/plans/
+/docs/track-progress/
 
 # Dependencies
 /node_modules
