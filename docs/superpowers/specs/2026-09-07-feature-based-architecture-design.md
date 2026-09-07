@@ -53,6 +53,11 @@ src/
 │   │   └── index.ts
 │   ├── providers/
 │   │   └── AppProviders.tsx
+│   ├── routes/                        # Route guard components
+│   │   ├── AdminRoute.tsx
+│   │   ├── ProtectedRoute.tsx
+│   │   ├── PublicOnlyRoute.tsx
+│   │   └── index.ts
 │   └── ui/                            # 1 file per reusable UI primitive
 │       ├── badge.tsx
 │       ├── button.tsx
@@ -66,10 +71,7 @@ src/
 ├── features/                          # Self-contained business domains
 │   └── auth/                          # Authentication feature module
 │       ├── components/
-│       │   ├── AdminRoute.tsx
 │       │   ├── LoginForm.tsx
-│       │   ├── ProtectedRoute.tsx
-│       │   ├── PublicOnlyRoute.tsx
 │       │   └── RegisterForm.tsx
 │       ├── hooks/
 │       │   ├── useLoginMutation.ts
@@ -118,22 +120,25 @@ src/
 * **`Footer.tsx`**: Informational footer with brand statement, quick links, customer service contact, and copyright.
 * **`index.ts`**: Clean export barrel.
 
-### C. Route Groups (`src/app/`)
+### C. Route Guard Components (`src/components/routes/`)
+* **`ProtectedRoute.tsx`**: Protects authenticated user routes (redirects guests to `/login`).
+* **`AdminRoute.tsx`**: Protects back-office routes (redirects non-admins).
+* **`PublicOnlyRoute.tsx`**: Protects guest routes (redirects authenticated users away from `/login`).
+* **`index.ts`**: Clean export barrel.
+
+### D. Route Groups (`src/app/`)
 * **`(shop)`**: Wraps customer storefront routes. Its `layout.tsx` embeds `<Navbar />` and `<Footer />`. The main storefront `page.tsx` moves into `src/app/(shop)/page.tsx`.
 * **`(auth)`**: Wraps `/login` and `/register`. Its `layout.tsx` is an isolated, focused layout without the shopping navbar, displaying a clean centered backdrop.
 * **`(admin)`**: Wraps `/dashboard/*`. Its `layout.tsx` embeds the admin `<Sidebar />` and back-office navigation.
 
-### D. Feature Modules (`src/features/auth/`)
-* **`components/`**: Houses forms and route guard wrappers specific to the authentication lifecycle.
+### E. Feature Modules (`src/features/auth/`)
+* **`components/`**: Houses forms specific to the authentication lifecycle (`LoginForm.tsx`, `RegisterForm.tsx`).
 * **`services/auth.service.ts`**: Encapsulates `loginUser(credentials)` and `registerUser(payload)` calls via `client` from `@/lib/api/client`.
 * **`hooks/useLoginMutation.ts`**: TanStack Query mutation managing loading, onSuccess (setting cookies, updating `useAuthStore`, toast), and onError handling.
-* **`index.ts`**: Public barrel exports for other layers:
+* **`index.ts`**: Public barrel exports for feature consumers:
   ```typescript
   export * from "./components/LoginForm";
   export * from "./components/RegisterForm";
-  export * from "./components/ProtectedRoute";
-  export * from "./components/AdminRoute";
-  export * from "./components/PublicOnlyRoute";
   export * from "./services/auth.service";
   export * from "./hooks/useLoginMutation";
   ```
