@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { ShoppingBag, User, LogIn, LogOut, LayoutDashboard, Menu, X } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
@@ -11,12 +11,14 @@ import { Badge } from "@/components/ui/badge";
 export function Navbar() {
   const { user, isLoggedIn, logout } = useAuthStore();
   const items = useCartStore((state) => state.items);
-  const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Hydration-safe client check without cascading render effects
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   const totalCartCount = mounted
     ? items.reduce((total, item) => total + item.quantity, 0)

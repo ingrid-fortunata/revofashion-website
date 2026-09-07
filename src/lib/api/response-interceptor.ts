@@ -1,12 +1,11 @@
-import { ApiError, ApiErrorResponse, FetchOptions, ResponseInterceptor } from "@/types/api";
+import { ApiError, ApiErrorResponse, ResponseInterceptor } from "@/types/api";
 
 /**
  * Default Response Interceptor:
  * Validates response status and parses JSON envelopes.
  */
 export const defaultResponseInterceptor: ResponseInterceptor = async <T>(
-  response: Response,
-  _options: FetchOptions
+  response: Response
 ): Promise<T> => {
   if (response.status === 204) {
     return null as T;
