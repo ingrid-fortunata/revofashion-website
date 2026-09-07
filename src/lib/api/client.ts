@@ -174,6 +174,38 @@ export async function apiFetch<T>(
   }
 }
 
+/**
+ * Convenient HTTP verb helper wrapper over apiFetch.
+ */
+export const client = {
+  get: <T>(endpoint: string, options?: FetchOptions) =>
+    apiFetch<T>(endpoint, { ...options, method: "GET" }),
+
+  post: <T>(endpoint: string, body?: unknown, options?: FetchOptions) =>
+    apiFetch<T>(endpoint, {
+      ...options,
+      method: "POST",
+      body: body instanceof FormData ? body : body !== undefined ? JSON.stringify(body) : undefined,
+    }),
+
+  put: <T>(endpoint: string, body?: unknown, options?: FetchOptions) =>
+    apiFetch<T>(endpoint, {
+      ...options,
+      method: "PUT",
+      body: body instanceof FormData ? body : body !== undefined ? JSON.stringify(body) : undefined,
+    }),
+
+  patch: <T>(endpoint: string, body?: unknown, options?: FetchOptions) =>
+    apiFetch<T>(endpoint, {
+      ...options,
+      method: "PATCH",
+      body: body instanceof FormData ? body : body !== undefined ? JSON.stringify(body) : undefined,
+    }),
+
+  delete: <T>(endpoint: string, options?: FetchOptions) =>
+    apiFetch<T>(endpoint, { ...options, method: "DELETE" }),
+};
+
 // Re-export types for consumer convenience
 export type {
   FetchOptions,
