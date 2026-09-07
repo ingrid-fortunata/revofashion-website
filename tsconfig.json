@@ -19,7 +19,10 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/utils": ["./src/lib/utils/index.ts"],
+      "@/utils/*": ["./src/lib/utils/*"],
+      "@/features/*": ["./src/features/*"]
     }
   },
   "include": [
