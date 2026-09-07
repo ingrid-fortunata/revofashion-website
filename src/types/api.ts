@@ -44,3 +44,38 @@ export class ApiError extends Error {
     this.details = details;
   }
 }
+
+/**
+ * Query parameters dictionary for API requests
+ */
+export type QueryParams = Record<
+  string,
+  string | number | boolean | undefined | null
+>;
+
+/**
+ * Configuration options for apiFetch requests
+ */
+export interface FetchOptions extends RequestInit {
+  token?: string | null;
+  params?: QueryParams;
+  skipToast?: boolean;
+}
+
+/**
+ * Interceptor types for the HTTP client pipeline
+ */
+export type RequestInterceptor = (
+  url: string,
+  options: FetchOptions
+) => Promise<[string, FetchOptions]> | [string, FetchOptions];
+
+export type ResponseInterceptor = <T>(
+  response: Response,
+  options: FetchOptions
+) => Promise<T> | T;
+
+export type ErrorInterceptor = (
+  error: unknown,
+  options: FetchOptions
+) => Promise<never> | never;

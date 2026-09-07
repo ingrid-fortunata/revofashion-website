@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import dayjs from "dayjs";
 
 /**
  * Combines conditional class names with tailwind-merge to prevent class collision.
@@ -27,20 +28,18 @@ export function formatCurrency(amount: number, currency: "IDR" | "USD" = "IDR"):
 }
 
 /**
- * Format UTC timestamp to human-readable date.
+ * Format date or timestamp to human-readable date using dayjs.
+ * @param date - Date string, Date object, or timestamp
+ * @param formatStr - dayjs format pattern (default: "DD MMM YYYY, HH:mm")
  */
-export function formatDate(dateString: string): string {
-  if (!dateString) return "-";
-  try {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    }).format(date);
-  } catch {
-    return dateString;
-  }
+export function formatDate(
+  date: string | number | Date | null | undefined,
+  formatStr: string = "DD MMM YYYY, HH:mm"
+): string {
+  if (!date) return "-";
+  const parsed = dayjs(date);
+  if (!parsed.isValid()) return "-";
+  return parsed.format(formatStr);
 }
+
+export { dayjs };
