@@ -1,0 +1,46 @@
+/**
+ * Standard API error response format returned by RevoFashion Flask backend
+ */
+export interface ApiErrorResponse {
+  error_code: string;
+  message: string;
+  details?: {
+    json?: Record<string, string[]>;
+    query?: Record<string, string[]>;
+    path?: Record<string, string[]>;
+  };
+}
+
+/**
+ * Standard API successful data envelope
+ */
+export interface ApiResponse<T> {
+  data: T;
+  message?: string;
+  page?: number;
+  per_page?: number;
+  total?: number;
+  pages?: number;
+}
+
+/**
+ * Custom Error class that holds parsed API error details
+ */
+export class ApiError extends Error {
+  errorCode: string;
+  status: number;
+  details?: Record<string, unknown>;
+
+  constructor(
+    message: string,
+    errorCode: string,
+    status: number,
+    details?: Record<string, unknown>
+  ) {
+    super(message);
+    this.name = "ApiError";
+    this.errorCode = errorCode;
+    this.status = status;
+    this.details = details;
+  }
+}
