@@ -2,13 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { LogIn, Loader2, AlertCircle, Eye, EyeOff, KeyRound, UserCheck, ShieldCheck } from "lucide-react";
+import { LogIn, Loader2, Eye, EyeOff, KeyRound, UserCheck, ShieldCheck } from "lucide-react";
 import { useLoginMutation } from "../hooks/useLoginMutation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ApiError } from "@/types/api";
 
 interface FieldErrors {
   identifier?: string;
@@ -20,23 +19,11 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
-  const [formError, setFormError] = useState<string | null>(null);
 
-  const loginMutation = useLoginMutation({
-    onError: (error) => {
-      if (error instanceof ApiError) {
-        if (error.errorCode === "USER_UNAUTHORIZED") {
-          setFormError("Invalid email/username or password. Please check your credentials.");
-        } else {
-          setFormError(error.message);
-        }
-      } else {
-        setFormError(error.message || "An unexpected error occurred. Please try again.");
-      }
-    },
-  });
+  // Error notifications (toasts) are automatically caught and translated by the API client interceptor
+  const loginMutation = useLoginMutation();
 
-  // Client-side field validation
+  // Client-side field validation before sending request
   const validateForm = (): boolean => {
     const errors: FieldErrors = {};
     const trimmedId = identifier.trim();
@@ -64,7 +51,6 @@ export function LoginForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormError(null);
 
     if (!validateForm()) {
       return;
@@ -83,7 +69,6 @@ export function LoginForm() {
     setIdentifier(user);
     setPassword(pass);
     setFieldErrors({});
-    setFormError(null);
   };
 
   return (
@@ -99,17 +84,6 @@ export function LoginForm() {
 
       <form onSubmit={handleSubmit} noValidate>
         <CardContent className="space-y-4">
-          {/* Top Form-level Error Banner */}
-          {formError && (
-            <div
-              role="alert"
-              className="flex items-start gap-2.5 rounded-lg bg-red-50 border border-red-200/80 p-3 text-xs text-red-700 font-medium"
-            >
-              <AlertCircle className="h-4 w-4 shrink-0 text-red-600 mt-0.5" />
-              <div className="leading-snug">{formError}</div>
-            </div>
-          )}
-
           {/* Identifier Input */}
           <div className="space-y-1.5">
             <Label htmlFor="identifier" required className="text-xs font-semibold text-neutral-700">
@@ -127,7 +101,6 @@ export function LoginForm() {
                 if (fieldErrors.identifier) {
                   setFieldErrors((prev) => ({ ...prev, identifier: undefined }));
                 }
-                if (formError) setFormError(null);
               }}
               error={Boolean(fieldErrors.identifier)}
               disabled={loginMutation.isPending}
@@ -162,7 +135,6 @@ export function LoginForm() {
                   if (fieldErrors.password) {
                     setFieldErrors((prev) => ({ ...prev, password: undefined }));
                   }
-                  if (formError) setFormError(null);
                 }}
                 error={Boolean(fieldErrors.password)}
                 disabled={loginMutation.isPending}
