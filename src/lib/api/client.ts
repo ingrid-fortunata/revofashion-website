@@ -13,12 +13,14 @@ export async function apiFetch<T>(
   endpoint: string,
   options: FetchOptions = {}
 ): Promise<T> {
+  let activeOptions = options;
   try {
     const [finalUrl, finalOptions] = await runRequestInterceptors(endpoint, options);
+    activeOptions = finalOptions;
     const response = await fetch(finalUrl, finalOptions);
     return await runResponseInterceptors<T>(response, finalOptions);
   } catch (error) {
-    return await runErrorInterceptors(error, options);
+    return await runErrorInterceptors(error, activeOptions);
   }
 }
 
