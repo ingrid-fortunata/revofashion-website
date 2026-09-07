@@ -2,12 +2,19 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { LogIn, Loader2, Eye, EyeOff, KeyRound, UserCheck, ShieldCheck } from "lucide-react";
+import { LogIn, Loader2, Eye, EyeOff } from "lucide-react";
 import { useLoginMutation } from "../hooks/useLoginMutation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface FieldErrors {
   identifier?: string;
@@ -65,12 +72,6 @@ export function LoginForm() {
     loginMutation.mutate(payload);
   };
 
-  const handleQuickFill = (user: string, pass: string) => {
-    setIdentifier(user);
-    setPassword(pass);
-    setFieldErrors({});
-  };
-
   return (
     <Card className="border-neutral-200/80 shadow-md">
       <CardHeader className="space-y-1 text-center">
@@ -86,7 +87,11 @@ export function LoginForm() {
         <CardContent className="space-y-4">
           {/* Identifier Input */}
           <div className="space-y-1.5">
-            <Label htmlFor="identifier" required className="text-xs font-semibold text-neutral-700">
+            <Label
+              htmlFor="identifier"
+              required
+              className="text-xs font-semibold text-neutral-700"
+            >
               Username or Email
             </Label>
             <Input
@@ -99,17 +104,25 @@ export function LoginForm() {
               onChange={(e) => {
                 setIdentifier(e.target.value);
                 if (fieldErrors.identifier) {
-                  setFieldErrors((prev) => ({ ...prev, identifier: undefined }));
+                  setFieldErrors((prev) => ({
+                    ...prev,
+                    identifier: undefined,
+                  }));
                 }
               }}
               error={Boolean(fieldErrors.identifier)}
               disabled={loginMutation.isPending}
               aria-invalid={Boolean(fieldErrors.identifier)}
-              aria-describedby={fieldErrors.identifier ? "identifier-error" : undefined}
+              aria-describedby={
+                fieldErrors.identifier ? "identifier-error" : undefined
+              }
               autoFocus
             />
             {fieldErrors.identifier && (
-              <p id="identifier-error" className="text-[11px] font-medium text-red-600">
+              <p
+                id="identifier-error"
+                className="text-[11px] font-medium text-red-600"
+              >
                 {fieldErrors.identifier}
               </p>
             )}
@@ -118,7 +131,11 @@ export function LoginForm() {
           {/* Password Input */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password" required className="text-xs font-semibold text-neutral-700">
+              <Label
+                htmlFor="password"
+                required
+                className="text-xs font-semibold text-neutral-700"
+              >
                 Password
               </Label>
             </div>
@@ -133,13 +150,18 @@ export function LoginForm() {
                 onChange={(e) => {
                   setPassword(e.target.value);
                   if (fieldErrors.password) {
-                    setFieldErrors((prev) => ({ ...prev, password: undefined }));
+                    setFieldErrors((prev) => ({
+                      ...prev,
+                      password: undefined,
+                    }));
                   }
                 }}
                 error={Boolean(fieldErrors.password)}
                 disabled={loginMutation.isPending}
                 aria-invalid={Boolean(fieldErrors.password)}
-                aria-describedby={fieldErrors.password ? "password-error" : undefined}
+                aria-describedby={
+                  fieldErrors.password ? "password-error" : undefined
+                }
                 className="pr-10"
               />
               <button
@@ -149,48 +171,24 @@ export function LoginForm() {
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
-                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                {showPassword ? (
+                  <EyeOff className="h-4 w-4" />
+                ) : (
+                  <Eye className="h-4 w-4" />
+                )}
               </button>
             </div>
             {fieldErrors.password && (
-              <p id="password-error" className="text-[11px] font-medium text-red-600">
+              <p
+                id="password-error"
+                className="text-[11px] font-medium text-red-600"
+              >
                 {fieldErrors.password}
               </p>
             )}
           </div>
 
-          {/* Quick Demo Fill Helper */}
-          <div className="pt-2 border-t border-neutral-100">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-2">
-              Quick Fill Demo Accounts:
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              <button
-                type="button"
-                onClick={() => handleQuickFill("alice_smith", "alice_password")}
-                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium transition-colors"
-              >
-                <UserCheck className="h-3 w-3 text-neutral-500" />
-                Customer (Alice)
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickFill("admin_user", "admin_password")}
-                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium transition-colors"
-              >
-                <ShieldCheck className="h-3 w-3 text-neutral-500" />
-                Admin
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickFill("superadmin_user", "superadmin_password")}
-                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium transition-colors"
-              >
-                <KeyRound className="h-3 w-3 text-neutral-500" />
-                Superadmin
-              </button>
-            </div>
-          </div>
+
         </CardContent>
 
         <CardFooter className="flex flex-col gap-4">
