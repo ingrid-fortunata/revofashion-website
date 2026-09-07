@@ -1,5 +1,12 @@
 import Cookies from "js-cookie";
 
+/**
+ * CLIENT-SIDE cookie utilities.
+ *
+ * For reading auth token inside Server Components, Route Handlers, or Server Actions,
+ * use `getServerToken()` from `@/lib/cookies.server` instead.
+ */
+
 export const TOKEN_COOKIE_KEY = "revofashion_token";
 
 const DEFAULT_COOKIE_OPTIONS: Cookies.CookieAttributes = {
