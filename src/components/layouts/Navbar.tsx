@@ -27,31 +27,31 @@ export function Navbar() {
   const isAdmin = user?.role === "admin" || user?.role === "superadmin";
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-neutral-200/80 bg-white/95 backdrop-blur-md transition-all">
+    <nav className="sticky top-0 z-40 w-full border-b border-rose-100/90 bg-white/95 backdrop-blur-md transition-all">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <div className="flex items-center gap-8">
           <Link
             href="/"
-            className="flex items-center gap-2 text-xl font-bold tracking-tight text-neutral-900 transition-opacity hover:opacity-80"
+            className="flex items-center gap-2 text-xl font-bold tracking-tight text-neutral-900 transition-opacity hover:opacity-85"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-900 text-sm font-black text-white">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-rose-600 via-rose-500 to-pink-500 text-sm font-black text-white shadow-sm shadow-rose-200/60">
               RF
             </span>
-            <span className="font-extrabold">RevoFashion</span>
+            <span className="font-extrabold tracking-tight">RevoFashion</span>
           </Link>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex md:items-center md:gap-6">
             <Link
               href="/"
-              className="text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900"
+              className="text-sm font-medium text-neutral-600 transition-colors hover:text-rose-600"
             >
               Home
             </Link>
             <Link
               href="/products"
-              className="text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900"
+              className="text-sm font-medium text-neutral-600 transition-colors hover:text-rose-600"
             >
               Products
             </Link>
@@ -65,17 +65,14 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="relative text-neutral-700 hover:text-neutral-950"
+              className="relative text-neutral-700 hover:text-rose-700 hover:bg-rose-50/80"
               aria-label="Shopping Cart"
             >
               <ShoppingBag className="h-5 w-5" />
               {totalCartCount > 0 && (
-                <Badge
-                  variant="destructive"
-                  className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full px-1 text-[10px] font-bold"
-                >
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-rose-600 text-white px-1 text-[10px] font-bold shadow-sm shadow-rose-200/50">
                   {totalCartCount}
-                </Badge>
+                </span>
               )}
             </Button>
           </Link>
@@ -125,12 +122,9 @@ export function Navbar() {
             <Button variant="ghost" size="icon" aria-label="Shopping Cart">
               <ShoppingBag className="h-5 w-5" />
               {totalCartCount > 0 && (
-                <Badge
-                  variant="destructive"
-                  className="absolute -right-1 -top-1 flex h-4 min-w-[16px] items-center justify-center rounded-full px-1 text-[9px]"
-                >
+                <span className="absolute -right-1 -top-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-rose-600 text-white px-1 text-[9px] font-bold">
                   {totalCartCount}
-                </Badge>
+                </span>
               )}
             </Button>
           </Link>
@@ -148,29 +142,31 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="border-b border-neutral-200 bg-white px-4 py-4 md:hidden">
+        <div className="border-b border-rose-100 bg-white px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium text-neutral-700 py-1"
+              className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1"
             >
               Home
             </Link>
             <Link
               href="/products"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium text-neutral-700 py-1"
+              className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1"
             >
               Products
             </Link>
             <Link
               href="/cart"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium text-neutral-700 py-1 flex items-center justify-between"
+              className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1 flex items-center justify-between"
             >
               <span>Shopping Cart</span>
-              {totalCartCount > 0 && <Badge variant="secondary">{totalCartCount}</Badge>}
+              {totalCartCount > 0 && (
+                <Badge variant="rose">{totalCartCount}</Badge>
+              )}
             </Link>
 
             {mounted && isLoggedIn && isAdmin && (

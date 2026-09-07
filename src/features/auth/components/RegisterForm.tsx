@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 export function RegisterForm() {
   return (
-    <Card className="border-neutral-200/80 shadow-md">
+    <Card className="border-rose-100/90 shadow-xl shadow-rose-100/30">
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-xl font-bold tracking-tight text-neutral-900">
           Create an Account
@@ -22,7 +22,7 @@ export function RegisterForm() {
       </CardContent>
       <CardFooter className="flex flex-col gap-3">
         <Link href="/login" className="w-full">
-          <Button variant="outline" className="w-full text-xs font-semibold gap-2">
+          <Button variant="outline" className="w-full text-xs font-semibold gap-2 border-rose-200 hover:bg-rose-50/80">
             <UserPlus className="h-4 w-4" />
             Back to Sign In
           </Button>

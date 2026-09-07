@@ -61,11 +61,25 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-neutral-50 via-white to-neutral-50 py-16 sm:py-24 border-b border-neutral-200/80">
-        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-          <Badge variant="secondary" className="mb-4 gap-1.5 px-3 py-1">
-            <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-            Feature-Based Architecture Active
+      <section className="relative overflow-hidden bg-gradient-to-b from-rose-50/80 via-[#fff9fa] to-white py-16 sm:py-24 border-b border-rose-100/80">
+        {/* Ambient Glows */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-24 left-1/4 h-80 w-80 rounded-full bg-rose-200/40 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-16 right-1/4 h-72 w-72 rounded-full bg-amber-100/50 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-pink-200/30 blur-2xl"
+        />
+
+        <div className="relative z-10 container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+          <Badge variant="rose" className="mb-4 gap-1.5 px-3.5 py-1 font-medium shadow-xs">
+            <Sparkles className="h-3.5 w-3.5 text-rose-600" />
+            Unisex Contemporary Fashion Collection
           </Badge>
           <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 sm:text-6xl">
             RevoFashion Storefront
@@ -75,13 +89,13 @@ export default function HomePage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/products">
-              <Button size="lg" className="gap-2">
+              <Button size="lg" className="gap-2 font-semibold shadow-md shadow-rose-200/50">
                 Browse Catalog
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
             <Link href="/dashboard">
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="border-rose-200 hover:bg-rose-50/80">
                 Admin Portal
               </Button>
             </Link>
@@ -104,12 +118,12 @@ export default function HomePage() {
           {techStack.map((tech) => {
             const Icon = tech.icon;
             return (
-              <Card key={tech.title} className="transition-all hover:shadow-md border-neutral-200">
+              <Card key={tech.title} className="transition-all hover:shadow-md border-rose-100/80 hover:border-rose-200">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-base font-semibold">
                     {tech.title}
                   </CardTitle>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-100 text-neutral-900">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-50 text-rose-600 border border-rose-100/80">
                     <Icon className="h-4 w-4" />
                   </div>
                 </CardHeader>
@@ -117,8 +131,8 @@ export default function HomePage() {
                   <p className="text-sm text-neutral-600 leading-normal">
                     {tech.description}
                   </p>
-                  <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-emerald-600">
-                    <CheckCircle2 className="h-3.5 w-3.5" />
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-rose-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-rose-600" />
                     <span>{tech.status}</span>
                   </div>
                 </CardContent>

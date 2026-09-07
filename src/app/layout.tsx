@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased font-sans">
-      <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900 font-sans">
+      <body className="min-h-full flex flex-col bg-[#fdfcfc] text-neutral-900 font-sans">
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

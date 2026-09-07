@@ -5,13 +5,13 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-neutral-200 bg-neutral-50 text-neutral-600">
+    <footer className="border-t border-rose-100/90 bg-gradient-to-b from-white via-rose-50/20 to-rose-50/40 text-neutral-600">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-3">
             <Link href="/" className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-neutral-900 text-xs font-black text-white">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-tr from-rose-600 via-rose-500 to-pink-500 text-xs font-black text-white shadow-sm shadow-rose-200/50">
                 RF
               </span>
               <span className="text-lg font-bold text-neutral-900 tracking-tight">
@@ -30,17 +30,17 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/products" className="hover:text-neutral-900 transition-colors">
+                <Link href="/products" className="hover:text-rose-600 transition-colors">
                   All Collections
                 </Link>
               </li>
               <li>
-                <Link href="/cart" className="hover:text-neutral-900 transition-colors">
+                <Link href="/cart" className="hover:text-rose-600 transition-colors">
                   Shopping Cart
                 </Link>
               </li>
               <li>
-                <Link href="/orders" className="hover:text-neutral-900 transition-colors">
+                <Link href="/orders" className="hover:text-rose-600 transition-colors">
                   Track Order
                 </Link>
               </li>
@@ -66,11 +66,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-400 gap-4">
+        <div className="mt-12 pt-6 border-t border-rose-100/70 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-400 gap-4">
           <p>© {currentYear} RevoFashion. Built with Next.js 16 & Tailwind CSS.</p>
           <div className="flex gap-6">
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
+            <span className="hover:text-rose-600 cursor-pointer transition-colors">Privacy Policy</span>
+            <span className="hover:text-rose-600 cursor-pointer transition-colors">Terms of Service</span>
           </div>
         </div>
       </div>
