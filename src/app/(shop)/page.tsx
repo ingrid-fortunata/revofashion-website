@@ -3,7 +3,12 @@ import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { HeroCarousel, ProductCard } from "@/features/products";
+import {
+  HeroCarousel,
+  ProductCard,
+  productService,
+  categoryService,
+} from "@/features/products";
 import { Product } from "@/types/product";
 import { Category } from "@/types/category";
 
@@ -14,33 +19,30 @@ export const metadata = {
 };
 
 /**
- * Pure Server Component: Correctly fetches GET /products inside a Server Component
- * using async/await with the native fetch API, rendering the first 5 results as
- * read-only ProductCard components.
+ * Server Component fetch using unified productService and categoryService.
+ * Underlying client uses native fetch with full Request/Response/Error interceptor pipeline.
  */
 async function getHomePageData(): Promise<{
   products: Product[];
   categories: Category[];
 }> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "https://revofashion-shop.onrender.com";
+  try {
+    const [productsRes, categories] = await Promise.all([
+      productService.getProducts({ per_page: 5 }),
+      categoryService.getCategories(),
+    ]);
 
-  const [productsRes, categoriesRes] = await Promise.all([
-    fetch(`${baseUrl}/products`, { cache: "no-store" }),
-    fetch(`${baseUrl}/categories`, { cache: "no-store" }),
-  ]);
-
-  if (!productsRes.ok) {
-    throw new Error(`Failed to fetch products: ${productsRes.status}`);
+    return {
+      products: (productsRes.data || []).slice(0, 5),
+      categories: categories || [],
+    };
+  } catch (error) {
+    console.error("HomePage data fetching error:", error);
+    return {
+      products: [],
+      categories: [],
+    };
   }
-
-  const productsJson = await productsRes.json();
-  const categoriesJson = categoriesRes.ok ? await categoriesRes.json() : { data: [] };
-
-  return {
-    products: (productsJson.data || []).slice(0, 5),
-    categories: categoriesJson.data || [],
-  };
 }
 
 export default async function HomePage() {

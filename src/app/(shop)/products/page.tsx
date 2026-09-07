@@ -1,5 +1,9 @@
 import React, { Suspense } from "react";
-import { ProductList, ProductCardSkeleton } from "@/features/products";
+import {
+  ProductList,
+  ProductCardSkeleton,
+  productService,
+} from "@/features/products";
 import { Product } from "@/types/product";
 
 export const metadata = {
@@ -8,23 +12,18 @@ export const metadata = {
 };
 
 /**
- * Server Component fetch: Correctly fetches GET /products inside a Server Component
- * using async/await with the native fetch API.
+ * Server Component fetch using unified productService.
+ * Uses native fetch under the hood with error code interpretation via error interceptor.
  */
 async function getProducts(): Promise<Product[]> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "https://revofashion-shop.onrender.com";
-
-  const res = await fetch(`${baseUrl}/products`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch products: ${res.status} ${res.statusText}`);
+  try {
+    const response = await productService.getProducts({ per_page: 12 });
+    return response.data || [];
+  } catch (error) {
+    // Interceptor has interpreted and enriched error.message with backend error code translation
+    console.error("Server-side products fetch error:", error);
+    throw error;
   }
-
-  const json = await res.json();
-  return json.data || [];
 }
 
 function ProductsPageSkeleton() {

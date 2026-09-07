@@ -1,6 +1,7 @@
 import { ApiError, ErrorInterceptor } from "@/types/api";
 import { removeAuthToken } from "@/lib/cookies";
 import { showToast } from "@/lib/toast";
+import { translateApiError } from "@/lib/api/error-codes";
 
 /**
  * Normalizes any error object into strongly-typed ApiError.
@@ -31,18 +32,25 @@ export function isAuthSessionError(apiError: ApiError): boolean {
 
 /**
  * Default Error Interceptor:
- * Handles token cleanup on 401, triggers translated toast notifications, and rethrows.
+ * - Translates backend error codes into human-friendly messages on both Server and Client.
+ * - Handles token cleanup on 401.
+ * - Triggers translated toast notifications in browser.
+ * - Rethrows the enriched ApiError.
  */
 export const defaultErrorInterceptor: ErrorInterceptor = (error, options) => {
   const apiError = normalizeApiError(error);
 
-  // Clear cookie token if session is expired or invalid
+  // Interpret and translate backend error code centrally for both SSR and CSR
+  const { title, description } = translateApiError(apiError);
+  apiError.message = `${title}: ${description}`;
+
+  // Clear cookie token if session is expired or invalid (safe on client)
   if (isAuthSessionError(apiError)) {
     removeAuthToken();
   }
 
-  // Automatically show toast in interceptor (unless explicitly skipped)
-  if (!options.skipToast) {
+  // Automatically show toast in interceptor when running in browser
+  if (!options.skipToast && typeof window !== "undefined") {
     showToast.error(apiError);
   }
 
