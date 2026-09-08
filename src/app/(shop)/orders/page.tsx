@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { Package, ChevronRight, ShoppingBag } from "lucide-react";
 import { getServerToken } from "@/lib/cookies.server";
 import { getOrders } from "@/lib/api/orders";
-import { OrderCard } from "@/components/orders";
+import { OrderInfiniteList } from "@/components/orders";
 import { Button } from "@/components/ui/button";
 import { Order } from "@/types/order";
 
@@ -14,8 +14,10 @@ export const metadata: Metadata = {
   description: "Track and review all your placed fashion orders.",
 };
 
+const ORDERS_PER_PAGE = 5;
+
 /**
- * Server Component: Order History Listing (SSR with Server Cookie Authentication)
+ * Server Component: Order History Listing (SSR with Server Cookie Authentication & Infinite Scroll)
  * Specified in /docs/guideline/rendering_strategies.md (Halaman 3) & /docs/guideline/requirements.md
  */
 export default async function OrdersPage() {
@@ -27,13 +29,20 @@ export default async function OrdersPage() {
   }
 
   let orders: Order[] = [];
+  let totalPages = 1;
+  let totalOrders = 0;
 
   try {
-    const res = await getOrders(undefined, {
-      token,
-      cache: "no-store",
-    });
+    const res = await getOrders(
+      { page: 1, per_page: ORDERS_PER_PAGE },
+      {
+        token,
+        cache: "no-store",
+      }
+    );
     orders = res.data || [];
+    totalPages = res.pages || 1;
+    totalOrders = res.total || orders.length;
   } catch (error) {
     console.error("OrdersPage server fetch error:", error);
     throw error; // Caught by src/app/(shop)/orders/error.tsx
@@ -95,12 +104,13 @@ export default async function OrdersPage() {
             </div>
           </div>
         ) : (
-          /* Order Cards List */
-          <div className="space-y-6">
-            {orders.map((order) => (
-              <OrderCard key={order.id} order={order} />
-            ))}
-          </div>
+          /* Infinite Scroll Order List */
+          <OrderInfiniteList
+            initialOrders={orders}
+            initialPages={totalPages}
+            initialTotal={totalOrders}
+            perPage={ORDERS_PER_PAGE}
+          />
         )}
       </div>
     </div>
