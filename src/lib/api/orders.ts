@@ -1,4 +1,5 @@
 import { client } from "./client";
+import { FetchOptions } from "@/types/api";
 import {
   CreateOrderPayload,
   CreateOrderResponse,
@@ -12,16 +13,19 @@ import {
  * Automatically decrements product stock and returns the created Order.
  */
 export async function createOrder(
-  payload: CreateOrderPayload
+  payload: CreateOrderPayload,
+  options?: FetchOptions
 ): Promise<CreateOrderResponse> {
-  return client.post<CreateOrderResponse>("/orders", payload);
+  return client.post<CreateOrderResponse>("/orders", payload, options);
 }
 
 /**
  * Retrieves orders list (for current customer or all for admin) via GET /orders.
+ * Supports optional FetchOptions for server-side token passing and cache control.
  */
 export async function getOrders(
-  params?: OrderFilterParams
+  params?: OrderFilterParams,
+  options?: FetchOptions
 ): Promise<OrderListResponse> {
   const cleanedParams: Record<string, string | number | undefined> = {};
 
@@ -38,23 +42,46 @@ export async function getOrders(
   }
 
   return client.get<OrderListResponse>("/orders", {
-    params: cleanedParams,
+    ...options,
+    params: {
+      ...cleanedParams,
+      ...(options?.params || {}),
+    },
   });
 }
 
 /**
  * Retrieves a single order with items by order ID via GET /orders/:id.
+ * Supports optional FetchOptions for server-side token passing and cache control.
  */
 export async function getOrderById(
-  id: number
+  id: number,
+  options?: FetchOptions
 ): Promise<{ data: Order }> {
-  return client.get<{ data: Order }>(`/orders/${id}`);
+  return client.get<{ data: Order }>(`/orders/${id}`, options);
+}
+
+/**
+ * Soft-cancels an order (allowed only if status is 'pending' or 'paid') via DELETE /orders/:id.
+ * Automatically restores product inventory stock on the backend.
+ */
+export async function cancelOrder(
+  id: number,
+  reason: string,
+  options?: FetchOptions
+): Promise<{ data: Order; message?: string }> {
+  return client.delete<{ data: Order; message?: string }>(`/orders/${id}`, {
+    ...options,
+    body: JSON.stringify({ cancellation_reason: reason }),
+  });
 }
 
 export const orderService = {
   createOrder,
   getOrders,
   getOrderById,
+  cancelOrder,
 };
 
 export default orderService;
+
