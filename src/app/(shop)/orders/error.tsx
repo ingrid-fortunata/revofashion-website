@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { AlertTriangle, RotateCcw, ArrowLeft, ShoppingBag } from "lucide-react";
+import { AlertTriangle, RotateCcw, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function OrdersError({

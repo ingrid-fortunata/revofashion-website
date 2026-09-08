@@ -7,7 +7,6 @@ import {
   Truck,
   Home,
   XCircle,
-  AlertTriangle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
