@@ -101,14 +101,14 @@ export default async function ProductDetailPage({
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Left Column: Product Image Gallery */}
-        <div className="lg:col-span-7">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        {/* Left Column: Product Image Gallery (Compact) */}
+        <div className="lg:col-span-5 xl:col-span-4">
           <ProductImageGallery product={product} />
         </div>
 
         {/* Right Column: Product Details & Actions */}
-        <div className="lg:col-span-5 flex flex-col gap-6">
+        <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-6">
           <ProductInfo product={product} categoryName={categoryName} />
           <ProductAddToCartSection product={product} />
         </div>

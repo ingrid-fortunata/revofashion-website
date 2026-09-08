@@ -4,27 +4,24 @@ export default function ProductDetailLoading() {
   return (
     <div className="w-full">
       {/* 2-Column Responsive Layout Skeleton */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-        {/* Left Column Skeleton (Gallery) */}
-        <div className="lg:col-span-7 flex flex-col gap-4">
-          <div className="aspect-4/5 w-full rounded-2xl bg-rose-100/50 animate-pulse" />
-          <div className="flex gap-3">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        {/* Left Column Skeleton (Gallery - Compact) */}
+        <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-4">
+          <div className="aspect-4/5 w-full max-w-sm sm:max-w-md mx-auto rounded-2xl bg-rose-100/50 animate-pulse" />
+          <div className="flex justify-center gap-2.5">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-20 w-20 rounded-xl bg-rose-100/40 animate-pulse shrink-0"
+                className="h-16 w-16 rounded-xl bg-rose-100/40 animate-pulse shrink-0"
               />
             ))}
           </div>
         </div>
 
         {/* Right Column Skeleton (Details) */}
-        <div className="lg:col-span-5 flex flex-col gap-6">
-          {/* Breadcrumb Skeleton */}
-          <div className="flex items-center justify-between">
-            <div className="h-4 w-48 rounded bg-rose-100/50 animate-pulse" />
-            <div className="h-4 w-24 rounded bg-rose-100/40 animate-pulse" />
-          </div>
+        <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-6">
+          {/* Back Link Skeleton */}
+          <div className="h-4 w-28 rounded bg-rose-100/50 animate-pulse" />
 
           {/* Badges Skeleton */}
           <div className="flex gap-2">

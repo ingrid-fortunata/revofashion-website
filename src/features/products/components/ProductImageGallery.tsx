@@ -42,20 +42,20 @@ export function ProductImageGallery({
 
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
-      {/* Primary High-Res Preview Container */}
-      <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl border border-rose-100/90 bg-rose-50/20 shadow-xs">
+      {/* Primary High-Res Preview Container (Compact & Centered) */}
+      <div className="relative aspect-4/5 w-full max-w-sm sm:max-w-md mx-auto overflow-hidden rounded-2xl border border-rose-100/90 bg-rose-50/20 shadow-xs">
         {isImageFailed ? (
           <div className="flex h-full w-full flex-col items-center justify-center p-8 bg-rose-50/40">
             <Image
               src="/images/no-photo.png"
               alt={`No photo available for ${product.name}`}
-              width={320}
-              height={260}
+              width={260}
+              height={220}
               className="max-h-full max-w-full object-contain opacity-85"
               unoptimized
               priority
             />
-            <span className="mt-4 text-xs font-medium text-neutral-400">
+            <span className="mt-3 text-xs font-medium text-neutral-400">
               No preview available
             </span>
           </div>
@@ -64,7 +64,7 @@ export function ProductImageGallery({
             src={currentImage}
             alt={`${product.name} - view ${activeIndex + 1}`}
             fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(max-width: 1024px) 100vw, 40vw"
             className="object-cover transition-opacity duration-300"
             priority
             onError={() => {
@@ -82,7 +82,7 @@ export function ProductImageGallery({
         <div
           role="region"
           aria-label="Product image thumbnails"
-          className="flex items-center gap-3 overflow-x-auto pb-1 pt-0.5"
+          className="flex items-center justify-center gap-2.5 overflow-x-auto pb-1 pt-0.5"
         >
           {images.map((imgSrc, idx) => {
             const isActive = activeIndex === idx;
@@ -95,7 +95,7 @@ export function ProductImageGallery({
                 aria-label={`Show image view ${idx + 1}`}
                 aria-current={isActive ? "true" : undefined}
                 onClick={() => setActiveIndex(idx)}
-                className={`relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
+                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
                   isActive
                     ? "border-rose-600 ring-2 ring-rose-200 shadow-xs scale-102"
                     : "border-neutral-200/90 hover:border-rose-300 opacity-70 hover:opacity-100"
