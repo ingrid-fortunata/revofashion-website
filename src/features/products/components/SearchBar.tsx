@@ -21,7 +21,9 @@ export function SearchBar({
 
   // Read search query parameter using useSearchParams to display current search value
   useEffect(() => {
-    setQuery(searchParams.get("search") || "");
+    queueMicrotask(() => {
+      setQuery(searchParams.get("search") || "");
+    });
   }, [searchParams]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

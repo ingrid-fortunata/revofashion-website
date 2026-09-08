@@ -1,8 +1,15 @@
 "use client";
 
 import React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 interface ProductPaginationProps {
   page: number;
@@ -50,34 +57,24 @@ export function ProductPagination({
   const pageNumbers = getPageNumbers();
 
   return (
-    <nav
-      aria-label="Pagination Navigation"
-      className={`flex items-center justify-center gap-2 pt-6 ${className}`}
-    >
-      {/* Previous Button */}
-      <Button
-        variant="outline"
-        size="sm"
-        disabled={page <= 1}
-        onClick={() => onPageChange(page - 1)}
-        className="h-9 px-3 gap-1 text-xs"
-        aria-label="Go to previous page"
-      >
-        <ChevronLeft className="h-4 w-4" />
-        <span>Previous</span>
-      </Button>
+    <Pagination className={`pt-6 ${className}`}>
+      <PaginationContent>
+        {/* Previous Button */}
+        <PaginationItem>
+          <PaginationPrevious
+            onClick={() => onPageChange(page - 1)}
+            disabled={page <= 1}
+            className={page <= 1 ? "opacity-50 pointer-events-none" : ""}
+          />
+        </PaginationItem>
 
-      {/* Numbered Page Buttons */}
-      <div className="flex items-center gap-1.5">
+        {/* Numbered Page Buttons */}
         {pageNumbers.map((num, idx) => {
           if (num === "...") {
             return (
-              <span
-                key={`ellipsis-${idx}`}
-                className="px-2 text-xs font-semibold text-neutral-400"
-              >
-                ...
-              </span>
+              <PaginationItem key={`ellipsis-${idx}`}>
+                <PaginationEllipsis />
+              </PaginationItem>
             );
           }
 
@@ -85,35 +82,27 @@ export function ProductPagination({
           const isCurrent = pageNum === page;
 
           return (
-            <button
-              key={pageNum}
-              type="button"
-              onClick={() => onPageChange(pageNum)}
-              aria-current={isCurrent ? "page" : undefined}
-              className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                isCurrent
-                  ? "bg-rose-600 text-white shadow-sm shadow-rose-200/50"
-                  : "border border-rose-100/80 bg-white text-neutral-700 hover:border-rose-300 hover:bg-rose-50/50"
-              }`}
-            >
-              {pageNum}
-            </button>
+            <PaginationItem key={pageNum}>
+              <PaginationLink
+                isActive={isCurrent}
+                onClick={() => onPageChange(pageNum)}
+                aria-label={`Go to page ${pageNum}`}
+              >
+                {pageNum}
+              </PaginationLink>
+            </PaginationItem>
           );
         })}
-      </div>
 
-      {/* Next Button */}
-      <Button
-        variant="outline"
-        size="sm"
-        disabled={page >= pages}
-        onClick={() => onPageChange(page + 1)}
-        className="h-9 px-3 gap-1 text-xs"
-        aria-label="Go to next page"
-      >
-        <span>Next</span>
-        <ChevronRight className="h-4 w-4" />
-      </Button>
-    </nav>
+        {/* Next Button */}
+        <PaginationItem>
+          <PaginationNext
+            onClick={() => onPageChange(page + 1)}
+            disabled={page >= pages}
+            className={page >= pages ? "opacity-50 pointer-events-none" : ""}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   );
 }

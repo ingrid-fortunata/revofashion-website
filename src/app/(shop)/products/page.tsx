@@ -4,7 +4,7 @@ import {
   ProductCardSkeleton,
   productService,
 } from "@/features/products";
-import { Product, ProductListResponse } from "@/types/product";
+import { ProductListResponse } from "@/types/product";
 
 export const metadata = {
   title: "Product Catalog | RevoFashion",
