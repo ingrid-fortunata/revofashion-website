@@ -9,13 +9,17 @@ import { FashionFilters } from "./FashionFilters";
 import { ProductGrid } from "./ProductGrid";
 import { ProductPagination } from "./ProductPagination";
 import { useProductsQuery } from "../hooks/useProductsQuery";
-import { Product, ProductFilterParams } from "@/types/product";
+import { Product, ProductFilterParams, ProductListResponse } from "@/types/product";
 
 interface ProductListProps {
   products: Product[];
+  initialResponse?: ProductListResponse;
 }
 
-export function ProductList({ products: initialProducts }: ProductListProps) {
+export function ProductList({
+  products: initialProducts,
+  initialResponse,
+}: ProductListProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -70,19 +74,26 @@ export function ProductList({ products: initialProducts }: ProductListProps) {
     refetch,
   } = useProductsQuery(queryParams, {
     initialData:
-      !hasActiveFilters && initialProducts?.length
+      !hasActiveFilters && initialResponse
+        ? initialResponse
+        : !hasActiveFilters && initialProducts?.length
         ? {
             data: initialProducts,
             page: 1,
             per_page: 12,
             total: initialProducts.length,
-            pages: 1,
+            pages: Math.max(1, Math.ceil(initialProducts.length / 12)),
           }
         : undefined,
   });
 
-  const products = productResponse?.data ?? (hasActiveFilters ? [] : initialProducts);
-  const totalPages = productResponse?.pages ?? 1;
+  const products =
+    productResponse?.data ??
+    (hasActiveFilters ? [] : (initialResponse?.data ?? initialProducts));
+  const totalPages =
+    productResponse?.pages ?? initialResponse?.pages ?? 1;
+  const totalProducts =
+    productResponse?.total ?? initialResponse?.total ?? products.length;
 
   // Update query parameters in URL
   const updateFilters = useCallback(
@@ -196,7 +207,7 @@ export function ProductList({ products: initialProducts }: ProductListProps) {
         }}
         onChange={updateFilters}
         onReset={resetFilters}
-        totalProducts={products.length}
+        totalProducts={totalProducts}
       />
 
       {/* Active Filter Chips */}

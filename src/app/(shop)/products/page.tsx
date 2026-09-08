@@ -4,7 +4,7 @@ import {
   ProductCardSkeleton,
   productService,
 } from "@/features/products";
-import { Product } from "@/types/product";
+import { Product, ProductListResponse } from "@/types/product";
 
 export const metadata = {
   title: "Product Catalog | RevoFashion",
@@ -15,10 +15,10 @@ export const metadata = {
  * Server Component fetch using unified productService.
  * Uses native fetch under the hood with error code interpretation via error interceptor.
  */
-async function getProducts(): Promise<Product[]> {
+async function getProducts(): Promise<ProductListResponse> {
   try {
     const response = await productService.getProducts({ per_page: 12 });
-    return response.data || [];
+    return response;
   } catch (error) {
     // Interceptor has interpreted and enriched error.message with backend error code translation
     console.error("Server-side products fetch error:", error);
@@ -48,11 +48,14 @@ function ProductsPageSkeleton() {
 }
 
 export default async function ProductsPage() {
-  const products = await getProducts();
+  const initialResponse = await getProducts();
 
   return (
     <Suspense fallback={<ProductsPageSkeleton />}>
-      <ProductList products={products} />
+      <ProductList
+        products={initialResponse.data || []}
+        initialResponse={initialResponse}
+      />
     </Suspense>
   );
 }
