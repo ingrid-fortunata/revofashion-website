@@ -10,7 +10,7 @@ interface SearchBarProps {
 }
 
 export function SearchBar({
-  placeholder = "Search garments, fabrics, colors...",
+  placeholder = "Search products by name...",
   className = "",
 }: SearchBarProps) {
   const router = useRouter();

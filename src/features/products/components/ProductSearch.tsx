@@ -14,7 +14,7 @@ interface ProductSearchProps {
 export function ProductSearch({
   value,
   onChange,
-  placeholder = "Search garments, fabrics, colors...",
+  placeholder = "Search products by name...",
   className = "",
 }: ProductSearchProps) {
   const [prevValue, setPrevValue] = useState(value);

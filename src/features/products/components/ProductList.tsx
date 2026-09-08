@@ -151,9 +151,14 @@ export function ProductList({ products: initialProducts }: ProductListProps) {
     }
 
     if (currentSortBy && currentSortBy !== "newest") {
+      const sortLabels: Record<string, string> = {
+        oldest: "Oldest First",
+        price_asc: "Price: Low to High",
+        price_desc: "Price: High to Low",
+      };
       chips.push({
         key: "sort_by",
-        label: `Sort: ${currentSortBy.replace("_", " ")}`,
+        label: `Sort: ${sortLabels[currentSortBy] || currentSortBy.replace("_", " ")}`,
         onRemove: () => updateFilters({ sort_by: "newest" }),
       });
     }

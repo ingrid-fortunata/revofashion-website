@@ -2,7 +2,11 @@
 
 import React from "react";
 import { SlidersHorizontal, RotateCcw } from "lucide-react";
-import { ProductFilterParams, ProductGender, ProductSize } from "@/types/product";
+import {
+  ProductFilterParams,
+  ProductGender,
+  ProductSize,
+} from "@/types/product";
 
 interface FashionFiltersProps {
   filters: ProductFilterParams;
@@ -31,11 +35,21 @@ const SIZES: { label: string; value: ProductSize | "All" }[] = [
   { label: "Free Size", value: "FREE" },
 ];
 
-const SORT_OPTIONS: { label: string; value: ProductFilterParams["sort_by"] }[] = [
-  { label: "Newest Arrivals", value: "newest" },
-  { label: "Oldest First", value: "oldest" },
-  { label: "Price: Low to High", value: "price_asc" },
-  { label: "Price: High to Low", value: "price_desc" },
+const SORT_GROUPS = [
+  {
+    label: "Date Added",
+    options: [
+      { label: "Newest Arrivals", value: "newest" as const },
+      { label: "Oldest First", value: "oldest" as const },
+    ],
+  },
+  {
+    label: "Price",
+    options: [
+      { label: "Price: Low to High", value: "price_asc" as const },
+      { label: "Price: High to Low", value: "price_desc" as const },
+    ],
+  },
 ];
 
 export function FashionFilters({
@@ -47,10 +61,10 @@ export function FashionFilters({
 }: FashionFiltersProps) {
   const hasActiveFilters = Boolean(
     (filters.gender && filters.gender !== "All") ||
-      (filters.size && filters.size !== "All") ||
-      filters.sort_by ||
-      filters.search ||
-      filters.category_id
+    (filters.size && filters.size !== "All") ||
+    filters.sort_by ||
+    filters.search ||
+    filters.category_id,
   );
 
   return (
@@ -148,10 +162,18 @@ export function FashionFilters({
             }
             className="h-9 w-full rounded-xl border border-rose-100 bg-rose-50/20 px-3 text-xs font-medium text-neutral-800 transition-colors focus:border-rose-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-rose-300 cursor-pointer"
           >
-            {SORT_OPTIONS.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
+            {SORT_GROUPS.map((group) => (
+              <optgroup
+                key={group.label}
+                label={group.label}
+                className="font-bold text-xs"
+              >
+                {group.options.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
         </div>
