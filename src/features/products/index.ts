@@ -8,7 +8,7 @@ export { SearchBar } from "./components/SearchBar";
 export { CategoryFilter } from "./components/CategoryFilter";
 export { FashionFilters } from "./components/FashionFilters";
 export { ProductPagination } from "./components/ProductPagination";
-export { AddToCartButton } from "./components/AddToCartButton";
+export { AddToCartButton, getButtonClasses } from "./components/AddToCartButton";
 export { HeroCarousel } from "./components/HeroCarousel";
 export { FeaturedProductsSection } from "./components/FeaturedProductsSection";
 

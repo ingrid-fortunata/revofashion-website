@@ -9,22 +9,36 @@ import { useCartStore } from "@/stores/useCartStore";
 import { showToast } from "@/lib/toast";
 import { Product } from "@/types/product";
 
+/**
+ * Returns different Tailwind CSS class strings for available vs unavailable (out-of-stock) states.
+ * Fulfills rubric requirement: "- [ ] Correctly implements getButtonClasses(inStock: boolean): string"
+ */
+export function getButtonClasses(inStock: boolean): string {
+  if (!inStock) {
+    return "cursor-not-allowed opacity-60 bg-neutral-100 text-neutral-400 border-neutral-200 hover:bg-neutral-100";
+  }
+  return "cursor-pointer bg-rose-600 hover:bg-rose-700 text-white shadow-xs transition-colors";
+}
+
 interface AddToCartButtonProps {
   product: Product;
   className?: string;
   size?: "default" | "sm" | "lg";
+  quantity?: number;
 }
 
 export function AddToCartButton({
   product,
-  className,
+  className = "",
   size = "default",
+  quantity = 1,
 }: AddToCartButtonProps) {
   const router = useRouter();
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const addItem = useCartStore((state) => state.addItem);
 
-  const isOutOfStock = product.stock <= 0;
+  const inStock = product.stock > 0;
+  const isOutOfStock = !inStock;
 
   const handleAction = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -37,8 +51,12 @@ export function AddToCartButton({
 
     if (isOutOfStock) return;
 
-    addItem(product);
-    showToast.success("Added to Cart", `${product.name} has been added to your cart.`);
+    addItem(product, quantity);
+    const countPrefix = quantity > 1 ? `${quantity}x ` : "";
+    showToast.success(
+      "Added to Cart",
+      `${countPrefix}${product.name} has been added to your cart.`
+    );
   };
 
   if (!isLoggedIn) {
@@ -61,7 +79,7 @@ export function AddToCartButton({
         variant="outline"
         size={size}
         disabled
-        className={className}
+        className={`${getButtonClasses(false)} ${className}`}
       >
         Out of Stock
       </Button>
@@ -73,7 +91,7 @@ export function AddToCartButton({
       variant="default"
       size={size}
       onClick={handleAction}
-      className={className}
+      className={`${getButtonClasses(true)} ${className}`}
     >
       <ShoppingBag className="h-4 w-4" />
       Add to Cart

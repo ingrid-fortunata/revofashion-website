@@ -3,10 +3,12 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Minus, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { AddToCartButton } from "./AddToCartButton";
+import { AddToCartButton, getButtonClasses } from "./AddToCartButton";
 import { Product } from "@/types/product";
+
+export { getButtonClasses };
 
 interface ProductCardProps {
   product: Product;
@@ -44,6 +46,7 @@ export function ProductCard({
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
+  const [quantity, setQuantity] = useState(1);
 
   const hasMultipleImages = images.length > 1;
   const currentImage = images[activeIndex];
@@ -222,7 +225,50 @@ export function ProductCard({
           </div>
 
           {!readOnly && (
-            <AddToCartButton product={product} size="default" className="w-full" />
+            <div className="flex flex-col gap-2">
+              {product.stock > 0 && (
+                <div className="flex items-center justify-between rounded-xl border border-rose-100/90 bg-rose-50/40 px-2.5 py-1">
+                  <span className="text-[11px] font-medium text-neutral-500">Qty:</span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      aria-label="Decrease quantity"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setQuantity((prev) => Math.max(1, prev - 1));
+                      }}
+                      disabled={quantity <= 1}
+                      className="flex h-5 w-5 items-center justify-center rounded-md bg-white border border-neutral-200 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed text-xs transition-colors"
+                    >
+                      <Minus className="h-3 w-3" />
+                    </button>
+                    <span className="min-w-[1.25rem] text-center text-xs font-semibold text-neutral-800">
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      aria-label="Increase quantity"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setQuantity((prev) => Math.min(product.stock, prev + 1));
+                      }}
+                      disabled={quantity >= product.stock}
+                      className="flex h-5 w-5 items-center justify-center rounded-md bg-white border border-neutral-200 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed text-xs transition-colors"
+                    >
+                      <Plus className="h-3 w-3" />
+                    </button>
+                  </div>
+                </div>
+              )}
+              <AddToCartButton
+                product={product}
+                quantity={quantity}
+                size="default"
+                className="w-full"
+              />
+            </div>
           )}
         </div>
       </div>

@@ -12,6 +12,10 @@ import {
 import { Product } from "@/types/product";
 import { Category } from "@/types/category";
 
+// ISR (Incremental Static Regeneration): Revalidate featured products every 60 seconds
+// Specified in /docs/guideline/rendering_strategies.md (Table 2 & Section 2)
+export const revalidate = 60;
+
 export const metadata = {
   title: "RevoFashion — Contemporary Minimalist Fashion",
   description:
