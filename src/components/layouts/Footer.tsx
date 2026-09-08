@@ -35,6 +35,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/categories" className="hover:text-rose-600 transition-colors">
+                  Categories
+                </Link>
+              </li>
+              <li>
                 <Link href="/cart" className="hover:text-rose-600 transition-colors">
                   Shopping Cart
                 </Link>

@@ -2,7 +2,7 @@
 
 import React, { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { ShoppingBag, User, LogIn, LogOut, LayoutDashboard, Menu, X } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useCartStore } from "@/stores/useCartStore";
@@ -13,6 +13,7 @@ import { UserDropdown } from "./UserDropdown";
 
 export function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const { user, isLoggedIn, logout } = useAuthStore();
   const items = useCartStore((state) => state.items);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,15 +56,33 @@ export function Navbar() {
           <div className="hidden md:flex md:items-center md:gap-6">
             <Link
               href="/"
-              className="text-sm font-medium text-neutral-600 transition-colors hover:text-rose-600"
+              className={`text-sm transition-colors ${
+                pathname === "/"
+                  ? "font-semibold text-rose-600"
+                  : "font-medium text-neutral-600 hover:text-rose-600"
+              }`}
             >
               Home
             </Link>
             <Link
               href="/products"
-              className="text-sm font-medium text-neutral-600 transition-colors hover:text-rose-600"
+              className={`text-sm transition-colors ${
+                pathname.startsWith("/products")
+                  ? "font-semibold text-rose-600"
+                  : "font-medium text-neutral-600 hover:text-rose-600"
+              }`}
             >
               Products
+            </Link>
+            <Link
+              href="/categories"
+              className={`text-sm transition-colors ${
+                pathname.startsWith("/categories")
+                  ? "font-semibold text-rose-600"
+                  : "font-medium text-neutral-600 hover:text-rose-600"
+              }`}
+            >
+              Categories
             </Link>
           </div>
         </div>
@@ -142,16 +161,35 @@ export function Navbar() {
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1"
+              className={`text-sm py-1 transition-colors ${
+                pathname === "/"
+                  ? "font-semibold text-rose-600"
+                  : "font-medium text-neutral-700 hover:text-rose-600"
+              }`}
             >
               Home
             </Link>
             <Link
               href="/products"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1"
+              className={`text-sm py-1 transition-colors ${
+                pathname.startsWith("/products")
+                  ? "font-semibold text-rose-600"
+                  : "font-medium text-neutral-700 hover:text-rose-600"
+              }`}
             >
               Products
+            </Link>
+            <Link
+              href="/categories"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-sm py-1 transition-colors ${
+                pathname.startsWith("/categories")
+                  ? "font-semibold text-rose-600"
+                  : "font-medium text-neutral-700 hover:text-rose-600"
+              }`}
+            >
+              Categories
             </Link>
             <Link
               href="/cart"
