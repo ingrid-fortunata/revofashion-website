@@ -8,20 +8,21 @@ import {
   Activity,
   Heart,
   Tag,
-  LucideIcon,
 } from "lucide-react";
 import { Category } from "@/types/category";
 
 /**
- * Maps category name keywords to thematic Lucide icons
+ * Renders thematic Lucide icons based on category name keywords
  */
-function getCategoryIcon(name: string): LucideIcon {
+function CategoryIcon({ name }: { name: string }) {
   const normalized = name.toLowerCase();
+  const iconClass = "h-6 w-6 transition-transform duration-300 group-hover:scale-105";
+
   if (normalized.includes("t-shirt") || normalized.includes("shirt") || normalized.includes("blouse")) {
-    return Shirt;
+    return <Shirt className={iconClass} />;
   }
   if (normalized.includes("dress") || normalized.includes("skirt")) {
-    return Sparkles;
+    return <Sparkles className={iconClass} />;
   }
   if (
     normalized.includes("outer") ||
@@ -29,10 +30,10 @@ function getCategoryIcon(name: string): LucideIcon {
     normalized.includes("coat") ||
     normalized.includes("hoodie")
   ) {
-    return Layers;
+    return <Layers className={iconClass} />;
   }
   if (normalized.includes("active") || normalized.includes("sport") || normalized.includes("dry-ex")) {
-    return Activity;
+    return <Activity className={iconClass} />;
   }
   if (
     normalized.includes("inner") ||
@@ -40,9 +41,9 @@ function getCategoryIcon(name: string): LucideIcon {
     normalized.includes("underwear") ||
     normalized.includes("heattech")
   ) {
-    return Heart;
+    return <Heart className={iconClass} />;
   }
-  return Tag;
+  return <Tag className={iconClass} />;
 }
 
 interface CategoryCardProps {
@@ -50,7 +51,6 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category }: CategoryCardProps) {
-  const Icon = getCategoryIcon(category.name);
   const description = category.description || "Discover curated essentials.";
 
   return (
@@ -61,7 +61,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
       <div className="flex flex-col gap-4">
         {/* Thematic Icon Chip */}
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white transition-all duration-300 shadow-2xs">
-          <Icon className="h-6 w-6 transition-transform duration-300 group-hover:scale-105" />
+          <CategoryIcon name={category.name} />
         </div>
 
         {/* Title and Description */}

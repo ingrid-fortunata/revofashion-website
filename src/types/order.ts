@@ -57,3 +57,20 @@ export interface OrderListResponse {
   total: number;
   pages: number;
 }
+
+export interface CreateOrderResponse {
+  data: Order;
+  message?: string;
+}
+
+export interface OrderFilterParams {
+  status?: OrderStatus;
+  order_id?: number;
+  recipient_name?: string;
+  recipient_phone?: string;
+  shipping_address?: string;
+  customer_name?: string;
+  search?: string;
+  page?: number;
+  per_page?: number;
+}
