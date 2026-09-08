@@ -25,6 +25,7 @@ interface AddToCartButtonProps {
   className?: string;
   size?: "default" | "sm" | "lg";
   quantity?: number;
+  redirectUrl?: string;
 }
 
 export function AddToCartButton({
@@ -32,6 +33,7 @@ export function AddToCartButton({
   className = "",
   size = "default",
   quantity = 1,
+  redirectUrl = "/products",
 }: AddToCartButtonProps) {
   const router = useRouter();
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -45,7 +47,7 @@ export function AddToCartButton({
     e.stopPropagation();
 
     if (!isLoggedIn) {
-      router.push(`/login?redirect=/products`);
+      router.push(`/login?redirect=${encodeURIComponent(redirectUrl)}`);
       return;
     }
 

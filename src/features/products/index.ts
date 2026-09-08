@@ -11,6 +11,9 @@ export { ProductPagination } from "./components/ProductPagination";
 export { AddToCartButton, getButtonClasses } from "./components/AddToCartButton";
 export { HeroCarousel } from "./components/HeroCarousel";
 export { FeaturedProductsSection } from "./components/FeaturedProductsSection";
+export { ProductImageGallery } from "./components/ProductImageGallery";
+export { ProductInfo } from "./components/ProductInfo";
+export { ProductAddToCartSection } from "./components/ProductAddToCartSection";
 
 // Hooks
 export { useProductsQuery } from "./hooks/useProductsQuery";
