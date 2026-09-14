@@ -6,6 +6,7 @@ import {
   Order,
   OrderListResponse,
   OrderFilterParams,
+  OrderStatus,
 } from "@/types/order";
 
 /**
@@ -76,12 +77,30 @@ export async function cancelOrder(
   });
 }
 
+/**
+ * Updates an order's lifecycle status via PATCH /orders/:id (Admin only).
+ * Supports status transitions with tracking_number or cancellation_reason.
+ */
+export async function updateOrderStatus(
+  id: number,
+  payload: {
+    status: OrderStatus;
+    tracking_number?: string;
+    cancellation_reason?: string;
+  },
+  options?: FetchOptions
+): Promise<{ data: Order; message?: string }> {
+  return client.patch<{ data: Order; message?: string }>(`/orders/${id}`, payload, options);
+}
+
 export const orderService = {
   createOrder,
   getOrders,
   getOrderById,
   cancelOrder,
+  updateOrderStatus,
 };
 
 export default orderService;
+
 
