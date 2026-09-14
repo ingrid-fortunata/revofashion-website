@@ -60,8 +60,11 @@ export interface CreateProductPayload {
   material?: string;
   gender?: ProductGender;
   sku?: string;
+  description?: string | null;
+  is_active?: boolean;
   images?: {
     image_base64: string;
     is_primary: boolean;
   }[];
 }
+

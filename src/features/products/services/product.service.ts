@@ -30,6 +30,9 @@ export const productService = {
       if (params.max_price !== undefined) {
         cleanedParams.max_price = params.max_price;
       }
+      if (params.is_active !== undefined) {
+        cleanedParams.is_active = params.is_active;
+      }
       if (params.sort_by) {
         cleanedParams.sort_by = params.sort_by;
       }
@@ -55,4 +58,30 @@ export const productService = {
   async getProductById(id: number): Promise<{ data: Product }> {
     return client.get<{ data: Product }>(`/products/${id}`);
   },
+
+  /**
+   * Create a new product (Admin only).
+   */
+  async createProduct(payload: import("@/types/product").CreateProductPayload): Promise<{ data: Product }> {
+    return client.post<{ data: Product }>("/products", payload);
+  },
+
+  /**
+   * Update an existing product (Admin only).
+   */
+  async updateProduct(
+    id: number,
+    payload: Partial<import("@/types/product").CreateProductPayload>
+  ): Promise<{ data: Product }> {
+    return client.put<{ data: Product }>(`/products/${id}`, payload);
+  },
+
+  /**
+   * Delete a product (Admin only).
+   * Handled with conflict safety for products with active orders.
+   */
+  async deleteProduct(id: number): Promise<{ message?: string }> {
+    return client.delete<{ message?: string }>(`/products/${id}`);
+  },
 };
+
