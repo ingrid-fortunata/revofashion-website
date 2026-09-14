@@ -1,5 +1,5 @@
 import React from "react";
-import { Sidebar } from "@/components/layouts";
+import { AdminShell } from "@/components/layouts";
 import { AdminRoute } from "@/components/routes";
 
 export default function AdminLayout({
@@ -9,10 +9,8 @@ export default function AdminLayout({
 }) {
   return (
     <AdminRoute>
-      <div className="flex min-h-screen bg-neutral-100/60">
-        <Sidebar />
-        <main className="flex-1 p-6 md:p-8 overflow-y-auto">{children}</main>
-      </div>
+      <AdminShell>{children}</AdminShell>
     </AdminRoute>
   );
 }
+
