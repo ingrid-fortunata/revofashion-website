@@ -3,16 +3,16 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Layers, ShoppingCart, ArrowLeft, LogOut } from "lucide-react";
+import { Package, Layers, ShoppingCart, ArrowLeft, LogOut } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/utils";
 
 const navigationItems = [
   {
-    label: "Overview",
+    label: "Products",
     href: "/dashboard",
-    icon: LayoutDashboard,
+    icon: Package,
     exact: true,
   },
   {
@@ -28,6 +28,7 @@ const navigationItems = [
     exact: false,
   },
 ];
+
 
 export function Sidebar() {
   const pathname = usePathname();
