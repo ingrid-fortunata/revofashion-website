@@ -1,162 +1,272 @@
-# RevoFashion — Contemporary Minimalist Storefront
+# RevoFashion — Contemporary Minimalist Storefront & Admin Portal
 
-An e-commerce web application engineered with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS v4**, **Base UI**, **TanStack Query v5**, and **Zustand**. Designed with a minimalist lifestyle aesthetic inspired by Japanese contemporary fashion (Uniqlo/Muji), tailored for elegance, everyday comfort, and high-performance server-rendered shopping journeys.
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live%20Demo-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://revofashion-website.vercel.app)
+[![Next.js 16](https://img.shields.io/badge/Next.js%2016-App%20Router-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React%2019-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript%205-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS%20v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![TanStack Query](https://img.shields.io/badge/TanStack%20Query%20v5-FF4154?style=for-the-badge&logo=react-query&logoColor=white)](https://tanstack.com/query)
 
----
-
-## 🌟 Key Features
-
-### 1. Uniqlo-Inspired Storefront Home (`/`)
-- **Lifestyle Hero Carousel**: Interactive banner showcasing contemporary lifestyle imagery with smooth transitions, left/right navigation controls, accessible indicators, and hover-pause autoplay.
-- **Featured Collection (SSR)**: Pure Server Component prefetching that renders the first 5 featured garments as read-only `ProductCard` components.
-- **Catalog CTA**: Prominent "View All Products" button routing seamlessly to the full catalog.
-
-### 2. Product Catalog, Search & Filtering (`/products`)
-- **Server Component Prefetching**: Initial products pre-rendered via Server Component fetch using unified isomorphic services.
-- **TanStack Query State Coordination**: Zero-`useEffect` client coordination powered by TanStack Query (`useProductsQuery`), providing instant cache hits and background revalidation.
-- **Live Search**: Controlled search bar that reads URL query parameters and navigates to `/products?search=${query}` upon pressing Enter.
-- **Category Filter**: Accessible category dropdown and horizontal quick-filter pills that update URL queries and dynamically refetch results.
-- **Fashion Attribute Filters**: Toolbar for filtering by **Gender** (`Men`, `Women`, `Unisex`, `Kids`), **Size** (`XS`–`XXL`, `Free Size`), and **Sort Order** (`Newest`, `Oldest`, `Price: Low to High`, `Price: High to Low`).
-- **Active Filter Chips**: Removable chips for active filters with an instant "Clear all" reset trigger.
-- **Pagination**: Accessible pagination bar with previous, next, and numbered page controls.
-
-### 3. ProductCard with Multi-Image Carousel & Fallback
-- **Image Priority**: Automatically prioritizes `primary_image` as the first image.
-- **Interactive Mini-Carousel**: When multiple photos exist (up to 3 images), renders subtle left/right floating arrows and indicator dots directly on the image container.
-- **Cute Fallback Placeholder**: If a product has no image or if the image fails to load (`onError`), it automatically falls back to `/images/no-photo.png` centered with non-distorting `object-contain p-6` styling.
-- **Stock Badges & Price**: Displays "In Stock" (emerald green) or "Out of Stock" (rose) badges, formatted USD currency, category names, and fashion tags.
-- **Conditional Actions**:
-  - *Home page*: Displays clean, read-only cards (`readOnly={true}`).
-  - *Unauthenticated*: Renders "Sign In to Buy" button redirecting to `/login?redirect=/products`.
-  - *Authenticated*: Renders active "Add to Cart" button integrating with `useCartStore` with Sonner toast feedback (disabled when stock is 0).
-
-### 4. Authentication & Protected User Profile
-- **Registration (`/register`)**: Strict client-side validation (RFC email regex, trimmed whitespace, 8+ character passwords), 409 conflict interceptor translation, and auto-redirect to `/login`.
-- **Login (`/login`)**: Secure JWT cookie storage (`revofashion_token`) with server-safe cookie utilities and role-based redirecting.
-- **User Profile (`/profile`)**: Protected view and edit form (`PUT /users/:id`) with dirty-state detection, instant session synchronization with `useAuthStore`, and accessible desktop/mobile navigation dropdowns.
+An enterprise-grade, full-featured fashion e-commerce storefront and administrative back-office portal engineered with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS v4**, **Base UI**, **TanStack Query v5**, and **Zustand**. Designed with a contemporary minimalist aesthetic inspired by Japanese lifestyle apparel brands (Uniqlo & Muji), built for performance, seamless responsiveness, and an effortless shopping experience.
 
 ---
 
-## 🏗️ Architecture & Technology Stack
+## 🌐 Live Deployments & Endpoints
 
-| Layer | Technology | Purpose |
+| Resource | URL | Description |
 | :--- | :--- | :--- |
-| **Framework** | Next.js 16.3.4 (App Router) | Hybrid Server Components (SSR) & Client Components (CSR) |
-| **Language** | TypeScript 5 | End-to-end type safety across API models, stores, and components |
-| **Styling** | Tailwind CSS v4 & PostCSS | Custom Rose minimalist palette, CSS variables, modern responsive grids |
-| **Primitives** | Base UI (`@base-ui/react`) | Accessible, unstyled UI primitives (Button, Input, Dialog, etc.) |
-| **Server State** | TanStack Query v5 | Data fetching, background caching, and query synchronization |
-| **Client State** | Zustand v5 | Persistent client-side stores (`useAuthStore`, `useCartStore`) |
-| **Feedback** | Sonner | Toasts integrated with automated backend error code translation |
-| **Icons** | Lucide React | Modern minimalist icons |
+| 🛍️ **Storefront & Admin Web App** | [**`https://revofashion-website.vercel.app`**](https://revofashion-website.vercel.app) | Live production build hosted on Vercel |
+| ⚙️ **RESTful API Backend** | [**`https://revofashion-shop.onrender.com`**](https://revofashion-shop.onrender.com) | Flask backend hosted on Render |
+| 📖 **Interactive Swagger UI** | [**`https://revofashion-shop.onrender.com/swagger-ui`**](https://revofashion-shop.onrender.com/swagger-ui) | OpenAPI 3.0 API documentation |
+| 🩺 **Backend Health Check** | [**`https://revofashion-shop.onrender.com/health`**](https://revofashion-shop.onrender.com/health) | API service health verification |
 
 ---
 
-## 📁 Project Directory Structure
+## 🔑 Demo & Test Credentials
+
+For quick evaluation of the customer storefront and the back-office admin portal, use the pre-configured accounts below:
+
+| Role | Email | Password | Accessible Areas |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@revofashion.com` | `admin_password` | Full access to `/dashboard` (Catalog, Categories, Orders) & Storefront |
+| **Superadmin** | `superadmin@revofashion.com` | `superadmin_password` | Full system access across all storefront & admin features |
+| **Customer** | `alice@example.com` | `alice_password` | Storefront browsing, Cart, Checkout, Order History (`/orders`), Profile |
+
+> 💡 *You can also create a brand-new customer account directly via [`/register`](https://revofashion-website.vercel.app/register).*
+
+---
+
+## ✨ Key Features & User Journeys
+
+### 1. 🛍️ Customer Storefront Experience
+- **Uniqlo-Inspired Lifestyle Homepage (`/`)**:
+  - High-resolution hero carousel featuring contemporary lifestyle banners with automatic playback, pause-on-hover, and smooth hardware-accelerated transitions.
+  - Featured collection rendered via **Next.js Server-Side Rendering (SSR)** for instant Largest Contentful Paint (LCP) and zero layout shifts.
+- **Product Catalog, Instant Search & Filters (`/products`)**:
+  - URL-synchronized live search and filtering with zero-lag background cache hits via TanStack Query.
+  - Multi-faceted fashion attributes: filter by **Category**, **Gender** (*Men, Women, Unisex, Kids*), **Size** (*XS, S, M, L, XL, XXL, Free Size*), and **Sort Order** (*Price Low/High, Newest, Oldest*).
+  - Removable active filter chips and one-click "Clear all" filter reset.
+  - Server-driven pagination with accessible navigation controls.
+- **Interactive Multi-Image Product Cards**:
+  - Primary image prioritization with floating navigation arrows and indicators for products with multiple gallery shots (up to 3 photos).
+  - Automatic cute fallback illustration (`/images/no-photo.png`) on broken or missing image links.
+  - Real-time stock status pills (*"In Stock"* vs. *"Out of Stock"*), currency formatting, and category tags.
+- **Category Directory (`/categories`)**:
+  - Browse apparel lines categorized by seasonal collections and product types.
+- **Cart & Order Checkout Flow (`/cart`, `/checkout`)**:
+  - Persistent shopping cart backed by Zustand and `localStorage`.
+  - Real-time inventory boundary checks (prevents adding more units than available in stock).
+  - Checkout form with address input, payment method selection, line-item summary, and immediate order creation.
+- **Order Tracking & History (`/orders`, `/orders/:id`)**:
+  - Comprehensive order history table with status badges (*Pending*, *Processing*, *Shipped*, *Delivered*, *Cancelled*).
+  - Dedicated order detail page displaying ordered items, shipping information, and order timeline.
+
+### 2. 🛠️ Back-Office Admin Dashboard (`/dashboard`)
+- **Role-Based Access Control (RBAC)**:
+  - Route-level security ensuring only authenticated users with `admin` or `superadmin` roles can access management pages.
+- **Product Inventory Management (`/dashboard`)**:
+  - Inventory KPI metric cards: total products, low stock alerts, catalog valuation, and category distribution.
+  - Searchable, sortable inventory table with direct stock indicator pills.
+  - **Create Product Modal**: Multi-field form with fashion attribute configuration and Supabase CDN image uploader.
+  - **Edit & Delete Modals**: Full catalog updates with instant query invalidation and optimistic UI feedback.
+- **Category Management (`/dashboard/categories`)**:
+  - Category list with active product count indicators.
+  - Modal-driven CRUD operations (Add new category, edit name/description, delete empty categories).
+- **Order Fulfillment & Status Transitions (`/dashboard/orders`)**:
+  - Status filter tabs: quickly isolate orders that are *Pending*, *Processing*, *Shipped*, or *Delivered*.
+  - Order status change modal enabling one-click order fulfillment updates that reflect immediately in customer order trackers.
+
+### 3. 🔐 Authentication & Profile Management
+- **Strict Client-Side Validation**:
+  - RFC-compliant email regex, trimmed inputs, and minimum 8-character password enforcement.
+- **Secure Token Management**:
+  - JWT token storage handled via isomorphic cookie utilities (`src/lib/cookies.ts`), maintaining synchronization between Client Components and Server Components.
+- **Profile Management (`/profile`)**:
+  - Protected account view with dirty-state detection, instant form editing (`PUT /users/:id`), and session synchronization.
+
+---
+
+## 🏛️ Architecture & Engineering Highlights
+
+```
+┌────────────────────────────────────────────────────────┐
+│               Client-Side Browser (CSR)                │
+│    Next.js Client Components + Zustand + TanStack Query │
+└───────────────────────────▲────────────────────────────┘
+                            │  Hydration & Client Fetches
+┌───────────────────────────▼────────────────────────────┐
+│              Server-Side Rendering (SSR)               │
+│          Next.js 16 App Router Server Components       │
+└───────────────────────────▲────────────────────────────┘
+                            │  Isomorphic Native fetch()
+┌───────────────────────────▼────────────────────────────┐
+│           Unified API Client & Interceptors            │
+│  src/lib/api/client.ts + Central Error Translation     │
+└───────────────────────────▲────────────────────────────┘
+                            │  HTTPS / REST / JSON
+┌───────────────────────────▼────────────────────────────┐
+│              RevoFashion Backend (Render)              │
+│    Flask REST API + Supabase PostgreSQL & Storage CDN  │
+└────────────────────────────────────────────────────────┘
+```
+
+1. **Unified Isomorphic Architecture**:
+   - The API client (`src/lib/api/client.ts`) delegates directly to native `fetch()`, enabling identical service calls to run seamlessly inside both Server Components (SSR) and Client Components (CSR).
+2. **Centralized Error Translation Pipeline**:
+   - Backend error codes (e.g. `PRODUCT_NOT_FOUND`, `USER_CONFLICT`, `AUTH_INVALID_CREDENTIALS`) are caught by `defaultErrorInterceptor` and mapped to human-friendly English descriptions.
+   - On the **Server**, errors format cleanly for Next.js error boundaries (`error.tsx`).
+   - On the **Client**, errors trigger toast notifications via **Sonner**.
+3. **Zero-`useEffect` Server State Coordination**:
+   - All dynamic catalog and admin queries use TanStack Query v5 keys (`['products', filters]`, `['admin-orders']`, etc.) for automatic caching, background revalidation, and zero race conditions.
+
+---
+
+## 💻 Technology Stack
+
+| Layer | Technology | Version | Description |
+| :--- | :--- | :--- | :--- |
+| **Framework** | [Next.js](https://nextjs.org/) | `16.3.4` | React framework with App Router, SSR, and Turbopack/Webpack support |
+| **Library** | [React](https://react.dev/) | `19.2.8` | Component architecture and concurrent rendering |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) | `^5.0.0` | End-to-end static typing across models, props, and API contracts |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) | `^4.0.0` | Modern utility-first CSS engine with custom Rose minimalist theme |
+| **UI Primitives** | [Base UI](https://base-ui.com/) | `^1.8.0` | Headless, accessible UI primitives (`@base-ui/react`) |
+| **Server State** | [TanStack Query](https://tanstack.com/query) | `^5.102.8` | Asynchronous state management, intelligent caching & prefetching |
+| **Client State** | [Zustand](https://zustand.docs.pmnd.rs/) | `^5.0.15` | Lightweight client state for auth sessions and persistent cart |
+| **Carousel** | [Embla Carousel](https://www.embla-carousel.com/) | `^8.6.0` | Smooth, touch-friendly carousel engine with autoplay |
+| **Icons** | [Lucide React](https://lucide.dev/) | `^1.42.0` | Consistent, lightweight vector icons |
+| **Notifications**| [Sonner](https://sonner.emilkowal.ski/) | `^2.0.8` | High-performance, accessible toast notifications |
+| **Deployment** | [Vercel](https://vercel.com/) | Edge/Serverless | Global CDN hosting and serverless Next.js runtime |
+
+---
+
+## 📂 Project Directory Structure
 
 ```
 RevoFashion/
 ├── docs/
-│   ├── guideline/               # API documentation, error codes, and rubric requirements
-│   ├── plans/                   # Implementation plans (Plans 01 through 14)
-│   └── track-progress/          # Completed milestone tracking and verification notes
+│   ├── guideline/               # API specs, backend error code mappings, and rubric requirements
+│   ├── plans/                   # Architectural plans and technical specs
+│   └── track-progress/          # Milestone tracking and QA checklists
 ├── public/
 │   └── images/
-│       ├── no-photo.png         # Cute placeholder illustration for missing images
-│       └── homepage/            # 4 lifestyle carousel banner images (image1.png - image4.png)
+│       ├── no-photo.png         # Fallback placeholder for missing/broken product images
+│       └── homepage/            # Lifestyle hero carousel banner assets
 ├── src/
 │   ├── app/
+│   │   ├── (admin)/             # Protected admin route group
+│   │   │   └── dashboard/
+│   │   │       ├── categories/  # Category management page
+│   │   │       ├── orders/      # Admin order fulfillment dashboard
+│   │   │       └── page.tsx     # Admin product inventory & metrics overview
 │   │   ├── (auth)/              # Authentication route group (/login, /register)
-│   │   ├── (shop)/              # Public storefront route group
-│   │   │   ├── page.tsx         # Home page (HeroCarousel + 5 featured read-only cards)
-│   │   │   └── products/        # Product catalog (/products, layout, loading, error)
-│   │   ├── globals.css          # Tailwind CSS v4 theme variables and base styles
-│   │   └── layout.tsx           # Root application layout with providers and Sonner toaster
+│   │   ├── (shop)/              # Customer storefront route group
+│   │   │   ├── cart/            # Interactive shopping cart
+│   │   │   ├── categories/      # Category showcase
+│   │   │   ├── checkout/        # Order placement and checkout
+│   │   │   ├── orders/          # Customer order history & tracking ([id])
+│   │   │   ├── products/        # Product catalog with search & filters
+│   │   │   ├── profile/         # User profile management
+│   │   │   └── page.tsx         # Storefront landing page (SSR)
+│   │   ├── globals.css          # Tailwind CSS v4 design tokens and base styles
+│   │   └── layout.tsx           # Root HTML layout, React Query provider & Sonner toaster
 │   ├── components/
-│   │   ├── common/              # Shared general components (SearchBar)
-│   │   ├── layouts/             # Header, Navbar, UserDropdown, Footer
-│   │   ├── providers/           # QueryProvider and global React context providers
-│   │   ├── routes/              # ProtectedRoute, PublicOnlyRoute
-│   │   └── ui/                  # Atomic UI primitives (Badge, Button, Card, Skeleton, etc.)
+│   │   ├── common/              # Reusable widgets (SearchBar, Breadcrumbs)
+│   │   ├── layouts/             # Header, Navbar, UserDropdown, Footer, AdminSidebar
+│   │   ├── providers/           # QueryProvider and context wrappers
+│   │   ├── routes/              # Route guards (ProtectedRoute, PublicOnlyRoute)
+│   │   └── ui/                  # Atomic primitives (Button, Modal, Input, Badge, Skeleton)
 │   ├── features/
-│   │   ├── auth/                # Login and registration forms, hooks, and services
-│   │   ├── profile/             # Profile summary, edit form, hooks, and services
-│   │   └── products/            # Product catalog components, hooks, and services
+│   │   ├── admin/               # Admin dashboards, inventory tables, and CRUD modals
+│   │   ├── auth/                # Login & register forms, auth hooks, and services
+│   │   ├── categories/          # Category services, hooks, and cards
+│   │   ├── products/            # Product catalog, carousels, cards, and query hooks
+│   │   └── profile/             # Profile forms and user update hooks
 │   ├── lib/
-│   │   ├── cookies.ts           # Isomorphic server-safe JWT cookie utilities
-│   │   ├── toast.ts             # Centralized toast utility with error translations
-│   │   └── api/
-│   │       ├── client.ts        # Isomorphic HTTP client using native fetch
-│   │       ├── interceptors.ts  # Request, response, and error interceptor pipeline
-│   │       ├── error-codes.ts   # Human-friendly translations for all backend error codes
-│   │       └── error-interceptor.ts # Error interceptor translating codes on SSR and CSR
+│   │   ├── api/                 # Isomorphic HTTP client, interceptors, and error translators
+│   │   ├── cookies.ts           # Server-safe JWT cookie helper
+│   │   └── toast.ts             # Centralized toast notification dispatcher
 │   ├── stores/
-│   │   ├── useAuthStore.ts      # Authentication Zustand store with cookie sync
-│   │   └── useCartStore.ts      # Persistent shopping cart store (localStorage)
-│   └── types/                   # TypeScript interfaces (Product, Category, User, Api, Cart)
-├── .env.example                 # Example environment variables
-├── .env.local                   # Local environment configuration
-├── package.json                 # Project dependencies and scripts
-└── tsconfig.json                # TypeScript configuration
+│   │   ├── useAuthStore.ts      # Authentication session store (Zustand)
+│   │   └── useCartStore.ts      # Persistent cart store with local storage sync
+│   └── types/                   # TypeScript interfaces (Product, Category, Order, User, etc.)
+├── .env.example                 # Template for required environment variables
+├── .env.local                   # Local development environment overrides
+├── next.config.ts               # Next.js compiler & asset optimization configuration
+├── package.json                 # Project dependencies, engines, and run scripts
+└── tsconfig.json                # TypeScript compiler configuration
 ```
 
 ---
 
-## ⚡ Unified Isomorphic Architecture (SSR + CSR)
-
-Our HTTP client (`src/lib/api/client.ts`), services (`productService`, `categoryService`), and error interceptors are designed to run isomorphically across **both Server-Side Rendering and Client-Side Rendering**:
-
-1. **Native `fetch` Under the Hood**: `client.get()` delegates to native `fetch()`, ensuring full compatibility with Next.js Server Components and server-side caching.
-2. **Central Error Translation**: When the backend returns an error code (e.g. `PRODUCT_NOT_FOUND`, `USER_CONFLICT`), `defaultErrorInterceptor` automatically translates it using `translateApiError()`:
-   - On the **Server**: Sets `apiError.message = "${title}: ${description}"` so server error boundaries (`error.tsx`) receive clean, human-readable text.
-   - On the **Client**: Automatically displays a Sonner error toast.
-3. **Server-Safe Cookies**: `cookies.ts` safely guards all `document.cookie` operations with `typeof window !== 'undefined'` checks.
-
----
-
-## 🚀 Getting Started
+## 🚀 Getting Started Locally
 
 ### 1. Prerequisites
-- Node.js 18.18 or higher
-- npm 9 or higher
+- **Node.js**: `18.18.0` or higher (Node 20+ recommended)
+- **Package Manager**: `npm` (v9 or v10) or `pnpm`
 
-### 2. Installation
-Clone the repository and install the dependencies:
+### 2. Clone the Repository
 ```bash
-git clone <repository-url>
-cd RevoFashion
+git clone https://github.com/ingrid-fortunata/revofashion-website.git
+cd revofashion-website
+```
+
+### 3. Install Dependencies
+```bash
 npm install
 ```
 
-### 3. Environment Configuration
-Create a `.env.local` file in the root directory:
+### 4. Configure Environment Variables
+Copy the example environment file and verify the configuration:
+```bash
+cp .env.example .env.local
+```
+
+Inside `.env.local`:
 ```env
+# RevoFashion Backend REST API Base URL
 NEXT_PUBLIC_API_BASE_URL=https://revofashion-shop.onrender.com
 ```
 
-### 4. Running the Development Server
-Start the local Next.js dev server:
+### 5. Run the Development Server
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the storefront.
+Open [**`http://localhost:3000`**](http://localhost:3000) in your browser.
 
 ---
 
-## 🧪 Quality Assurance & Scripts
+## 🛠️ Available Scripts
 
-| Command | Purpose |
-| :--- | :--- |
-| `npm run dev` | Starts the Next.js development server on port 3000 |
-| `npm run build` | Builds the optimized production bundle with full typechecking |
-| `npm run start` | Starts the production server |
-| `npm run lint` | Runs ESLint across all source files |
-| `npx tsc --noEmit` | Validates TypeScript types across the entire codebase |
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| **Development** | `npm run dev` | Starts Next.js development server on port 3000 |
+| **Production Build** | `npm run build` | Compiles the production bundle with strict TypeScript checking |
+| **Production Start** | `npm run start` | Runs the compiled production server |
+| **Linting** | `npm run lint` | Runs ESLint analysis across all TS/TSX source files |
+| **Type Check** | `npx tsc --noEmit` | Performs TypeScript type-checking without emitting files |
 
 ---
 
-## 📖 Documentation & References
+## ☁️ Deployment on Vercel
 
-- **Implementation Plans**: Detailed roadmap and architectural specifications are maintained in [`/docs/plans/`](./docs/plans/).
-- **Progress Tracking**: Milestone logs and validation outcomes are recorded in [`/docs/track-progress/`](./docs/track-progress/).
-- **Backend API & Rubric**: Endpoints and requirements are detailed in [`/docs/guideline/`](./docs/guideline/).
+This application is deployed and optimized for **Vercel**:
+
+1. **Import Project**: Connect the GitHub repository `ingrid-fortunata/revofashion-website` in the [Vercel Dashboard](https://vercel.com/new).
+2. **Framework Preset**: Select **Next.js**.
+3. **Build & Output Settings**:
+   - Build Command: `npm run build`
+   - Output Directory: `.next` (default)
+   - Install Command: `npm install`
+4. **Environment Variables**:
+   Add the following production environment variable:
+   - `NEXT_PUBLIC_API_BASE_URL`: `https://revofashion-shop.onrender.com`
+5. **Deploy**: Every push to the `main` branch triggers an automated preview and production deployment.
+
+Production Domain: [**`https://revofashion-website.vercel.app`**](https://revofashion-website.vercel.app)
+
+---
+
+## 📄 License & Attribution
+
+This project is maintained by **Ingrid Fortunata** as part of the RevoU Full Stack Software Engineering curriculum.  
+All brand imagery and design aesthetics are curated for educational and portfolio demonstration purposes.
