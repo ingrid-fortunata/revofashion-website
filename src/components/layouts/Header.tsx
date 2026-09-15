@@ -8,7 +8,7 @@ export function Header() {
     >
       <div className="container mx-auto flex items-center justify-center gap-2">
         <span className="font-semibold text-rose-700">✨ Special Offer:</span>
-        <span>Free nationwide delivery on orders over Rp 500,000</span>
+        <span>Free nationwide delivery on orders over $50</span>
       </div>
     </aside>
   );
