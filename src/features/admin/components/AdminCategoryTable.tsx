@@ -28,7 +28,7 @@ export function AdminCategoryTable({
 }: AdminCategoryTableProps) {
   if (isLoading) {
     return (
-      <div className="bg-white rounded-xl border border-neutral-200/80 shadow-xs overflow-hidden p-4 space-y-3">
+      <div className="bg-white rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 overflow-hidden p-4 space-y-3">
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
@@ -41,8 +41,8 @@ export function AdminCategoryTable({
 
   if (categories.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-neutral-200/80 p-12 text-center shadow-xs">
-        <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-400 mx-auto mb-3">
+      <div className="bg-white rounded-xl border border-rose-100/80 p-12 text-center shadow-xs shadow-rose-100/20">
+        <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-rose-400 mx-auto mb-3">
           <FolderOpen className="w-6 h-6" />
         </div>
         <h3 className="text-sm font-bold text-neutral-800">No Categories Found</h3>
@@ -54,10 +54,10 @@ export function AdminCategoryTable({
   }
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200/80 shadow-xs overflow-hidden">
+    <div className="bg-white rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 overflow-hidden">
       <div className="overflow-x-auto">
         <Table>
-          <TableHeader className="bg-neutral-50/70 border-b border-neutral-200">
+          <TableHeader className="bg-rose-50/40 border-b border-rose-100/80">
             <TableRow className="hover:bg-transparent">
               <TableHead className="w-20 text-xs font-bold text-neutral-600 uppercase tracking-wider">
                 ID
@@ -80,7 +80,7 @@ export function AdminCategoryTable({
             {categories.map((category) => (
               <TableRow
                 key={category.id}
-                className="hover:bg-neutral-50/60 transition-colors"
+                className="hover:bg-rose-50/30 transition-colors"
               >
                 {/* ID */}
                 <TableCell className="py-3 font-mono text-xs font-semibold text-neutral-500">
@@ -90,7 +90,7 @@ export function AdminCategoryTable({
                 {/* Name */}
                 <TableCell className="py-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-md bg-neutral-100 flex items-center justify-center text-neutral-700 flex-shrink-0">
+                    <div className="w-7 h-7 rounded-md bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600 flex-shrink-0">
                       <Layers className="w-3.5 h-3.5" />
                     </div>
                     <span className="text-xs font-bold text-neutral-900">
@@ -132,7 +132,7 @@ export function AdminCategoryTable({
                       size="icon"
                       onClick={() => onEdit(category)}
                       data-testid={`edit-category-${category.id}`}
-                      className="h-8 w-8 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg"
+                      className="h-8 w-8 text-neutral-600 hover:text-rose-700 hover:bg-rose-50/80 rounded-lg"
                       title="Edit Category"
                     >
                       <Edit className="w-3.5 h-3.5" />

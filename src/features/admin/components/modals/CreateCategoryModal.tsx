@@ -94,8 +94,8 @@ export function CreateCategoryModal({
       <DialogPopup className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg font-bold text-neutral-900">
-            <Plus className="w-5 h-5 text-neutral-900" />
-            Add New Category
+            <Plus className="w-5 h-5 text-rose-600" />
+            Create Category
           </DialogTitle>
           <DialogDescription className="text-xs text-neutral-500">
             Create a new apparel taxonomy or collection grouping.
@@ -123,7 +123,7 @@ export function CreateCategoryModal({
               }}
               placeholder="e.g. Outerwear, T-Shirts, Accessories"
               disabled={isSubmitting}
-              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
             />
             {nameError && (
               <p className="text-[11px] text-rose-600 font-medium">{nameError}</p>
@@ -140,7 +140,7 @@ export function CreateCategoryModal({
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Brief description of the clothing category..."
               disabled={isSubmitting}
-              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white resize-none"
+              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white resize-none"
             />
           </div>
 
@@ -151,7 +151,7 @@ export function CreateCategoryModal({
               checked={isActive}
               onChange={(e) => setIsActive(e.target.checked)}
               disabled={isSubmitting}
-              className="rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900 h-4 w-4 cursor-pointer"
+              className="rounded border-neutral-300 text-rose-600 focus:ring-rose-500 h-4 w-4 cursor-pointer"
             />
             <label
               htmlFor="categoryActiveToggle"
@@ -176,7 +176,7 @@ export function CreateCategoryModal({
               type="submit"
               size="sm"
               disabled={isSubmitting}
-              className="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold h-9 px-4 gap-1.5"
+              className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold h-9 px-4 gap-1.5 shadow-sm shadow-rose-200/50"
             >
               {isSubmitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
               Create Category

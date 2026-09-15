@@ -49,7 +49,7 @@ export function AdminProductTable({
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-xl border border-neutral-200/80 shadow-xs overflow-hidden">
+      <div className="bg-white rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 overflow-hidden">
         <div className="p-4 space-y-3">
           {[...Array(6)].map((_, i) => (
             <div
@@ -64,8 +64,8 @@ export function AdminProductTable({
 
   if (products.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-neutral-200/80 p-12 text-center shadow-xs">
-        <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-400 mx-auto mb-3">
+      <div className="bg-white rounded-xl border border-rose-100/80 p-12 text-center shadow-xs shadow-rose-100/20">
+        <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-rose-400 mx-auto mb-3">
           <PackageOpen className="w-6 h-6" />
         </div>
         <h3 className="text-sm font-bold text-neutral-800">
@@ -79,10 +79,10 @@ export function AdminProductTable({
   }
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200/80 shadow-xs overflow-hidden">
+    <div className="bg-white rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 overflow-hidden">
       <div className="overflow-x-auto">
         <Table>
-          <TableHeader className="bg-neutral-50/70 border-b border-neutral-200">
+          <TableHeader className="bg-rose-50/40 border-b border-rose-100/80">
             <TableRow className="hover:bg-transparent">
               <TableHead className="w-[320px] text-xs font-bold text-neutral-600 uppercase tracking-wider">
                 Product Details
@@ -142,7 +142,7 @@ export function AdminProductTable({
               return (
                 <TableRow
                   key={product.id}
-                  className="hover:bg-neutral-50/60 transition-colors"
+                  className="hover:bg-rose-50/30 transition-colors"
                 >
                   {/* Product Details (Thumbnail, Name, SKU, Color) */}
                   <TableCell className="py-3">
@@ -159,31 +159,33 @@ export function AdminProductTable({
                           }}
                         />
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="text-xs font-bold text-neutral-900 truncate">
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-xs font-bold text-neutral-900 line-clamp-1">
                           {product.name}
-                        </div>
+                        </span>
                         <div className="flex items-center gap-2 mt-0.5">
-                          <span className="font-mono text-[10px] text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded">
+                          <span className="font-mono text-[11px] font-semibold text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded">
                             {product.sku}
                           </span>
-                          <span className="text-[11px] text-neutral-500">
-                            {product.color}
-                          </span>
+                          {product.color && (
+                            <span className="text-[11px] text-neutral-400">
+                              {product.color}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
                   </TableCell>
 
                   {/* Category */}
-                  <TableCell className="py-3">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-100 text-neutral-700 border border-neutral-200/60">
+                  <TableCell className="py-3 text-xs text-neutral-700">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-neutral-100 text-neutral-800">
                       {categoryName}
                     </span>
                   </TableCell>
 
                   {/* Price */}
-                  <TableCell className="py-3 font-semibold text-xs text-neutral-900">
+                  <TableCell className="py-3 text-xs font-bold text-neutral-900">
                     ${Number(product.price).toFixed(2)}
                   </TableCell>
 
@@ -205,14 +207,14 @@ export function AdminProductTable({
                   {/* Status */}
                   <TableCell className="py-3">
                     {product.is_active ? (
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                         Active
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-neutral-400">
-                        <span className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-                        Inactive
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-neutral-100 text-neutral-500 border border-neutral-200">
+                        <span className="h-1.5 w-1.5 rounded-full bg-neutral-400" />
+                        Draft
                       </span>
                     )}
                   </TableCell>
@@ -226,7 +228,7 @@ export function AdminProductTable({
                         size="icon"
                         onClick={() => onEdit(product)}
                         data-testid={`edit-product-${product.id}`}
-                        className="h-8 w-8 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg"
+                        className="h-8 w-8 text-neutral-600 hover:text-rose-700 hover:bg-rose-50/80 rounded-lg"
                         title="Edit product"
                       >
                         <Edit className="w-3.5 h-3.5" />
@@ -255,7 +257,7 @@ export function AdminProductTable({
 
       {/* Pagination Footer */}
       {totalPages > 1 && (
-        <div className="px-6 py-3 border-t border-neutral-200 bg-neutral-50/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
+        <div className="px-6 py-3 border-t border-rose-100/80 bg-rose-50/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
           <div>
             Showing{" "}
             <strong>
@@ -272,7 +274,7 @@ export function AdminProductTable({
               size="sm"
               disabled={currentPage <= 1}
               onClick={() => onPageChange(currentPage - 1)}
-              className="h-8 px-2.5 text-xs gap-1"
+              className="h-8 px-2.5 text-xs gap-1 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               Previous
@@ -296,8 +298,8 @@ export function AdminProductTable({
                       onClick={() => onPageChange(pageNum)}
                       className={`h-8 w-8 p-0 text-xs font-semibold ${
                         pageNum === currentPage
-                          ? "bg-neutral-900 text-white"
-                          : "text-neutral-700"
+                          ? "bg-rose-600 text-white shadow-sm shadow-rose-200/50 hover:bg-rose-700"
+                          : "text-neutral-700 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
                       }`}
                     >
                       {pageNum}
@@ -334,7 +336,7 @@ export function AdminProductTable({
               size="sm"
               disabled={currentPage >= totalPages}
               onClick={() => onPageChange(currentPage + 1)}
-              className="h-8 px-2.5 text-xs gap-1"
+              className="h-8 px-2.5 text-xs gap-1 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
             >
               Next
               <ChevronRight className="w-3.5 h-3.5" />

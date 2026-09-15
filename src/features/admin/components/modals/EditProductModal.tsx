@@ -157,7 +157,7 @@ export function EditProductModal({
       <DialogPopup className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-xl font-bold text-neutral-900">
-            <Edit3 className="w-5 h-5 text-neutral-900" />
+            <Edit3 className="w-5 h-5 text-rose-600" />
             Edit Product
           </DialogTitle>
           <DialogDescription className="text-xs text-neutral-500">
@@ -191,7 +191,7 @@ export function EditProductModal({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
               {errors.name && (
                 <p className="text-[11px] text-rose-600 font-medium">{errors.name}</p>
@@ -206,7 +206,7 @@ export function EditProductModal({
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
                 disabled={isSubmitting || categoriesLoading}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               >
                 <option value="">No category (Unassigned)</option>
                 {categories.map((c) => (
@@ -231,7 +231,7 @@ export function EditProductModal({
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
               {errors.price && (
                 <p className="text-[11px] text-rose-600 font-medium">{errors.price}</p>
@@ -249,7 +249,7 @@ export function EditProductModal({
                 value={stock}
                 onChange={(e) => setStock(e.target.value)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
               {errors.stock && (
                 <p className="text-[11px] text-rose-600 font-medium">{errors.stock}</p>
@@ -268,7 +268,7 @@ export function EditProductModal({
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
               {errors.color && (
                 <p className="text-[11px] text-rose-600 font-medium">{errors.color}</p>
@@ -285,7 +285,7 @@ export function EditProductModal({
                 onChange={(e) => setMaterial(e.target.value)}
                 placeholder="e.g. 100% Linen"
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
             </div>
           </div>
@@ -298,7 +298,7 @@ export function EditProductModal({
                 value={size}
                 onChange={(e) => setSize(e.target.value as ProductSize)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               >
                 {SIZES.map((s) => (
                   <option key={s} value={s}>
@@ -314,7 +314,7 @@ export function EditProductModal({
                 value={gender}
                 onChange={(e) => setGender(e.target.value as ProductGender)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               >
                 {GENDERS.map((g) => (
                   <option key={g} value={g}>
@@ -333,7 +333,7 @@ export function EditProductModal({
                 value={sku}
                 onChange={(e) => setSku(e.target.value)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white font-mono"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white font-mono"
               />
             </div>
           </div>
@@ -346,7 +346,7 @@ export function EditProductModal({
               checked={isActive}
               onChange={(e) => setIsActive(e.target.checked)}
               disabled={isSubmitting}
-              className="rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900 h-4 w-4"
+              className="rounded border-neutral-300 text-rose-600 focus:ring-rose-500 h-4 w-4 cursor-pointer"
             />
             <label htmlFor="isActiveToggle" className="text-xs font-semibold text-neutral-700 cursor-pointer">
               Active in storefront catalog
@@ -363,7 +363,7 @@ export function EditProductModal({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               disabled={isSubmitting}
-              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white resize-none"
+              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white resize-none"
             />
           </div>
 
@@ -382,7 +382,7 @@ export function EditProductModal({
               type="submit"
               size="sm"
               disabled={isSubmitting}
-              className="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold h-9 px-4 gap-1.5"
+              className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold h-9 px-4 gap-1.5 shadow-sm shadow-rose-200/50"
             >
               {isSubmitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
               Save Changes

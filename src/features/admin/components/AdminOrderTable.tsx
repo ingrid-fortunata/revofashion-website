@@ -90,7 +90,7 @@ export function AdminOrderTable({
 }: AdminOrderTableProps) {
   if (isLoading) {
     return (
-      <div className="bg-white rounded-xl border border-neutral-200/80 shadow-xs overflow-hidden p-4 space-y-3">
+      <div className="bg-white rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 overflow-hidden p-4 space-y-3">
         {[...Array(6)].map((_, i) => (
           <div key={i} className="h-14 bg-neutral-100/70 rounded-lg animate-pulse" />
         ))}
@@ -100,8 +100,8 @@ export function AdminOrderTable({
 
   if (orders.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-neutral-200/80 p-12 text-center shadow-xs">
-        <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-400 mx-auto mb-3">
+      <div className="bg-white rounded-xl border border-rose-100/80 p-12 text-center shadow-xs shadow-rose-100/20">
+        <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-rose-400 mx-auto mb-3">
           <ShoppingBag className="w-6 h-6" />
         </div>
         <h3 className="text-sm font-bold text-neutral-800">No Orders Found</h3>
@@ -113,10 +113,10 @@ export function AdminOrderTable({
   }
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200/80 shadow-xs overflow-hidden">
+    <div className="bg-white rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 overflow-hidden">
       <div className="overflow-x-auto">
         <Table>
-          <TableHeader className="bg-neutral-50/70 border-b border-neutral-200">
+          <TableHeader className="bg-rose-50/40 border-b border-rose-100/80">
             <TableRow className="hover:bg-transparent">
               <TableHead className="w-[140px] text-xs font-bold text-neutral-600 uppercase tracking-wider">
                 Order Info
@@ -158,65 +158,67 @@ export function AdminOrderTable({
               return (
                 <TableRow
                   key={order.id}
-                  className="hover:bg-neutral-50/60 transition-colors"
+                  className="hover:bg-rose-50/30 transition-colors"
                 >
-                  {/* Order ID & Date */}
+                  {/* Order Info (ID, Date) */}
                   <TableCell className="py-3">
-                    <div className="space-y-0.5">
+                    <div className="flex flex-col min-w-0">
                       <span className="font-mono text-xs font-bold text-neutral-900">
                         #{order.id}
                       </span>
-                      <p className="text-[11px] text-neutral-500">
+                      <span className="text-[11px] text-neutral-400 mt-0.5">
                         {order.created_at
-                          ? dayjs(order.created_at).format("MMM D, YYYY")
-                          : "Recently"}
-                      </p>
+                          ? dayjs(order.created_at).format("MMM DD, YYYY")
+                          : "N/A"}
+                      </span>
                     </div>
                   </TableCell>
 
-                  {/* Customer Info */}
+                  {/* Customer (Username, Email) */}
                   <TableCell className="py-3">
-                    <div className="space-y-0.5">
-                      <p className="text-xs font-semibold text-neutral-900 truncate">
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-xs font-semibold text-neutral-900 truncate">
                         {order.user?.username || `User #${order.user_id}`}
-                      </p>
-                      <p className="text-[11px] text-neutral-500 truncate">
-                        {order.user?.email || "No email"}
-                      </p>
+                      </span>
+                      <span className="text-[11px] text-neutral-400 truncate mt-0.5">
+                        {order.user?.email || "No email on record"}
+                      </span>
                     </div>
                   </TableCell>
 
                   {/* Recipient & Address */}
-                  <TableCell className="py-3 max-w-xs">
-                    <div className="space-y-0.5">
-                      <p className="text-xs font-medium text-neutral-900">
-                        {order.recipient_name}{" "}
-                        <span className="text-neutral-400 font-normal">
-                          ({order.recipient_phone})
-                        </span>
+                  <TableCell className="py-3 text-xs text-neutral-700">
+                    <div className="space-y-0.5 max-w-xs">
+                      <p className="font-medium text-neutral-900 truncate">
+                        {order.recipient_name}
                       </p>
-                      <p className="text-[11px] text-neutral-500 truncate" title={order.shipping_address}>
+                      <p className="text-[11px] text-neutral-500 line-clamp-1">
                         {order.shipping_address}
                       </p>
+                      {order.recipient_phone && (
+                        <p className="text-[10px] text-neutral-400 font-mono">
+                          {order.recipient_phone}
+                        </p>
+                      )}
                     </div>
                   </TableCell>
 
-                  {/* Items */}
+                  {/* Items summary */}
                   <TableCell className="py-3">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-semibold bg-neutral-100 text-neutral-800">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-neutral-100 text-neutral-800">
                       {itemCount} {itemCount === 1 ? "item" : "items"}
                     </span>
                   </TableCell>
 
                   {/* Total */}
-                  <TableCell className="py-3 font-bold text-xs text-neutral-900">
+                  <TableCell className="py-3 text-xs font-bold text-neutral-900 font-mono">
                     ${Number(order.total_amount).toFixed(2)}
                   </TableCell>
 
                   {/* Status Badge */}
                   <TableCell className="py-3">
                     <span
-                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border ${statusCfg.color}`}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${statusCfg.color}`}
                     >
                       <span className={`h-1.5 w-1.5 rounded-full ${statusCfg.dot}`} />
                       {statusCfg.label}
@@ -237,7 +239,7 @@ export function AdminOrderTable({
                         size="sm"
                         onClick={() => onManageStatus(order)}
                         data-testid={`manage-order-${order.id}`}
-                        className="h-8 px-2.5 text-xs font-semibold"
+                        className="h-8 px-2.5 text-xs font-semibold border-rose-200 text-rose-700 hover:bg-rose-50 hover:text-rose-800 hover:border-rose-300"
                       >
                         Update Status
                       </Button>
@@ -247,7 +249,7 @@ export function AdminOrderTable({
                           type="button"
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-neutral-400 hover:text-neutral-900"
+                          className="h-8 w-8 text-neutral-400 hover:text-rose-700 hover:bg-rose-50/80"
                           title="View Invoice"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -264,7 +266,7 @@ export function AdminOrderTable({
 
       {/* Pagination Footer */}
       {totalPages > 1 && (
-        <div className="px-6 py-3 border-t border-neutral-200 bg-neutral-50/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
+        <div className="px-6 py-3 border-t border-rose-100/80 bg-rose-50/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
           <div>
             Showing{" "}
             <strong>
@@ -281,7 +283,7 @@ export function AdminOrderTable({
               size="sm"
               disabled={currentPage <= 1}
               onClick={() => onPageChange(currentPage - 1)}
-              className="h-8 px-2.5 text-xs gap-1"
+              className="h-8 px-2.5 text-xs gap-1 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               Previous
@@ -304,8 +306,8 @@ export function AdminOrderTable({
                       onClick={() => onPageChange(pageNum)}
                       className={`h-8 w-8 p-0 text-xs font-semibold ${
                         pageNum === currentPage
-                          ? "bg-neutral-900 text-white"
-                          : "text-neutral-700"
+                          ? "bg-rose-600 text-white shadow-sm shadow-rose-200/50 hover:bg-rose-700"
+                          : "text-neutral-700 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
                       }`}
                     >
                       {pageNum}
@@ -322,7 +324,7 @@ export function AdminOrderTable({
               size="sm"
               disabled={currentPage >= totalPages}
               onClick={() => onPageChange(currentPage + 1)}
-              className="h-8 px-2.5 text-xs gap-1"
+              className="h-8 px-2.5 text-xs gap-1 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
             >
               Next
               <ChevronRight className="w-3.5 h-3.5" />

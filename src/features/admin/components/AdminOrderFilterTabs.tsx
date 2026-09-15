@@ -39,8 +39,8 @@ export function AdminOrderFilterTabs({
             onClick={() => onTabChange(tab.value)}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 transition-all cursor-pointer ${
               isActive
-                ? "bg-neutral-900 text-white shadow-xs"
-                : "bg-white text-neutral-600 border border-neutral-200/80 hover:bg-neutral-50 hover:text-neutral-900"
+                ? "bg-rose-600 text-white shadow-sm shadow-rose-200/50"
+                : "bg-white text-neutral-600 border border-rose-100/80 hover:bg-rose-50/70 hover:text-rose-700"
             }`}
           >
             <span>{tab.label}</span>
@@ -48,8 +48,8 @@ export function AdminOrderFilterTabs({
               <span
                 className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
                   isActive
-                    ? "bg-neutral-800 text-neutral-200"
-                    : "bg-neutral-100 text-neutral-600"
+                    ? "bg-rose-700/90 text-white"
+                    : "bg-rose-50 text-rose-700 border border-rose-100"
                 }`}
               >
                 {count}

@@ -205,8 +205,8 @@ export function OrderStatusModal({
                       onClick={() => setSelectedStatus(status)}
                       className={`p-2.5 rounded-xl border text-left flex items-center gap-2 transition-all cursor-pointer ${
                         isSelected
-                          ? "border-neutral-900 bg-neutral-900 text-white shadow-xs"
-                          : "border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-800"
+                          ? "border-rose-600 bg-rose-600 text-white shadow-sm shadow-rose-200/50"
+                          : "border-rose-100/80 bg-white hover:bg-rose-50/60 hover:text-rose-700 text-neutral-800"
                       }`}
                     >
                       <Icon className="w-4 h-4 flex-shrink-0" />
@@ -274,7 +274,7 @@ export function OrderStatusModal({
                 type="submit"
                 size="sm"
                 disabled={isSubmitting || !selectedStatus}
-                className="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold h-9 px-4 gap-1.5"
+                className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold h-9 px-4 gap-1.5 shadow-sm shadow-rose-200/50"
               >
                 {isSubmitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                 Confirm Status

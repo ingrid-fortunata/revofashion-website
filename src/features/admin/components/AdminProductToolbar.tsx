@@ -36,7 +36,7 @@ export function AdminProductToolbar({
   const { data: categories = [], isLoading: categoriesLoading } = useCategoriesQuery();
 
   return (
-    <div className="bg-white p-4 rounded-xl border border-neutral-200/80 shadow-xs space-y-3">
+    <div className="bg-white p-4 rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 space-y-3">
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
         {/* Search Bar */}
         <div className="relative flex-1 max-w-md">
@@ -46,13 +46,13 @@ export function AdminProductToolbar({
             placeholder="Search by product name or SKU..."
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-9 pr-9 py-2 text-xs rounded-lg border border-neutral-300 bg-white placeholder:text-neutral-400 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+            className="w-full pl-9 pr-9 py-2 text-xs rounded-lg border border-neutral-300 bg-white placeholder:text-neutral-400 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
           />
           {search && (
             <button
               type="button"
               onClick={() => onSearchChange("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700 cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-rose-700 cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -66,7 +66,7 @@ export function AdminProductToolbar({
             value={categoryId}
             onChange={(e) => onCategoryChange(e.target.value)}
             disabled={categoriesLoading}
-            className="px-3 py-2 text-xs rounded-lg border border-neutral-300 bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+            className="px-3 py-2 text-xs rounded-lg border border-neutral-300 bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
           >
             <option value="">All Categories</option>
             {categories.map((c) => (
@@ -80,7 +80,7 @@ export function AdminProductToolbar({
           <select
             value={gender}
             onChange={(e) => onGenderChange(e.target.value)}
-            className="px-3 py-2 text-xs rounded-lg border border-neutral-300 bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+            className="px-3 py-2 text-xs rounded-lg border border-neutral-300 bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
           >
             {GENDERS.map((g) => (
               <option key={g} value={g === "All" ? "" : g}>
@@ -96,7 +96,7 @@ export function AdminProductToolbar({
               variant="ghost"
               size="sm"
               onClick={onResetFilters}
-              className="text-xs text-neutral-600 hover:text-neutral-900 gap-1.5 h-8 px-2.5"
+              className="text-xs text-neutral-600 hover:text-rose-700 hover:bg-rose-50/80 gap-1.5 h-8 px-2.5"
             >
               <RotateCcw className="w-3 h-3" />
               Reset
@@ -108,7 +108,7 @@ export function AdminProductToolbar({
             type="button"
             onClick={onAddClick}
             data-testid="add-product-button"
-            className="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold h-8.5 px-3.5 gap-1.5 shadow-xs ml-auto md:ml-0"
+            className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold h-8.5 px-3.5 gap-1.5 shadow-sm shadow-rose-200/50 ml-auto md:ml-0"
           >
             <Plus className="w-3.5 h-3.5" />
             Add Product

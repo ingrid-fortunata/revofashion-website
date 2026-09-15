@@ -152,7 +152,7 @@ export function CreateProductModal({
       <DialogPopup className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-xl font-bold text-neutral-900">
-            <Plus className="w-5 h-5 text-neutral-900" />
+            <Plus className="w-5 h-5 text-rose-600" />
             Add New Product
           </DialogTitle>
           <DialogDescription className="text-xs text-neutral-500">
@@ -187,7 +187,7 @@ export function CreateProductModal({
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Linen Blend Relaxed Shirt"
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
               {errors.name && (
                 <p className="text-[11px] text-rose-600 font-medium">{errors.name}</p>
@@ -202,7 +202,7 @@ export function CreateProductModal({
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
                 disabled={isSubmitting || categoriesLoading}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               >
                 <option value="">Select a category (Optional)</option>
                 {categories.map((c) => (
@@ -228,7 +228,7 @@ export function CreateProductModal({
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="29.90"
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
               {errors.price && (
                 <p className="text-[11px] text-rose-600 font-medium">{errors.price}</p>
@@ -247,7 +247,7 @@ export function CreateProductModal({
                 onChange={(e) => setStock(e.target.value)}
                 placeholder="50"
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
               {errors.stock && (
                 <p className="text-[11px] text-rose-600 font-medium">{errors.stock}</p>
@@ -267,7 +267,7 @@ export function CreateProductModal({
                 onChange={(e) => setColor(e.target.value)}
                 placeholder="e.g. Navy Blue"
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
               {errors.color && (
                 <p className="text-[11px] text-rose-600 font-medium">{errors.color}</p>
@@ -284,7 +284,7 @@ export function CreateProductModal({
                 onChange={(e) => setMaterial(e.target.value)}
                 placeholder="e.g. 100% Organic Cotton"
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               />
             </div>
           </div>
@@ -297,7 +297,7 @@ export function CreateProductModal({
                 value={size}
                 onChange={(e) => setSize(e.target.value as ProductSize)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               >
                 {SIZES.map((s) => (
                   <option key={s} value={s}>
@@ -313,7 +313,7 @@ export function CreateProductModal({
                 value={gender}
                 onChange={(e) => setGender(e.target.value as ProductGender)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
               >
                 {GENDERS.map((g) => (
                   <option key={g} value={g}>
@@ -333,7 +333,7 @@ export function CreateProductModal({
                 onChange={(e) => setSku(e.target.value)}
                 placeholder="Leave blank to auto-generate"
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white font-mono"
+                className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white font-mono"
               />
             </div>
           </div>
@@ -349,7 +349,7 @@ export function CreateProductModal({
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Describe the product cut, fabric weight, and styling tips..."
               disabled={isSubmitting}
-              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white resize-none"
+              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white resize-none"
             />
           </div>
 
@@ -368,7 +368,7 @@ export function CreateProductModal({
               type="submit"
               size="sm"
               disabled={isSubmitting}
-              className="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold h-9 px-4 gap-1.5"
+              className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold h-9 px-4 gap-1.5 shadow-sm shadow-rose-200/50"
             >
               {isSubmitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
               Create Product

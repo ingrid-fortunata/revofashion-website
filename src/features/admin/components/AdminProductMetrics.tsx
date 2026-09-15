@@ -24,8 +24,8 @@ export function AdminProductMetrics({
       value: totalCount,
       description: "Active & catalog items",
       icon: Package,
-      iconColor: "text-neutral-900 bg-neutral-100",
-      badgeColor: "text-neutral-700 bg-neutral-100",
+      iconColor: "text-rose-600 bg-rose-50 border border-rose-100",
+      badgeColor: "text-rose-700 bg-rose-50 border-rose-200",
     },
     {
       label: "Healthy Stock",
@@ -60,7 +60,7 @@ export function AdminProductMetrics({
         return (
           <div
             key={m.label}
-            className="p-4 bg-white border border-neutral-200/80 rounded-xl shadow-xs flex items-center justify-between transition-all hover:border-neutral-300"
+            className="p-4 bg-white border border-rose-100/80 rounded-xl shadow-xs shadow-rose-100/20 flex items-center justify-between transition-all hover:border-rose-300 hover:shadow-sm"
           >
             <div className="space-y-1">
               <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">

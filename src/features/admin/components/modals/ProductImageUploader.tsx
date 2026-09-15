@@ -126,9 +126,9 @@ export function ProductImageUploader({
         </div>
       ) : (
         /* Image Input Tabs & Form */
-        <div className="border border-neutral-200 rounded-xl overflow-hidden bg-neutral-50/50">
+        <div className="border border-rose-100/80 rounded-xl overflow-hidden bg-rose-50/20">
           {/* Tabs */}
-          <div className="flex border-b border-neutral-200 bg-neutral-100/70 p-1 gap-1">
+          <div className="flex border-b border-rose-100/80 bg-rose-50/40 p-1 gap-1">
             <button
               type="button"
               disabled={disabled}
@@ -138,8 +138,8 @@ export function ProductImageUploader({
               }}
               className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
                 activeTab === "upload"
-                  ? "bg-white text-neutral-900 shadow-xs"
-                  : "text-neutral-500 hover:text-neutral-900"
+                  ? "bg-white text-rose-600 shadow-xs"
+                  : "text-neutral-500 hover:text-rose-700"
               }`}
             >
               <Upload className="w-3.5 h-3.5" />
@@ -154,8 +154,8 @@ export function ProductImageUploader({
               }}
               className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
                 activeTab === "url"
-                  ? "bg-white text-neutral-900 shadow-xs"
-                  : "text-neutral-500 hover:text-neutral-900"
+                  ? "bg-white text-rose-600 shadow-xs"
+                  : "text-neutral-500 hover:text-rose-700"
               }`}
             >
               <LinkIcon className="w-3.5 h-3.5" />
@@ -167,7 +167,7 @@ export function ProductImageUploader({
             {activeTab === "upload" ? (
               <div
                 onClick={() => !disabled && fileInputRef.current?.click()}
-                className={`border-2 border-dashed border-neutral-300 hover:border-neutral-400 bg-white rounded-xl p-5 text-center cursor-pointer transition-colors ${
+                className={`border-2 border-dashed border-rose-200 hover:border-rose-400 hover:bg-rose-50/30 bg-white rounded-xl p-5 text-center cursor-pointer transition-colors ${
                   disabled ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
@@ -180,7 +180,7 @@ export function ProductImageUploader({
                   className="hidden"
                 />
                 <div className="flex flex-col items-center justify-center gap-1.5">
-                  <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600">
+                  <div className="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center text-rose-600">
                     <ImageIcon className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-semibold text-neutral-800">
@@ -206,15 +206,14 @@ export function ProductImageUploader({
                         handleApplyUrl(e);
                       }
                     }}
-                    className="flex-1 px-3 py-2 text-xs rounded-lg border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                    className="flex-1 px-3 py-2 text-xs rounded-lg border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
                   />
                   <Button
                     type="button"
-                    variant="outline"
                     size="sm"
                     disabled={disabled || !urlInput.trim()}
                     onClick={handleApplyUrl}
-                    className="text-xs font-semibold h-9 px-3"
+                    className="text-xs font-semibold h-9 px-3.5 bg-rose-600 hover:bg-rose-700 text-white shadow-sm shadow-rose-200/50 disabled:opacity-50"
                   >
                     Apply
                   </Button>
