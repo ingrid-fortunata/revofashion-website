@@ -72,8 +72,8 @@ const STATUS_CONFIG: Record<
   },
   cancelled: {
     label: "Cancelled",
-    color: "bg-rose-50 text-rose-800 border-rose-200",
-    dot: "bg-rose-500",
+    color: "bg-red-50 text-red-800 border-red-200",
+    dot: "bg-red-500",
     icon: Ban,
   },
 };
@@ -90,7 +90,7 @@ export function AdminOrderTable({
 }: AdminOrderTableProps) {
   if (isLoading) {
     return (
-      <div className="bg-white rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 overflow-hidden p-4 space-y-3">
+      <div className="bg-white rounded-xl border border-primary-100/80 shadow-xs shadow-primary-100/20 overflow-hidden p-4 space-y-3">
         {[...Array(6)].map((_, i) => (
           <div key={i} className="h-14 bg-neutral-100/70 rounded-lg animate-pulse" />
         ))}
@@ -100,8 +100,8 @@ export function AdminOrderTable({
 
   if (orders.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-rose-100/80 p-12 text-center shadow-xs shadow-rose-100/20">
-        <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-rose-400 mx-auto mb-3">
+      <div className="bg-white rounded-xl border border-primary-100/80 p-12 text-center shadow-xs shadow-primary-100/20">
+        <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center text-primary-400 mx-auto mb-3">
           <ShoppingBag className="w-6 h-6" />
         </div>
         <h3 className="text-sm font-bold text-neutral-800">No Orders Found</h3>
@@ -113,10 +113,10 @@ export function AdminOrderTable({
   }
 
   return (
-    <div className="bg-white rounded-xl border border-rose-100/80 shadow-xs shadow-rose-100/20 overflow-hidden">
+    <div className="bg-white rounded-xl border border-primary-100/80 shadow-xs shadow-primary-100/20 overflow-hidden">
       <div className="overflow-x-auto">
         <Table>
-          <TableHeader className="bg-rose-50/40 border-b border-rose-100/80">
+          <TableHeader className="bg-primary-50/40 border-b border-primary-100/80">
             <TableRow className="hover:bg-transparent">
               <TableHead className="w-[140px] text-xs font-bold text-neutral-600 uppercase tracking-wider">
                 Order Info
@@ -158,7 +158,7 @@ export function AdminOrderTable({
               return (
                 <TableRow
                   key={order.id}
-                  className="hover:bg-rose-50/30 transition-colors"
+                  className="hover:bg-primary-50/30 transition-colors"
                 >
                   {/* Order Info (ID, Date) */}
                   <TableCell className="py-3">
@@ -239,7 +239,7 @@ export function AdminOrderTable({
                         size="sm"
                         onClick={() => onManageStatus(order)}
                         data-testid={`manage-order-${order.id}`}
-                        className="h-8 px-2.5 text-xs font-semibold border-rose-200 text-rose-700 hover:bg-rose-50 hover:text-rose-800 hover:border-rose-300"
+                        className="h-8 px-2.5 text-xs font-semibold border-primary-200 text-primary-700 hover:bg-primary-50 hover:text-primary-800 hover:border-primary-300"
                       >
                         Update Status
                       </Button>
@@ -249,7 +249,7 @@ export function AdminOrderTable({
                           type="button"
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-neutral-400 hover:text-rose-700 hover:bg-rose-50/80"
+                          className="h-8 w-8 text-neutral-400 hover:text-primary-700 hover:bg-primary-50/80"
                           title="View Invoice"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -266,7 +266,7 @@ export function AdminOrderTable({
 
       {/* Pagination Footer */}
       {totalPages > 1 && (
-        <div className="px-6 py-3 border-t border-rose-100/80 bg-rose-50/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
+        <div className="px-6 py-3 border-t border-primary-100/80 bg-primary-50/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
           <div>
             Showing{" "}
             <strong>
@@ -283,7 +283,7 @@ export function AdminOrderTable({
               size="sm"
               disabled={currentPage <= 1}
               onClick={() => onPageChange(currentPage - 1)}
-              className="h-8 px-2.5 text-xs gap-1 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
+              className="h-8 px-2.5 text-xs gap-1 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               Previous
@@ -306,8 +306,8 @@ export function AdminOrderTable({
                       onClick={() => onPageChange(pageNum)}
                       className={`h-8 w-8 p-0 text-xs font-semibold ${
                         pageNum === currentPage
-                          ? "bg-rose-600 text-white shadow-sm shadow-rose-200/50 hover:bg-rose-700"
-                          : "text-neutral-700 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
+                          ? "bg-primary-600 text-white shadow-sm shadow-primary-200/50 hover:bg-primary-700"
+                          : "text-neutral-700 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
                       }`}
                     >
                       {pageNum}
@@ -324,7 +324,7 @@ export function AdminOrderTable({
               size="sm"
               disabled={currentPage >= totalPages}
               onClick={() => onPageChange(currentPage + 1)}
-              className="h-8 px-2.5 text-xs gap-1 border-rose-200/70 hover:bg-rose-50 hover:text-rose-700"
+              className="h-8 px-2.5 text-xs gap-1 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
             >
               Next
               <ChevronRight className="w-3.5 h-3.5" />

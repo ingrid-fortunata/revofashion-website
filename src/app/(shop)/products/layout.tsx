@@ -14,9 +14,9 @@ export default function ProductsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#fefbfc]">
+    <div className="min-h-screen bg-surface-subtle">
       {/* Catalog Header Banner */}
-      <div className="border-b border-rose-100/70 bg-gradient-to-b from-rose-50/60 to-transparent py-8 sm:py-10">
+      <div className="border-b border-primary-100/70 bg-gradient-to-b from-primary-50/60 to-transparent py-8 sm:py-10">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
           <nav
@@ -25,12 +25,12 @@ export default function ProductsLayout({
           >
             <Link
               href="/"
-              className="hover:text-rose-600 transition-colors"
+              className="hover:text-primary-600 transition-colors"
             >
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5 text-neutral-400" />
-            <span className="font-semibold text-rose-700">Products</span>
+            <span className="font-semibold text-primary-700">Products</span>
           </nav>
 
           <h1 className="text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">

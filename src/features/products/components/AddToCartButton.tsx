@@ -17,7 +17,7 @@ export function getButtonClasses(inStock: boolean): string {
   if (!inStock) {
     return "cursor-not-allowed opacity-60 bg-neutral-100 text-neutral-400 border-neutral-200 hover:bg-neutral-100";
   }
-  return "cursor-pointer bg-rose-600 hover:bg-rose-700 text-white shadow-xs transition-colors";
+  return "cursor-pointer bg-primary-600 hover:bg-primary-700 text-white shadow-xs transition-colors";
 }
 
 interface AddToCartButtonProps {
@@ -69,7 +69,7 @@ export function AddToCartButton({
         onClick={handleAction}
         className={className}
       >
-        <LogIn className="h-4 w-4 text-rose-600" />
+        <LogIn className="h-4 w-4 text-primary-600" />
         Sign In to Buy
       </Button>
     );

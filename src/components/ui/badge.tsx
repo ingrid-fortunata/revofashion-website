@@ -3,19 +3,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2",
+  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-rose-600 text-white shadow hover:bg-rose-700",
+          "border-transparent bg-primary-600 text-white shadow hover:bg-primary-700",
         secondary:
-          "border-rose-200/80 bg-rose-50 text-rose-900 hover:bg-rose-100/80",
+          "border-primary-200/80 bg-primary-50 text-primary-900 hover:bg-primary-100/80",
+        primary:
+          "border-primary-200/80 bg-primary-100/70 text-primary-900 hover:bg-primary-200/70",
         rose:
-          "border-rose-200/80 bg-rose-100/70 text-rose-900 hover:bg-rose-200/70",
+          "border-primary-200/80 bg-primary-100/70 text-primary-900 hover:bg-primary-200/70",
         destructive:
-          "border-transparent bg-rose-600 text-white shadow hover:bg-rose-700",
-        outline: "text-neutral-800 border-rose-200/80",
+          "border-transparent bg-red-600 text-white shadow hover:bg-red-700",
+        outline: "text-neutral-800 border-primary-200/80",
         success:
           "border-transparent bg-emerald-100 text-emerald-800 hover:bg-emerald-200",
         warning:

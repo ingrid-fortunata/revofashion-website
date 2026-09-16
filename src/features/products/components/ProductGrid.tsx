@@ -46,8 +46,8 @@ export function ProductGrid({
   // Empty State
   if (products.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-rose-200/90 bg-rose-50/20 px-6 py-16 text-center">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100/60 text-rose-600 shadow-xs mb-4">
+      <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-primary-200/90 bg-primary-50/20 px-6 py-16 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-100/60 text-primary-600 shadow-xs mb-4">
           <PackageSearch className="h-7 w-7" />
         </div>
         <h3 className="text-lg font-bold text-neutral-900">
@@ -61,7 +61,7 @@ export function ProductGrid({
             variant="outline"
             size="sm"
             onClick={onResetFilters}
-            className="mt-5 gap-2 border-rose-200 text-rose-700 hover:bg-rose-50"
+            className="mt-5 gap-2 border-primary-200 text-primary-700 hover:bg-primary-50"
           >
             <RotateCcw className="h-3.5 w-3.5" />
             Clear All Filters

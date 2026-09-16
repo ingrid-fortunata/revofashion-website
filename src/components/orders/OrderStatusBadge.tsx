@@ -42,8 +42,8 @@ const STATUS_CONFIG_MAP: Record<OrderStatus, StatusConfig> = {
   },
   cancelled: {
     label: "Cancelled",
-    badgeClasses: "bg-rose-50 text-rose-700 border-rose-200/80 hover:bg-rose-100/80",
-    dotClasses: "bg-rose-500",
+    badgeClasses: "bg-red-50 text-red-700 border-red-200/80 hover:bg-red-100/80",
+    dotClasses: "bg-red-500",
   },
 };
 

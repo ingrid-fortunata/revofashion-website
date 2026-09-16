@@ -123,7 +123,7 @@ export function OrderInfiniteList({
       <div ref={sentinelRef} className="pt-2">
         {isLoadingMore && (
           <div className="flex flex-col items-center justify-center py-6 gap-2 text-neutral-500">
-            <div className="h-6 w-6 animate-spin rounded-full border-2 border-rose-300 border-t-rose-600" />
+            <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary-300 border-t-primary-600" />
             <span className="text-xs font-medium">Loading earlier orders...</span>
           </div>
         )}

@@ -22,10 +22,10 @@ export function ProfileSummaryCard({ user }: ProfileSummaryCardProps) {
   const isAdmin = user.role === "admin" || user.role === "superadmin";
 
   return (
-    <div className="backdrop-blur-xl bg-white/95 border border-rose-100/90 shadow-xl shadow-rose-950/5 rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center transition-all">
+    <div className="backdrop-blur-xl bg-white/95 border border-primary-100/90 shadow-xl shadow-primary-950/5 rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center transition-all">
       {/* Avatar Circle with Gradient */}
       <div className="relative mb-4">
-        <div className="h-24 w-24 rounded-full bg-gradient-to-tr from-rose-600 via-rose-500 to-pink-500 text-white font-extrabold text-2xl flex items-center justify-center shadow-lg shadow-rose-300/50 ring-4 ring-rose-50">
+        <div className="h-24 w-24 rounded-full bg-gradient-to-tr from-primary-600 to-primary-500 text-white font-extrabold text-2xl flex items-center justify-center shadow-lg shadow-primary-300/50 ring-4 ring-primary-50">
           {initials}
         </div>
         {user.is_active && (
@@ -43,14 +43,14 @@ export function ProfileSummaryCard({ user }: ProfileSummaryCardProps) {
         {user.username}
       </h2>
       <p className="text-sm text-neutral-500 mt-0.5 flex items-center justify-center gap-1.5 break-all">
-        <Mail className="h-3.5 w-3.5 text-rose-400 shrink-0" />
+        <Mail className="h-3.5 w-3.5 text-primary-400 shrink-0" />
         <span>{user.email}</span>
       </p>
 
       {/* Role Badge */}
       <div className="mt-3 flex items-center gap-2">
         {isAdmin ? (
-          <Badge variant="rose" className="font-semibold text-xs gap-1 py-0.5 px-3">
+          <Badge variant="primary" className="font-semibold text-xs gap-1 py-0.5 px-3">
             <Shield className="h-3 w-3" />
             {user.role === "superadmin" ? "Super Admin" : "Administrator"}
           </Badge>

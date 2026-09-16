@@ -148,8 +148,8 @@ export function OrderStatusModal({
         </DialogHeader>
 
         {error && (
-          <div className="flex items-start gap-2 p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-700">
-            <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />
+          <div className="flex items-start gap-2 p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700">
+            <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1 font-medium">{error}</div>
           </div>
         )}
@@ -205,8 +205,8 @@ export function OrderStatusModal({
                       onClick={() => setSelectedStatus(status)}
                       className={`p-2.5 rounded-xl border text-left flex items-center gap-2 transition-all cursor-pointer ${
                         isSelected
-                          ? "border-rose-600 bg-rose-600 text-white shadow-sm shadow-rose-200/50"
-                          : "border-rose-100/80 bg-white hover:bg-rose-50/60 hover:text-rose-700 text-neutral-800"
+                          ? "border-primary-600 bg-primary-600 text-white shadow-sm shadow-primary-200/50"
+                          : "border-primary-100/80 bg-white hover:bg-primary-50/60 hover:text-primary-700 text-neutral-800"
                       }`}
                     >
                       <Icon className="w-4 h-4 flex-shrink-0" />
@@ -222,7 +222,7 @@ export function OrderStatusModal({
               <div className="space-y-1.5 p-3 bg-blue-50/60 border border-blue-200 rounded-xl">
                 <label className="text-xs font-semibold text-blue-950 flex items-center gap-1.5">
                   <Truck className="w-3.5 h-3.5 text-blue-700" />
-                  Courier Tracking Number <span className="text-rose-500">*</span>
+                  Courier Tracking Number <span className="text-primary-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -240,10 +240,10 @@ export function OrderStatusModal({
 
             {/* Cancellation Reason Input (When Cancelled is chosen) */}
             {selectedStatus === "cancelled" && (
-              <div className="space-y-1.5 p-3 bg-rose-50 border border-rose-200 rounded-xl">
-                <label className="text-xs font-semibold text-rose-950 flex items-center gap-1.5">
-                  <Ban className="w-3.5 h-3.5 text-rose-700" />
-                  Cancellation Reason <span className="text-rose-500">*</span>
+              <div className="space-y-1.5 p-3 bg-red-50 border border-red-200 rounded-xl">
+                <label className="text-xs font-semibold text-red-950 flex items-center gap-1.5">
+                  <Ban className="w-3.5 h-3.5 text-red-700" />
+                  Cancellation Reason <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   rows={2}
@@ -251,9 +251,9 @@ export function OrderStatusModal({
                   value={cancellationReason}
                   onChange={(e) => setCancellationReason(e.target.value)}
                   disabled={isSubmitting}
-                  className="w-full px-3 py-2 text-xs border border-rose-200 rounded-lg bg-white text-neutral-900 focus:outline-none focus:ring-2 focus:ring-rose-600 resize-none"
+                  className="w-full px-3 py-2 text-xs border border-red-200 rounded-lg bg-white text-neutral-900 focus:outline-none focus:ring-2 focus:ring-red-600 resize-none"
                 />
-                <p className="text-[11px] text-rose-700/80">
+                <p className="text-[11px] text-red-700/80">
                   Inventory stock will be restored automatically on the backend.
                 </p>
               </div>
@@ -274,7 +274,7 @@ export function OrderStatusModal({
                 type="submit"
                 size="sm"
                 disabled={isSubmitting || !selectedStatus}
-                className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold h-9 px-4 gap-1.5 shadow-sm shadow-rose-200/50"
+                className="bg-primary-600 hover:bg-primary-700 text-white text-xs font-semibold h-9 px-4 gap-1.5 shadow-sm shadow-primary-200/50"
               >
                 {isSubmitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                 Confirm Status

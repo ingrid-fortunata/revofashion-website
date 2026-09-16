@@ -69,19 +69,19 @@ export function FashionFilters({
 
   return (
     <div
-      className={`flex flex-col gap-4 rounded-2xl border border-rose-100/90 bg-white p-4 shadow-xs ${className}`}
+      className={`flex flex-col gap-4 rounded-2xl border border-primary-100/90 bg-white p-4 shadow-xs ${className}`}
     >
       {/* Top Bar: Title & Results Count & Reset */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rose-50 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-primary-50 pb-3">
         <div className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-rose-50 text-rose-600">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
             <SlidersHorizontal className="h-3.5 w-3.5" />
           </div>
           <span className="text-xs font-bold uppercase tracking-wider text-neutral-800">
             Filters & Sorting
           </span>
           {totalProducts !== undefined && (
-            <span className="rounded-full bg-rose-50 px-2.5 py-0.5 text-[11px] font-semibold text-rose-700">
+            <span className="rounded-full bg-primary-50 px-2.5 py-0.5 text-[11px] font-semibold text-primary-700">
               {totalProducts} {totalProducts === 1 ? "Item" : "Items"}
             </span>
           )}
@@ -91,7 +91,7 @@ export function FashionFilters({
           <button
             type="button"
             onClick={onReset}
-            className="flex items-center gap-1.5 text-xs font-semibold text-rose-600 hover:text-rose-700 transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors cursor-pointer"
           >
             <RotateCcw className="h-3.5 w-3.5" />
             Reset All
@@ -114,7 +114,7 @@ export function FashionFilters({
                 page: 1,
               })
             }
-            className="h-9 w-full rounded-xl border border-rose-100 bg-rose-50/20 px-3 text-xs font-medium text-neutral-800 transition-colors focus:border-rose-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-rose-300 cursor-pointer"
+            className="h-9 w-full rounded-xl border border-primary-100 bg-primary-50/20 px-3 text-xs font-medium text-neutral-800 transition-colors focus:border-primary-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary-300 cursor-pointer"
           >
             {GENDERS.map((g) => (
               <option key={g.value} value={g.value}>
@@ -137,7 +137,7 @@ export function FashionFilters({
                 page: 1,
               })
             }
-            className="h-9 w-full rounded-xl border border-rose-100 bg-rose-50/20 px-3 text-xs font-medium text-neutral-800 transition-colors focus:border-rose-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-rose-300 cursor-pointer"
+            className="h-9 w-full rounded-xl border border-primary-100 bg-primary-50/20 px-3 text-xs font-medium text-neutral-800 transition-colors focus:border-primary-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary-300 cursor-pointer"
           >
             {SIZES.map((s) => (
               <option key={s.value} value={s.value}>
@@ -160,7 +160,7 @@ export function FashionFilters({
                 page: 1,
               })
             }
-            className="h-9 w-full rounded-xl border border-rose-100 bg-rose-50/20 px-3 text-xs font-medium text-neutral-800 transition-colors focus:border-rose-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-rose-300 cursor-pointer"
+            className="h-9 w-full rounded-xl border border-primary-100 bg-primary-50/20 px-3 text-xs font-medium text-neutral-800 transition-colors focus:border-primary-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary-300 cursor-pointer"
           >
             {SORT_GROUPS.map((group) => (
               <optgroup

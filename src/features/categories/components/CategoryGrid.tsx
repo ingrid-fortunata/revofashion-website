@@ -15,8 +15,8 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
 
   if (activeCategories.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-3xl border border-rose-100/90 bg-rose-50/40 p-12 text-center my-6 shadow-2xs">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 mb-4 shadow-2xs">
+      <div className="flex flex-col items-center justify-center rounded-3xl border border-primary-100/90 bg-primary-50/40 p-12 text-center my-6 shadow-2xs">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-100 text-primary-600 mb-4 shadow-2xs">
           <FolderOpen className="h-7 w-7" />
         </div>
         <h3 className="text-lg font-bold text-neutral-900">No Categories Available</h3>

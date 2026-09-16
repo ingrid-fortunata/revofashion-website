@@ -14,7 +14,7 @@ export default function ProfilePage() {
       <Suspense
         fallback={
           <div className="flex min-h-[60vh] items-center justify-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-neutral-300 border-t-rose-600" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-neutral-300 border-t-primary-600" />
           </div>
         }
       >

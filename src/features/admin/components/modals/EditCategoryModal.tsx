@@ -97,7 +97,7 @@ export function EditCategoryModal({
       <DialogPopup className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg font-bold text-neutral-900">
-            <Edit3 className="w-5 h-5 text-rose-600" />
+            <Edit3 className="w-5 h-5 text-primary-600" />
             Edit Category
           </DialogTitle>
           <DialogDescription className="text-xs text-neutral-500">
@@ -106,8 +106,8 @@ export function EditCategoryModal({
         </DialogHeader>
 
         {generalError && (
-          <div className="flex items-start gap-2 p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-700">
-            <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />
+          <div className="flex items-start gap-2 p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700">
+            <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1 font-medium">{generalError}</div>
           </div>
         )}
@@ -115,7 +115,7 @@ export function EditCategoryModal({
         <form onSubmit={handleSubmit} className="space-y-4 py-2">
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-neutral-700">
-              Category Name <span className="text-rose-500">*</span>
+              Category Name <span className="text-primary-500">*</span>
             </label>
             <input
               type="text"
@@ -125,10 +125,10 @@ export function EditCategoryModal({
                 if (nameError) setNameError(null);
               }}
               disabled={isSubmitting}
-              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white"
+              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 bg-white"
             />
             {nameError && (
-              <p className="text-[11px] text-rose-600 font-medium">{nameError}</p>
+              <p className="text-[11px] text-red-600 font-medium">{nameError}</p>
             )}
           </div>
 
@@ -141,7 +141,7 @@ export function EditCategoryModal({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               disabled={isSubmitting}
-              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 bg-white resize-none"
+              className="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 bg-white resize-none"
             />
           </div>
 
@@ -152,7 +152,7 @@ export function EditCategoryModal({
               checked={isActive}
               onChange={(e) => setIsActive(e.target.checked)}
               disabled={isSubmitting}
-              className="rounded border-neutral-300 text-rose-600 focus:ring-rose-500 h-4 w-4 cursor-pointer"
+              className="rounded border-neutral-300 text-primary-600 focus:ring-primary-500 h-4 w-4 cursor-pointer"
             />
             <label
               htmlFor="editCategoryActiveToggle"
@@ -177,7 +177,7 @@ export function EditCategoryModal({
               type="submit"
               size="sm"
               disabled={isSubmitting}
-              className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold h-9 px-4 gap-1.5 shadow-sm shadow-rose-200/50"
+              className="bg-primary-600 hover:bg-primary-700 text-white text-xs font-semibold h-9 px-4 gap-1.5 shadow-sm shadow-primary-200/50"
             >
               {isSubmitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
               Save Changes

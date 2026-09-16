@@ -94,7 +94,7 @@ export function RegisterForm() {
   };
 
   return (
-    <Card className="backdrop-blur-xl bg-white/95 border border-white/90 shadow-2xl shadow-rose-950/10 rounded-2xl">
+    <Card className="backdrop-blur-xl bg-white/95 border border-white/90 shadow-2xl shadow-primary-950/10 rounded-2xl">
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-xl font-bold tracking-tight text-neutral-900">
           Create an Account
@@ -315,7 +315,7 @@ export function RegisterForm() {
         <CardFooter className="flex flex-col gap-4">
           <Button
             type="submit"
-            className="w-full font-semibold gap-2 bg-gradient-to-r from-rose-600 via-rose-500 to-pink-600 hover:from-rose-700 hover:via-rose-600 hover:to-pink-700 text-white shadow-md shadow-rose-300/40 transition-all hover:scale-[1.01]"
+            className="w-full font-semibold gap-2 bg-primary-600 hover:bg-primary-700 text-white shadow-md shadow-primary-300/40 transition-all hover:scale-[1.01]"
             disabled={registerMutation.isPending}
           >
             {registerMutation.isPending ? (
@@ -335,7 +335,7 @@ export function RegisterForm() {
             Already have an account?{" "}
             <Link
               href="/login"
-              className="font-semibold text-rose-700 underline hover:text-rose-800 transition-colors"
+              className="font-semibold text-primary-700 underline hover:text-primary-800 transition-colors"
             >
               Sign In
             </Link>

@@ -43,9 +43,9 @@ export function ProductImageGallery({
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
       {/* Primary High-Res Preview Container (Compact & Centered) */}
-      <div className="relative aspect-4/5 w-full max-w-sm sm:max-w-md mx-auto overflow-hidden rounded-2xl border border-rose-100/90 bg-rose-50/20 shadow-xs">
+      <div className="relative aspect-4/5 w-full max-w-sm sm:max-w-md mx-auto overflow-hidden rounded-2xl border border-primary-100/90 bg-primary-50/20 shadow-xs">
         {isImageFailed ? (
-          <div className="flex h-full w-full flex-col items-center justify-center p-8 bg-rose-50/40">
+          <div className="flex h-full w-full flex-col items-center justify-center p-8 bg-primary-50/40">
             <Image
               src="/images/no-photo.png"
               alt={`No photo available for ${product.name}`}
@@ -95,14 +95,14 @@ export function ProductImageGallery({
                 aria-label={`Show image view ${idx + 1}`}
                 aria-current={isActive ? "true" : undefined}
                 onClick={() => setActiveIndex(idx)}
-                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
+                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                   isActive
-                    ? "border-rose-600 ring-2 ring-rose-200 shadow-xs scale-102"
-                    : "border-neutral-200/90 hover:border-rose-300 opacity-70 hover:opacity-100"
+                    ? "border-primary-600 ring-2 ring-primary-200 shadow-xs scale-102"
+                    : "border-neutral-200/90 hover:border-primary-300 opacity-70 hover:opacity-100"
                 }`}
               >
                 {hasFailed ? (
-                  <div className="flex h-full w-full items-center justify-center bg-rose-50/50 p-2">
+                  <div className="flex h-full w-full items-center justify-center bg-primary-50/50 p-2">
                     <Image
                       src="/images/no-photo.png"
                       alt="Thumbnail fallback"

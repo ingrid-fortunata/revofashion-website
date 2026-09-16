@@ -89,31 +89,31 @@ export function OrderTimeline({
     return (
       <div
         className={cn(
-          "rounded-2xl border border-rose-200 bg-rose-50/60 p-5 sm:p-6 text-rose-950",
+          "rounded-2xl border border-red-200 bg-red-50/60 p-5 sm:p-6 text-red-950",
           className
         )}
       >
         <div className="flex items-start gap-4">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 shadow-2xs">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-100 text-red-600 shadow-2xs">
             <XCircle className="h-5 w-5" />
           </div>
           <div className="space-y-1.5 flex-1">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h3 className="text-sm sm:text-base font-bold text-rose-900">
+              <h3 className="text-sm sm:text-base font-bold text-red-900">
                 Order Cancelled
               </h3>
               {formattedDate && (
-                <span className="text-xs text-rose-600 font-medium">
+                <span className="text-xs text-red-600 font-medium">
                   {formattedDate}
                 </span>
               )}
             </div>
-            <p className="text-xs sm:text-sm text-rose-800 leading-relaxed">
+            <p className="text-xs sm:text-sm text-red-800 leading-relaxed">
               This order has been cancelled and product stock has been restored.
             </p>
             {cancellationReason && (
-              <div className="mt-3 rounded-lg border border-rose-200/80 bg-white/80 p-3 text-xs text-rose-900">
-                <span className="font-semibold text-rose-950">Reason: </span>
+              <div className="mt-3 rounded-lg border border-red-200/80 bg-white/80 p-3 text-xs text-red-900">
+                <span className="font-semibold text-red-950">Reason: </span>
                 <span>{cancellationReason}</span>
               </div>
             )}
@@ -156,7 +156,7 @@ export function OrderTimeline({
                   <div
                     className={cn(
                       "hidden sm:block absolute top-4 -left-1/2 w-full h-0.5 -translate-y-1/2 -z-0 transition-colors",
-                      index <= currentIndex ? "bg-rose-500" : "bg-neutral-200"
+                      index <= currentIndex ? "bg-primary-500" : "bg-neutral-200"
                     )}
                     aria-hidden="true"
                   />
@@ -167,9 +167,9 @@ export function OrderTimeline({
                   className={cn(
                     "relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-all",
                     isCompleted &&
-                      "border-rose-600 bg-rose-600 text-white shadow-2xs",
+                      "border-primary-600 bg-primary-600 text-white shadow-2xs",
                     isCurrent &&
-                      "border-rose-600 bg-rose-50 text-rose-600 ring-4 ring-rose-100",
+                      "border-primary-600 bg-primary-50 text-primary-600 ring-4 ring-primary-100",
                     isUpcoming &&
                       "border-neutral-200 bg-neutral-50 text-neutral-400"
                   )}
@@ -182,7 +182,7 @@ export function OrderTimeline({
                   <p
                     className={cn(
                       "text-xs font-bold leading-snug",
-                      isCurrent && "text-rose-600",
+                      isCurrent && "text-primary-600",
                       isCompleted && "text-neutral-900",
                       isUpcoming && "text-neutral-400"
                     )}

@@ -60,15 +60,15 @@ export function UserDropdown({ user, onLogout }: UserDropdownProps) {
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-haspopup="menu"
-        className="flex items-center gap-2 py-1.5 px-2.5 rounded-full border border-rose-200/70 bg-rose-50/40 hover:bg-rose-50/90 transition-all text-neutral-800 text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 cursor-pointer"
+        className="flex items-center gap-2 py-1.5 px-2.5 rounded-full border border-primary-200/70 bg-primary-50/40 hover:bg-primary-50/90 transition-all text-neutral-800 text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 cursor-pointer"
       >
-        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-rose-600 via-rose-500 to-pink-500 text-[10px] font-bold text-white shadow-sm shadow-rose-200">
+        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-primary-600 via-primary-500 to-primary-400 text-[10px] font-bold text-white shadow-sm shadow-primary-200">
           {initials}
         </span>
         <span className="max-w-[110px] truncate">{user.username}</span>
         <ChevronDown
           className={`h-3.5 w-3.5 text-neutral-500 transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-rose-600" : ""
+            isOpen ? "rotate-180 text-primary-600" : ""
           }`}
         />
       </button>
@@ -78,7 +78,7 @@ export function UserDropdown({ user, onLogout }: UserDropdownProps) {
         <div
           role="menu"
           aria-orientation="vertical"
-          className="absolute right-0 top-full mt-2 w-60 origin-top-right rounded-2xl border border-rose-100/90 bg-white/95 backdrop-blur-xl shadow-2xl shadow-rose-950/10 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150"
+          className="absolute right-0 top-full mt-2 w-60 origin-top-right rounded-2xl border border-primary-100/90 bg-white/95 backdrop-blur-xl shadow-2xl shadow-primary-950/10 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150"
         >
           {/* Header Info */}
           <div className="px-3 py-2.5 border-b border-neutral-100">
@@ -91,7 +91,7 @@ export function UserDropdown({ user, onLogout }: UserDropdownProps) {
             <div className="mt-2">
               {isAdmin ? (
                 <Badge
-                  variant="rose"
+                  variant="primary"
                   className="text-[10px] py-0 px-2 gap-1 font-semibold"
                 >
                   <Shield className="h-2.5 w-2.5" />
@@ -114,9 +114,9 @@ export function UserDropdown({ user, onLogout }: UserDropdownProps) {
               href="/profile"
               role="menuitem"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-neutral-700 hover:text-rose-700 hover:bg-rose-50/70 rounded-lg transition-colors"
+              className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-neutral-700 hover:text-primary-700 hover:bg-primary-50/70 rounded-lg transition-colors"
             >
-              <UserIcon className="h-3.5 w-3.5 text-rose-500" />
+              <UserIcon className="h-3.5 w-3.5 text-primary-500" />
               <span>My Profile</span>
             </Link>
 
@@ -124,7 +124,7 @@ export function UserDropdown({ user, onLogout }: UserDropdownProps) {
               href="/orders"
               role="menuitem"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-neutral-700 hover:text-rose-700 hover:bg-rose-50/70 rounded-lg transition-colors"
+              className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-neutral-700 hover:text-primary-700 hover:bg-primary-50/70 rounded-lg transition-colors"
             >
               <ShoppingBag className="h-3.5 w-3.5 text-neutral-500" />
               <span>My Orders</span>
@@ -135,9 +135,9 @@ export function UserDropdown({ user, onLogout }: UserDropdownProps) {
                 href="/dashboard"
                 role="menuitem"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-neutral-900 hover:text-rose-700 hover:bg-rose-50/70 rounded-lg transition-colors"
+                className="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-neutral-900 hover:text-primary-700 hover:bg-primary-50/70 rounded-lg transition-colors"
               >
-                <LayoutDashboard className="h-3.5 w-3.5 text-rose-600" />
+                <LayoutDashboard className="h-3.5 w-3.5 text-primary-600" />
                 <span>Admin Dashboard</span>
               </Link>
             )}

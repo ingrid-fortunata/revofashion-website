@@ -33,15 +33,15 @@ export default async function CategoriesPage() {
   const categories = await getCategories();
 
   return (
-    <div className="bg-[#fefbfc] min-h-[calc(100vh-4rem)]">
+    <div className="bg-surface-subtle min-h-[calc(100vh-4rem)]">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Header Banner */}
         <div className="mb-8 sm:mb-12 flex flex-col items-center text-center">
           <Badge
-            variant="rose"
+            variant="primary"
             className="mb-2.5 gap-1.5 px-3 py-1 text-xs font-semibold shadow-2xs"
           >
-            <Sparkles className="h-3.5 w-3.5 text-rose-600" />
+            <Sparkles className="h-3.5 w-3.5 text-primary-600" />
             Curated Taxonomies
           </Badge>
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">

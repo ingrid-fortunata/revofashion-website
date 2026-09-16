@@ -29,7 +29,7 @@ export function OrderItemsTable({
     >
       <div className="border-b border-neutral-100 bg-neutral-50/70 px-5 sm:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Package className="h-4 w-4 text-rose-600" />
+          <Package className="h-4 w-4 text-primary-600" />
           <h3 className="text-sm font-bold text-neutral-900">
             Purchased Items ({items.length})
           </h3>
@@ -55,13 +55,13 @@ export function OrderItemsTable({
                 className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-4"
               >
                 <div className="flex items-start gap-3">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rose-50/70 border border-rose-100 text-rose-500 shadow-2xs">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-50/70 border border-primary-100 text-primary-500 shadow-2xs">
                     <Tag className="h-5 w-5" />
                   </div>
                   <div>
                     <Link
                       href={`/products/${item.product_id}`}
-                      className="text-sm font-bold text-neutral-900 hover:text-rose-600 transition-colors line-clamp-1"
+                      className="text-sm font-bold text-neutral-900 hover:text-primary-600 transition-colors line-clamp-1"
                     >
                       {item.name || `Apparel Product #${item.product_id}`}
                     </Link>
@@ -117,7 +117,7 @@ export function OrderItemsTable({
             <span className="text-sm font-bold text-neutral-900">Grand Total</span>
             <p className="text-[11px] text-neutral-500">All local taxes & tariffs included</p>
           </div>
-          <span className="text-xl sm:text-2xl font-black text-rose-600">
+          <span className="text-xl sm:text-2xl font-black text-primary-600">
             ${Number(totalAmount).toFixed(2)}
           </span>
         </div>

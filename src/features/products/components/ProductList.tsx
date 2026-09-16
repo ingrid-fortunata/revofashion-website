@@ -219,14 +219,14 @@ export function ProductList({
           {activeChips.map((chip) => (
             <span
               key={chip.key}
-              className="inline-flex items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50/70 px-3 py-1 text-xs font-medium text-rose-800 transition-all hover:bg-rose-100"
+              className="inline-flex items-center gap-1.5 rounded-full border border-primary-200 bg-primary-50/70 px-3 py-1 text-xs font-medium text-primary-800 transition-all hover:bg-primary-100"
             >
               <span>{chip.label}</span>
               <button
                 type="button"
                 onClick={chip.onRemove}
                 aria-label={`Remove filter ${chip.label}`}
-                className="flex h-3.5 w-3.5 items-center justify-center rounded-full hover:bg-rose-200 text-rose-600 cursor-pointer"
+                className="flex h-3.5 w-3.5 items-center justify-center rounded-full hover:bg-primary-200 text-primary-600 cursor-pointer"
               >
                 <X className="h-2.5 w-2.5" />
               </button>
@@ -235,7 +235,7 @@ export function ProductList({
           <button
             type="button"
             onClick={resetFilters}
-            className="text-xs font-semibold text-rose-600 hover:text-rose-700 underline underline-offset-2 ml-1 cursor-pointer"
+            className="text-xs font-semibold text-primary-600 hover:text-primary-700 underline underline-offset-2 ml-1 cursor-pointer"
           >
             Clear all
           </button>
@@ -244,14 +244,14 @@ export function ProductList({
 
       {/* Error state */}
       {isError && (
-        <div className="rounded-2xl border border-rose-200 bg-rose-50/50 p-6 text-center">
-          <p className="text-sm font-medium text-rose-900">
+        <div className="rounded-2xl border border-red-200 bg-red-50/50 p-6 text-center">
+          <p className="text-sm font-medium text-red-900">
             Unable to load products. Please check your connection and try again.
           </p>
           <button
             type="button"
             onClick={() => refetch()}
-            className="mt-3 rounded-lg bg-rose-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-rose-700 cursor-pointer"
+            className="mt-3 rounded-lg bg-red-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-red-700 cursor-pointer"
           >
             Retry
           </button>

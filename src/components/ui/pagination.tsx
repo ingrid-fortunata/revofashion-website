@@ -53,7 +53,7 @@ const PaginationLink = ({
         variant: isActive ? "default" : "outline",
         size,
       }),
-      isActive && "pointer-events-none shadow-sm shadow-rose-200/50",
+      isActive && "pointer-events-none shadow-sm shadow-primary-200/50",
       className
     )}
     {...props}

@@ -56,11 +56,11 @@ export default async function OrdersPage() {
           aria-label="Breadcrumb"
           className="mb-6 flex items-center gap-2 text-xs text-neutral-500"
         >
-          <Link href="/" className="hover:text-rose-600 transition-colors">
+          <Link href="/" className="hover:text-primary-600 transition-colors">
             Home
           </Link>
           <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <span className="font-semibold text-rose-600">Order History</span>
+          <span className="font-semibold text-primary-600">Order History</span>
         </nav>
 
         {/* Page Header */}
@@ -87,8 +87,8 @@ export default async function OrdersPage() {
 
         {/* Empty State */}
         {orders.length === 0 ? (
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-rose-200 bg-white py-16 px-4 text-center shadow-xs">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-rose-50 text-rose-600">
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-primary-200 bg-white py-16 px-4 text-center shadow-xs">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 text-primary-600">
               <Package className="h-8 w-8" />
             </div>
             <h2 className="mt-4 text-lg font-bold text-neutral-900">
@@ -98,7 +98,7 @@ export default async function OrdersPage() {
               You haven&apos;t placed any orders yet. Explore our contemporary collections and elevate your wardrobe!
             </p>
             <div className="mt-6">
-              <Button asChild variant="default" size="default" className="bg-rose-600 hover:bg-rose-700 text-white font-semibold">
+              <Button asChild variant="default" size="default" className="bg-primary-600 hover:bg-primary-700 text-white font-semibold">
                 <Link href="/products">Shop New Arrivals</Link>
               </Button>
             </div>

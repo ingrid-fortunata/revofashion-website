@@ -94,15 +94,15 @@ export default async function OrderDetailPage({
           aria-label="Breadcrumb"
           className="flex items-center gap-2 text-xs text-neutral-500 print:hidden"
         >
-          <Link href="/" className="hover:text-rose-600 transition-colors">
+          <Link href="/" className="hover:text-primary-600 transition-colors">
             Home
           </Link>
           <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <Link href="/orders" className="hover:text-rose-600 transition-colors">
+          <Link href="/orders" className="hover:text-primary-600 transition-colors">
             Order History
           </Link>
           <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <span className="font-semibold text-rose-600">Order #{order.id}</span>
+          <span className="font-semibold text-primary-600">Order #{order.id}</span>
         </nav>
 
         {/* Top Action Bar (Back, Print, Cancel) */}
@@ -129,7 +129,7 @@ export default async function OrderDetailPage({
 
             <div className="flex items-baseline sm:flex-col sm:items-end gap-2 sm:gap-0 border-t sm:border-t-0 border-neutral-100 pt-3 sm:pt-0">
               <span className="text-xs text-neutral-500">Total Billed</span>
-              <span className="text-2xl sm:text-3xl font-black text-rose-600">
+              <span className="text-2xl sm:text-3xl font-black text-primary-600">
                 ${Number(order.total_amount).toFixed(2)}
               </span>
             </div>
@@ -147,7 +147,7 @@ export default async function OrderDetailPage({
         <div className="rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-7 shadow-xs">
           <div className="border-b border-neutral-100 pb-4 mb-5 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-rose-600" />
+              <MapPin className="h-4 w-4 text-primary-600" />
               <h2 className="text-sm font-bold text-neutral-900">
                 Delivery & Recipient Snapshot
               </h2>
@@ -182,7 +182,7 @@ export default async function OrderDetailPage({
               </span>
               <div className="space-y-2">
                 <div className="flex items-start gap-2 text-neutral-700">
-                  <MapPin className="h-4 w-4 text-rose-500 shrink-0 mt-0.5" />
+                  <MapPin className="h-4 w-4 text-primary-500 shrink-0 mt-0.5" />
                   <span className="leading-relaxed">{order.shipping_address}</span>
                 </div>
                 <div className="flex items-center gap-2 pt-1 border-t border-neutral-200/60">
@@ -204,8 +204,8 @@ export default async function OrderDetailPage({
         />
 
         {/* Security & Buyer Protection Footer Banner */}
-        <div className="rounded-2xl border border-rose-100 bg-rose-50/40 p-4 sm:p-5 flex items-center gap-3 text-xs text-neutral-600 print:hidden">
-          <ShieldCheck className="h-5 w-5 text-rose-600 shrink-0" />
+        <div className="rounded-2xl border border-primary-100 bg-primary-50/40 p-4 sm:p-5 flex items-center gap-3 text-xs text-neutral-600 print:hidden">
+          <ShieldCheck className="h-5 w-5 text-primary-600 shrink-0" />
           <p>
             This order snapshot represents the immutable state recorded during purchase checkout. For inquiry or assistance regarding your order fulfillment, please refer to <strong>Order #{order.id}</strong>.
           </p>

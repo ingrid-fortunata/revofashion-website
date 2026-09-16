@@ -66,10 +66,10 @@ export function ShippingAddressForm({
   disabled = false,
 }: ShippingAddressFormProps) {
   return (
-    <Card className="border-rose-100/80 shadow-sm">
+    <Card className="border-primary-100/80 shadow-sm">
       <CardHeader className="pb-4">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-100/70 text-rose-600">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-100/70 text-primary-600">
             <MapPin className="h-4 w-4" />
           </div>
           <div>
@@ -151,10 +151,10 @@ export function ShippingAddressForm({
             value={formData.shipping_address}
             onChange={(e) => onChange("shipping_address", e.target.value)}
             disabled={disabled}
-            className={`w-full rounded-md border bg-white px-3 py-2 text-sm shadow-xs transition-colors placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400/60 focus-visible:border-rose-400 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 ${
+            className={`w-full rounded-md border bg-white px-3 py-2 text-sm shadow-xs transition-colors placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/60 focus-visible:border-primary-400 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 ${
               errors.shipping_address
                 ? "border-red-500 focus-visible:ring-red-500"
-                : "border-rose-100/80"
+                : "border-primary-100/80"
             }`}
             autoComplete="street-address"
           />

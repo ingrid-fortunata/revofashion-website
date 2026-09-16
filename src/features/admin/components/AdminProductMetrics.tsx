@@ -24,8 +24,8 @@ export function AdminProductMetrics({
       value: totalCount,
       description: "Active & catalog items",
       icon: Package,
-      iconColor: "text-rose-600 bg-rose-50 border border-rose-100",
-      badgeColor: "text-rose-700 bg-rose-50 border-rose-200",
+      iconColor: "text-primary-600 bg-primary-50 border border-primary-100",
+      badgeColor: "text-primary-700 bg-primary-50 border-primary-200",
     },
     {
       label: "Healthy Stock",
@@ -48,8 +48,8 @@ export function AdminProductMetrics({
       value: outOfStockCount,
       description: "Requires replenishment",
       icon: XCircle,
-      iconColor: "text-rose-700 bg-rose-50",
-      badgeColor: "text-rose-700 bg-rose-50 border-rose-200",
+      iconColor: "text-red-700 bg-red-50",
+      badgeColor: "text-red-700 bg-red-50 border-red-200",
     },
   ];
 
@@ -60,7 +60,7 @@ export function AdminProductMetrics({
         return (
           <div
             key={m.label}
-            className="p-4 bg-white border border-rose-100/80 rounded-xl shadow-xs shadow-rose-100/20 flex items-center justify-between transition-all hover:border-rose-300 hover:shadow-sm"
+            className="p-4 bg-white border border-primary-100/80 rounded-xl shadow-xs shadow-primary-100/20 flex items-center justify-between transition-all hover:border-primary-300 hover:shadow-sm"
           >
             <div className="space-y-1">
               <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">

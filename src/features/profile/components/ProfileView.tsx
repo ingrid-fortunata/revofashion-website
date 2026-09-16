@@ -30,7 +30,7 @@ export function ProfileView() {
           aria-label="Breadcrumb"
           className="flex items-center gap-1.5 text-xs text-neutral-400 font-medium mb-2"
         >
-          <Link href="/" className="hover:text-rose-600 transition-colors">
+          <Link href="/" className="hover:text-primary-600 transition-colors">
             Home
           </Link>
           <ChevronRight className="h-3 w-3" />
@@ -50,7 +50,7 @@ export function ProfileView() {
 
           {isLoading && (
             <div className="flex items-center gap-2 text-xs text-neutral-400">
-              <RefreshCw className="h-3.5 w-3.5 animate-spin text-rose-500" />
+              <RefreshCw className="h-3.5 w-3.5 animate-spin text-primary-500" />
               <span>Updating profile data...</span>
             </div>
           )}
@@ -60,7 +60,7 @@ export function ProfileView() {
       {/* Loading Skeleton View */}
       {isLoading && !user ? (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1 rounded-2xl border border-rose-100/80 bg-white p-6 space-y-4">
+          <div className="lg:col-span-1 rounded-2xl border border-primary-100/80 bg-white p-6 space-y-4">
             <div className="flex flex-col items-center space-y-3">
               <Skeleton className="h-24 w-24 rounded-full" />
               <Skeleton className="h-6 w-32" />
@@ -73,7 +73,7 @@ export function ProfileView() {
             </div>
           </div>
 
-          <div className="lg:col-span-2 rounded-2xl border border-rose-100/80 bg-white p-6 space-y-6">
+          <div className="lg:col-span-2 rounded-2xl border border-primary-100/80 bg-white p-6 space-y-6">
             <div className="space-y-2">
               <Skeleton className="h-6 w-48" />
               <Skeleton className="h-4 w-72" />

@@ -47,7 +47,7 @@ export function ProductInfo({ product, categoryName }: ProductInfoProps) {
         <button
           type="button"
           onClick={handleBack}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-600 hover:text-rose-700 transition-colors group cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors group cursor-pointer"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
           Back to Catalog
@@ -58,7 +58,7 @@ export function ProductInfo({ product, categoryName }: ProductInfoProps) {
       <div className="flex flex-wrap items-center gap-2.5 pt-1">
         <Badge
           variant="secondary"
-          className="bg-rose-50 text-rose-700 border-rose-200/80 font-semibold px-2.5 py-0.5"
+          className="bg-primary-50 text-primary-700 border-primary-200/80 font-semibold px-2.5 py-0.5"
         >
           {resolvedCategory}
         </Badge>
@@ -81,7 +81,7 @@ export function ProductInfo({ product, categoryName }: ProductInfoProps) {
         ) : (
           <Badge
             variant="destructive"
-            className="gap-1 font-medium text-[11px] px-2.5 py-0.5 bg-rose-600 text-white shadow-2xs"
+            className="gap-1 font-medium text-[11px] px-2.5 py-0.5 bg-red-600 text-white shadow-2xs"
           >
             <XCircle className="h-3 w-3" />
             Out of Stock
@@ -105,9 +105,9 @@ export function ProductInfo({ product, categoryName }: ProductInfoProps) {
       </div>
 
       {/* Fashion Specifications Card Grid */}
-      <div className="rounded-2xl border border-rose-100/90 bg-rose-50/20 p-4 sm:p-5">
+      <div className="rounded-2xl border border-primary-100/90 bg-primary-50/20 p-4 sm:p-5">
         <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-3.5 flex items-center gap-1.5">
-          <Layers className="h-3.5 w-3.5 text-rose-600" />
+          <Layers className="h-3.5 w-3.5 text-primary-600" />
           Garment Specifications
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -167,7 +167,7 @@ export function ProductInfo({ product, categoryName }: ProductInfoProps) {
       {/* Description Section */}
       <div className="border-t border-neutral-200/80 pt-5">
         <h2 className="text-sm font-bold text-neutral-900 mb-2 flex items-center gap-1.5">
-          <Sparkles className="h-4 w-4 text-rose-600" />
+          <Sparkles className="h-4 w-4 text-primary-600" />
           Product Details & Description
         </h2>
         <p className="text-sm leading-relaxed text-neutral-600 whitespace-pre-line">

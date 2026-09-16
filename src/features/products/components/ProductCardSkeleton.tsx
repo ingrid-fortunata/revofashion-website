@@ -3,9 +3,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function ProductCardSkeleton() {
   return (
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-rose-100/80 bg-white shadow-xs">
+    <div className="flex flex-col overflow-hidden rounded-2xl border border-primary-100/80 bg-white shadow-xs">
       {/* Media Skeleton */}
-      <div className="relative aspect-4/5 w-full bg-rose-50/50">
+      <div className="relative aspect-4/5 w-full bg-primary-50/50">
         <Skeleton className="h-full w-full rounded-none" />
       </div>
 

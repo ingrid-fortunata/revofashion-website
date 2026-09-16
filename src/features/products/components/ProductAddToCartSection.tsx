@@ -74,7 +74,7 @@ export function ProductAddToCartSection({
 
       {/* Out of Stock Notice */}
       {!inStock && (
-        <p className="text-xs font-medium text-rose-600 bg-rose-50 border border-rose-200/70 rounded-xl px-3.5 py-2.5">
+        <p className="text-xs font-medium text-red-600 bg-red-50 border border-red-200/70 rounded-xl px-3.5 py-2.5">
           This piece is currently out of stock. Sign in or stay tuned for the next collection drop.
         </p>
       )}
@@ -82,11 +82,11 @@ export function ProductAddToCartSection({
       {/* Reassurance Features (Uniqlo-style service badges) */}
       <div className="grid grid-cols-2 gap-3 pt-2">
         <div className="flex items-center gap-2 rounded-xl bg-neutral-50/80 p-2.5 border border-neutral-200/60 text-xs text-neutral-600">
-          <Truck className="h-4 w-4 text-rose-600 shrink-0" />
+          <Truck className="h-4 w-4 text-primary-600 shrink-0" />
           <span>Complimentary delivery on orders over $50</span>
         </div>
         <div className="flex items-center gap-2 rounded-xl bg-neutral-50/80 p-2.5 border border-neutral-200/60 text-xs text-neutral-600">
-          <ShieldCheck className="h-4 w-4 text-rose-600 shrink-0" />
+          <ShieldCheck className="h-4 w-4 text-primary-600 shrink-0" />
           <span>Guaranteed authentic premium tailoring</span>
         </div>
       </div>

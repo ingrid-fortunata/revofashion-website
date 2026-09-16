@@ -78,7 +78,7 @@ export function DeleteProductModal({
       <DialogPopup className="max-w-md">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 flex-shrink-0">
               <AlertTriangle className="w-5 h-5" />
             </div>
             <div>
@@ -94,12 +94,12 @@ export function DeleteProductModal({
 
         {/* Conflict / Active Order Error Alert */}
         {conflictError && (
-          <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-start gap-2.5 text-xs text-rose-800">
-            <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />
+          <div className="p-3 bg-red-50 border border-red-200 rounded-xl flex items-start gap-2.5 text-xs text-red-800">
+            <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1 space-y-1">
               <p className="font-bold">Deletion Restricted</p>
-              <p className="text-rose-700 leading-relaxed">{conflictError}</p>
-              <p className="text-[11px] text-rose-600/80 pt-1">
+              <p className="text-red-700 leading-relaxed">{conflictError}</p>
+              <p className="text-[11px] text-red-600/80 pt-1">
                 Tip: If this product has active or ongoing customer orders, it cannot be deleted until those orders are fulfilled or cancelled.
               </p>
             </div>
@@ -154,7 +154,7 @@ export function DeleteProductModal({
             size="sm"
             disabled={isDeleting}
             onClick={handleConfirmDelete}
-            className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold h-9 px-4 gap-1.5"
+            className="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold h-9 px-4 gap-1.5"
           >
             {isDeleting ? (
               <>

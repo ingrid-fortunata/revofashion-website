@@ -21,11 +21,11 @@ export function CheckoutOrderReview({
   const grandTotal = subtotal + shippingFee;
 
   return (
-    <Card className="border-rose-100/80 shadow-sm">
-      <CardHeader className="pb-3 border-b border-rose-50">
+    <Card className="border-primary-100/80 shadow-sm">
+      <CardHeader className="pb-3 border-b border-primary-50">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-100/70 text-rose-600">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-100/70 text-primary-600">
               <Package className="h-4 w-4" />
             </div>
             <div>
@@ -37,7 +37,7 @@ export function CheckoutOrderReview({
               </p>
             </div>
           </div>
-          <Badge variant="rose" className="text-xs font-semibold">
+          <Badge variant="primary" className="text-xs font-semibold">
             {items.reduce((sum, item) => sum + item.quantity, 0)} Total Pcs
           </Badge>
         </div>
@@ -78,7 +78,7 @@ export function CheckoutOrderReview({
           <div className="flex justify-between border-t border-dashed border-neutral-200 pt-3 text-base">
             <span className="font-bold text-neutral-900">Total Amount</span>
             <div className="text-right">
-              <span className="text-lg font-extrabold text-rose-600">
+              <span className="text-lg font-extrabold text-primary-600">
                 ${grandTotal.toFixed(2)}
               </span>
               <p className="text-[10px] text-neutral-400">All applicable taxes included</p>
@@ -87,9 +87,9 @@ export function CheckoutOrderReview({
         </div>
 
         {/* Brand Assurance Badges */}
-        <div className="rounded-lg bg-rose-50/60 border border-rose-100/60 p-3 text-xs text-neutral-600 space-y-1.5">
-          <div className="flex items-center gap-2 font-medium text-rose-900">
-            <ShieldCheck className="h-4 w-4 text-rose-600 shrink-0" />
+        <div className="rounded-lg bg-primary-50/60 border border-primary-100/60 p-3 text-xs text-neutral-600 space-y-1.5">
+          <div className="flex items-center gap-2 font-medium text-primary-900">
+            <ShieldCheck className="h-4 w-4 text-primary-600 shrink-0" />
             <span>Buyer Protection Guarantee</span>
           </div>
           <p className="text-[11px] text-neutral-500 pl-6 leading-relaxed">

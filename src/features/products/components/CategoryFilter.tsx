@@ -42,7 +42,7 @@ export function CategoryFilter({
           value={selectedCategoryId !== undefined ? String(selectedCategoryId) : "all"}
           onChange={handleDropdownChange}
           disabled={isLoading}
-          className="h-9 max-w-xs rounded-xl border border-rose-200/90 bg-white px-3 text-xs font-medium text-neutral-800 shadow-2xs transition-colors focus:border-rose-400 focus:outline-none focus:ring-1 focus:ring-rose-300 cursor-pointer"
+          className="h-9 max-w-xs rounded-xl border border-primary-200/90 bg-white px-3 text-xs font-medium text-neutral-800 shadow-2xs transition-colors focus:border-primary-400 focus:outline-none focus:ring-1 focus:ring-primary-300 cursor-pointer"
         >
           <option value="all">All Categories</option>
           {categories.map((cat) => (
@@ -61,8 +61,8 @@ export function CategoryFilter({
             onClick={() => onSelectCategory(undefined)}
             className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 cursor-pointer ${
               selectedCategoryId === undefined
-                ? "bg-rose-600 text-white shadow-sm shadow-rose-200/50"
-                : "border border-rose-100/90 bg-white text-neutral-700 hover:border-rose-300 hover:bg-rose-50/50"
+                ? "bg-primary-600 text-white shadow-sm shadow-primary-200/50"
+                : "border border-primary-100/90 bg-white text-neutral-700 hover:border-primary-300 hover:bg-primary-50/50"
             }`}
           >
             All Categories
@@ -73,7 +73,7 @@ export function CategoryFilter({
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="h-7 w-20 animate-pulse rounded-full bg-rose-100/40"
+                  className="h-7 w-20 animate-pulse rounded-full bg-primary-100/40"
                 />
               ))}
             </>
@@ -89,8 +89,8 @@ export function CategoryFilter({
                   }
                   className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 cursor-pointer ${
                     isSelected
-                      ? "bg-rose-600 text-white shadow-sm shadow-rose-200/50"
-                      : "border border-rose-100/90 bg-white text-neutral-700 hover:border-rose-300 hover:bg-rose-50/50"
+                      ? "bg-primary-600 text-white shadow-sm shadow-primary-200/50"
+                      : "border border-primary-100/90 bg-white text-neutral-700 hover:border-primary-300 hover:bg-primary-50/50"
                   }`}
                 >
                   {cat.name}

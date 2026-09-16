@@ -56,17 +56,17 @@ export function CategoryCard({ category }: CategoryCardProps) {
   return (
     <Link
       href={`/products?category_id=${category.id}`}
-      className="group relative flex flex-col justify-between p-6 bg-white border border-rose-100/90 rounded-2xl shadow-2xs hover:border-rose-300 hover:shadow-md transition-all duration-300 h-full"
+      className="group relative flex flex-col justify-between p-6 bg-white border border-primary-100/90 rounded-2xl shadow-2xs hover:border-primary-300 hover:shadow-md transition-all duration-300 h-full"
     >
       <div className="flex flex-col gap-4">
         {/* Thematic Icon Chip */}
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white transition-all duration-300 shadow-2xs">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300 shadow-2xs">
           <CategoryIcon name={category.name} />
         </div>
 
         {/* Title and Description */}
         <div>
-          <h2 className="text-lg font-bold text-neutral-900 group-hover:text-rose-600 transition-colors line-clamp-1">
+          <h2 className="text-lg font-bold text-neutral-900 group-hover:text-primary-600 transition-colors line-clamp-1">
             {category.name}
           </h2>
           <p className="mt-1.5 text-sm text-neutral-500 line-clamp-2 leading-relaxed">
@@ -76,7 +76,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
       </div>
 
       {/* Action Footer */}
-      <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-rose-600">
+      <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-primary-600">
         <span>Explore collection</span>
         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
       </div>

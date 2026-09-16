@@ -1,21 +1,55 @@
 @import "tailwindcss";
 
 :root {
+  /* Primary Theme Palette (Rose Base) */
+  --primary-50: #fff1f2;
+  --primary-100: #ffe4e6;
+  --primary-200: #fecdd3;
+  --primary-300: #fda4af;
+  --primary-400: #fb7185;
+  --primary-500: #f43f5e;
+  --primary-600: #e11d48;
+  --primary-700: #be123c;
+  --primary-800: #9f1239;
+  --primary-900: #881337;
+  --primary-950: #4c0519;
+
+  /* Surfaces and Base Tokens */
   --background: #fefbfc;
   --foreground: #1e1b1d;
-  --brand-primary: #c85a74;
-  --brand-primary-hover: #b34a63;
-  --brand-primary-light: #fff0f3;
-  --brand-accent: #e2849b;
+  --surface: #ffffff;
+  --surface-subtle: #fefbfc;
+
+  /* Legacy Brand Aliases for Compatibility */
+  --brand-primary: var(--primary-600);
+  --brand-primary-hover: var(--primary-700);
+  --brand-primary-light: var(--primary-50);
+  --brand-accent: var(--primary-400);
 }
 
 @theme inline {
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+
   --color-brand-primary: var(--brand-primary);
   --color-brand-hover: var(--brand-primary-hover);
   --color-brand-light: var(--brand-primary-light);
   --color-brand-accent: var(--brand-accent);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -26,4 +60,3 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
 }
-

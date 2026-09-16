@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 
 export default function ProductNotFound() {
   return (
-    <div className="flex flex-col items-center justify-center rounded-3xl border border-rose-200/80 bg-rose-50/30 px-6 py-16 text-center shadow-xs my-4">
+    <div className="flex flex-col items-center justify-center rounded-3xl border border-primary-200/80 bg-primary-50/30 px-6 py-16 text-center shadow-xs my-4">
       {/* Icon */}
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 mb-5 shadow-inner">
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-100 text-primary-600 mb-5 shadow-inner">
         <PackageX className="h-8 w-8" />
       </div>
 
@@ -21,7 +21,7 @@ export default function ProductNotFound() {
 
       {/* Action Buttons */}
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Button asChild variant="default" className="gap-2 bg-rose-600 hover:bg-rose-700 shadow-xs">
+        <Button asChild variant="default" className="gap-2 bg-primary-600 hover:bg-primary-700 shadow-xs">
           <Link href="/products">
             <ArrowLeft className="h-4 w-4" />
             Browse All Products

@@ -110,7 +110,7 @@ export function CancelOrderModal({
             type="button"
             variant="outline"
             size="sm"
-            className="border-rose-200 text-rose-700 hover:bg-rose-50 hover:text-rose-800 text-xs font-semibold gap-1.5"
+            className="border-red-200 text-red-700 hover:bg-red-50 hover:text-red-800 text-xs font-semibold gap-1.5"
           >
             <Ban className="h-3.5 w-3.5" />
             Cancel Order
@@ -122,7 +122,7 @@ export function CancelOrderModal({
         <DialogPopup className="sm:max-w-md">
           <form onSubmit={handleConfirmCancel}>
             <DialogHeader className="space-y-2">
-              <div className="mx-auto sm:mx-0 flex h-11 w-11 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 shadow-2xs">
+              <div className="mx-auto sm:mx-0 flex h-11 w-11 items-center justify-center rounded-2xl bg-red-100 text-red-600 shadow-2xs">
                 <AlertTriangle className="h-5 w-5" />
               </div>
               <DialogTitle className="text-base sm:text-lg font-bold text-neutral-900">
@@ -139,7 +139,7 @@ export function CancelOrderModal({
                 htmlFor={`cancel-reason-${orderId}`}
                 className="block text-xs font-bold text-neutral-800"
               >
-                Reason for Cancellation <span className="text-rose-600">*</span>
+                Reason for Cancellation <span className="text-red-600">*</span>
               </label>
               <textarea
                 id={`cancel-reason-${orderId}`}
@@ -151,10 +151,10 @@ export function CancelOrderModal({
                 }}
                 disabled={isSubmitting}
                 placeholder="e.g., Changed mind, ordered incorrect size, or shipping address error..."
-                className="w-full rounded-xl border border-neutral-300 p-3 text-xs text-neutral-900 placeholder:text-neutral-400 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 disabled:bg-neutral-100 disabled:cursor-not-allowed resize-none"
+                className="w-full rounded-xl border border-neutral-300 p-3 text-xs text-neutral-900 placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 disabled:bg-neutral-100 disabled:cursor-not-allowed resize-none"
               />
               {error && (
-                <p className="text-xs font-medium text-rose-600 animate-in fade-in-50">
+                <p className="text-xs font-medium text-red-600 animate-in fade-in-50">
                   {error}
                 </p>
               )}
@@ -176,7 +176,7 @@ export function CancelOrderModal({
                 variant="destructive"
                 size="sm"
                 disabled={isSubmitting}
-                className="text-xs font-semibold bg-rose-600 hover:bg-rose-700 text-white gap-1.5"
+                className="text-xs font-semibold bg-red-600 hover:bg-red-700 text-white gap-1.5"
               >
                 {isSubmitting && (
                   <span className="h-3 w-3 animate-spin rounded-full border-2 border-white/40 border-t-white" />

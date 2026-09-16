@@ -94,9 +94,9 @@ export function ProfileEditForm({ user }: ProfileEditFormProps) {
   };
 
   return (
-    <Card className="backdrop-blur-xl bg-white/95 border border-rose-100/90 shadow-xl shadow-rose-950/5 rounded-2xl">
+    <Card className="backdrop-blur-xl bg-white/95 border border-primary-100/90 shadow-xl shadow-primary-950/5 rounded-2xl">
       <CardHeader className="border-b border-neutral-100 pb-5">
-        <div className="flex items-center gap-2 text-rose-600 font-semibold text-xs tracking-wider uppercase">
+        <div className="flex items-center gap-2 text-primary-600 font-semibold text-xs tracking-wider uppercase">
           <Edit3 className="h-3.5 w-3.5" />
           <span>Account Settings</span>
         </div>
@@ -116,7 +116,7 @@ export function ProfileEditForm({ user }: ProfileEditFormProps) {
               htmlFor="username"
               className="text-xs font-semibold text-neutral-700 flex items-center gap-1.5"
             >
-              <User className="h-3.5 w-3.5 text-rose-500" />
+              <User className="h-3.5 w-3.5 text-primary-500" />
               Username
             </Label>
             <div className="relative">
@@ -137,7 +137,7 @@ export function ProfileEditForm({ user }: ProfileEditFormProps) {
                 className={`bg-neutral-50/60 focus:bg-white text-sm transition-all ${
                   fieldErrors.username
                     ? "border-red-500 focus-visible:ring-red-400"
-                    : "border-neutral-200 focus-visible:ring-rose-400"
+                    : "border-neutral-200 focus-visible:ring-primary-400"
                 }`}
               />
             </div>
@@ -160,7 +160,7 @@ export function ProfileEditForm({ user }: ProfileEditFormProps) {
               htmlFor="email"
               className="text-xs font-semibold text-neutral-700 flex items-center gap-1.5"
             >
-              <Mail className="h-3.5 w-3.5 text-rose-500" />
+              <Mail className="h-3.5 w-3.5 text-primary-500" />
               Email Address
             </Label>
             <div className="relative">
@@ -181,7 +181,7 @@ export function ProfileEditForm({ user }: ProfileEditFormProps) {
                 className={`bg-neutral-50/60 focus:bg-white text-sm transition-all ${
                   fieldErrors.email
                     ? "border-red-500 focus-visible:ring-red-400"
-                    : "border-neutral-200 focus-visible:ring-rose-400"
+                    : "border-neutral-200 focus-visible:ring-primary-400"
                 }`}
               />
             </div>
@@ -216,7 +216,7 @@ export function ProfileEditForm({ user }: ProfileEditFormProps) {
             type="submit"
             size="sm"
             disabled={!isDirty || updateMutation.isPending}
-            className="w-full sm:w-auto bg-gradient-to-r from-rose-600 via-rose-500 to-pink-600 hover:from-rose-700 hover:via-rose-600 hover:to-pink-700 text-white shadow-md shadow-rose-300/40 text-xs font-semibold gap-1.5 order-1 sm:order-2 transition-all"
+            className="w-full sm:w-auto bg-primary-600 hover:bg-primary-700 text-white shadow-md shadow-primary-300/40 text-xs font-semibold gap-1.5 order-1 sm:order-2 transition-all"
           >
             {updateMutation.isPending ? (
               <>

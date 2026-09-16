@@ -80,17 +80,17 @@ export function ProductCard({
 
   return (
     <div
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border border-rose-100/80 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-rose-200 hover:shadow-lg hover:shadow-rose-100/40 ${className}`}
+      className={`group relative flex flex-col overflow-hidden rounded-2xl border border-primary-100/80 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-100/40 ${className}`}
     >
       {/* Media & Carousel Container */}
-      <div className="relative aspect-4/5 w-full overflow-hidden bg-rose-50/30">
+      <div className="relative aspect-4/5 w-full overflow-hidden bg-primary-50/30">
         <Link
           href={`/products/${product.id}`}
           className="relative block h-full w-full focus:outline-none"
           tabIndex={-1}
         >
           {isImageFailed ? (
-            <div className="flex h-full w-full items-center justify-center p-6 bg-rose-50/40">
+            <div className="flex h-full w-full items-center justify-center p-6 bg-primary-50/40">
               <Image
                 src="/images/no-photo.png"
                 alt={`No photo available for ${product.name}`}
@@ -125,7 +125,7 @@ export function ProductCard({
           ) : (
             <Badge
               variant="destructive"
-              className="shadow-xs font-medium text-[11px] px-2 py-0.5 bg-rose-600 text-white"
+              className="shadow-xs font-medium text-[11px] px-2 py-0.5 bg-red-600 text-white"
             >
               Out of Stock
             </Badge>
@@ -174,7 +174,7 @@ export function ProductCard({
                   onClick={(e) => handleSelectDot(idx, e)}
                   className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                     activeIndex === idx
-                      ? "w-4 bg-rose-600"
+                      ? "w-4 bg-primary-600"
                       : "w-1.5 bg-neutral-300/80 hover:bg-neutral-400"
                   }`}
                 />
@@ -188,7 +188,7 @@ export function ProductCard({
       <div className="flex flex-1 flex-col p-4">
         {/* Category & Size */}
         <div className="flex items-center justify-between text-xs text-neutral-500 mb-1.5">
-          <span className="font-medium text-rose-700 uppercase tracking-wider text-[10px]">
+          <span className="font-medium text-primary-700 uppercase tracking-wider text-[10px]">
             {categoryName || "Collection"}
           </span>
           {product.size && (
@@ -201,7 +201,7 @@ export function ProductCard({
         {/* Product Name */}
         <Link
           href={`/products/${product.id}`}
-          className="group-hover:text-rose-600 transition-colors focus:outline-none focus:underline"
+          className="group-hover:text-primary-600 transition-colors focus:outline-none focus:underline"
         >
           <h3
             className="font-semibold text-neutral-900 text-sm leading-snug line-clamp-2 min-h-[2.5rem]"
@@ -227,7 +227,7 @@ export function ProductCard({
           {!readOnly && (
             <div className="flex flex-col gap-2">
               {product.stock > 0 && (
-                <div className="flex items-center justify-between rounded-xl border border-rose-100/90 bg-rose-50/40 px-2.5 py-1">
+                <div className="flex items-center justify-between rounded-xl border border-primary-100/90 bg-primary-50/40 px-2.5 py-1">
                   <span className="text-[11px] font-medium text-neutral-500">Qty:</span>
                   <div className="flex items-center gap-2">
                     <button

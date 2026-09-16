@@ -17,8 +17,8 @@ export default function ProductDetailError({
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center rounded-3xl border border-rose-200/80 bg-rose-50/40 px-6 py-16 text-center my-4">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 mb-4 shadow-xs">
+    <div className="flex flex-col items-center justify-center rounded-3xl border border-red-200/80 bg-red-50/40 px-6 py-16 text-center my-4">
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-100 text-red-600 mb-4 shadow-xs">
         <AlertTriangle className="h-7 w-7" />
       </div>
       <h2 className="text-xl sm:text-2xl font-bold text-neutral-900">
@@ -30,7 +30,7 @@ export default function ProductDetailError({
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
         <Button
           onClick={() => reset()}
-          className="gap-2 bg-rose-600 hover:bg-rose-700 shadow-xs cursor-pointer"
+          className="gap-2 bg-primary-600 hover:bg-primary-700 shadow-xs cursor-pointer"
         >
           <RotateCcw className="h-4 w-4" />
           Try Again

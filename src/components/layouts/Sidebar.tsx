@@ -75,12 +75,12 @@ export function Sidebar({
           {/* Header */}
           <div
             className={cn(
-              "h-16 flex items-center border-b border-rose-100/90 transition-all",
+              "h-16 flex items-center border-b border-primary-100/90 transition-all",
               showCompact ? "justify-center px-2" : "justify-between px-5"
             )}
           >
             <div className="flex items-center gap-2.5 min-w-0">
-              <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr from-rose-600 via-rose-500 to-pink-500 text-sm font-black text-white shadow-sm shadow-rose-200/60">
+              <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr from-primary-600 via-primary-500 to-primary-400 text-sm font-black text-white shadow-sm shadow-primary-200/60">
                 RF
               </span>
               {!showCompact && (
@@ -103,7 +103,7 @@ export function Sidebar({
                 size="icon"
                 onClick={onToggleCollapse}
                 className={cn(
-                  "h-7 w-7 text-neutral-500 hover:text-rose-700 hover:bg-rose-50/80 rounded-lg",
+                  "h-7 w-7 text-neutral-500 hover:text-primary-700 hover:bg-primary-50/80 rounded-lg",
                   showCompact && "mt-1"
                 )}
                 title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -124,7 +124,7 @@ export function Sidebar({
                 variant="ghost"
                 size="icon"
                 onClick={onCloseMobile}
-                className="h-8 w-8 text-neutral-500 hover:text-rose-700 hover:bg-rose-50/80 rounded-lg"
+                className="h-8 w-8 text-neutral-500 hover:text-primary-700 hover:bg-primary-50/80 rounded-lg"
                 title="Close menu"
                 aria-label="Close menu"
               >
@@ -154,8 +154,8 @@ export function Sidebar({
                       ? "justify-center py-2.5 px-0"
                       : "gap-3 px-3.5 py-2.5",
                     isActive
-                      ? "bg-rose-600 text-white font-semibold shadow-sm shadow-rose-200/50"
-                      : "text-neutral-600 hover:text-rose-700 hover:bg-rose-50/80"
+                      ? "bg-primary-600 text-white font-semibold shadow-sm shadow-primary-200/50"
+                      : "text-neutral-600 hover:text-primary-700 hover:bg-primary-50/80"
                   )}
                 >
                   <Icon className="h-4 w-4 flex-shrink-0" />
@@ -174,13 +174,13 @@ export function Sidebar({
         </div>
 
         {/* Footer / Account Actions */}
-        <div className={cn("border-t border-rose-100/80", showCompact ? "p-2" : "p-4")}>
+        <div className={cn("border-t border-primary-100/80", showCompact ? "p-2" : "p-4")}>
           <Link href="/" onClick={() => isMobileDrawer && onCloseMobile && onCloseMobile()}>
             <Button
               variant="ghost"
               size="sm"
               className={cn(
-                "w-full text-xs text-neutral-600 hover:text-rose-700 hover:bg-rose-50/80",
+                "w-full text-xs text-neutral-600 hover:text-primary-700 hover:bg-primary-50/80",
                 showCompact ? "justify-center px-0 h-9" : "justify-start gap-2.5"
               )}
               title={showCompact ? "Back to Storefront" : undefined}
@@ -192,7 +192,7 @@ export function Sidebar({
 
           <div
             className={cn(
-              "pt-2.5 mt-2 border-t border-rose-100/60 flex items-center",
+              "pt-2.5 mt-2 border-t border-primary-100/60 flex items-center",
               showCompact ? "justify-center" : "justify-between px-1"
             )}
           >
@@ -210,7 +210,7 @@ export function Sidebar({
               variant="ghost"
               size="icon"
               onClick={() => logout()}
-              className="text-neutral-400 hover:text-rose-600 hover:bg-rose-50/80 h-8 w-8 rounded-lg"
+              className="text-neutral-400 hover:text-primary-600 hover:bg-primary-50/80 h-8 w-8 rounded-lg"
               title="Log Out"
               aria-label="Log out"
             >
@@ -227,7 +227,7 @@ export function Sidebar({
       {/* 1. Desktop Collapsible Sidebar (Hidden on Mobile) */}
       <aside
         className={cn(
-          "hidden md:flex flex-col flex-shrink-0 border-r border-rose-100/90 bg-white h-screen sticky top-0 z-30 transition-[width] duration-300 ease-in-out",
+          "hidden md:flex flex-col flex-shrink-0 border-r border-primary-100/90 bg-white h-screen sticky top-0 z-30 transition-[width] duration-300 ease-in-out",
           isCollapsed ? "w-20" : "w-64"
         )}
       >

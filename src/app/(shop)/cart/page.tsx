@@ -49,11 +49,11 @@ function CartContent() {
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-neutral-500">
-          <Link href="/" className="hover:text-rose-600 transition-colors">
+          <Link href="/" className="hover:text-primary-600 transition-colors">
             Home
           </Link>
           <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <span className="font-semibold text-rose-600">Shopping Cart</span>
+          <span className="font-semibold text-primary-600">Shopping Cart</span>
         </nav>
 
         {/* Page Title */}
@@ -84,8 +84,8 @@ function CartContent() {
 
         {/* Empty State */}
         {isEmpty ? (
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-rose-200 bg-white py-16 px-4 text-center shadow-xs">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-rose-50 text-rose-600">
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-primary-200 bg-white py-16 px-4 text-center shadow-xs">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 text-primary-600">
               <ShoppingBag className="h-8 w-8" />
             </div>
             <h3 className="mt-4 text-lg font-bold text-neutral-900">
@@ -108,7 +108,7 @@ function CartContent() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             {/* Left Column: Cart Items Table */}
             <div className="lg:col-span-8 space-y-4">
-              <Card className="border-rose-100/80 shadow-sm overflow-hidden">
+              <Card className="border-primary-100/80 shadow-sm overflow-hidden">
                 <div className="divide-y divide-neutral-100">
                   {items.map((item, index) => (
                     <CartItemRow
@@ -126,11 +126,11 @@ function CartContent() {
               {/* Shopping Assurance */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div className="flex items-center gap-2.5 rounded-xl border border-neutral-200/70 bg-white p-3 text-xs text-neutral-600 shadow-2xs">
-                  <Truck className="h-4 w-4 text-rose-600 shrink-0" />
+                  <Truck className="h-4 w-4 text-primary-600 shrink-0" />
                   <span>Complimentary express delivery on all orders</span>
                 </div>
                 <div className="flex items-center gap-2.5 rounded-xl border border-neutral-200/70 bg-white p-3 text-xs text-neutral-600 shadow-2xs">
-                  <ShieldCheck className="h-4 w-4 text-rose-600 shrink-0" />
+                  <ShieldCheck className="h-4 w-4 text-primary-600 shrink-0" />
                   <span>30-day money-back guarantee & authentic items</span>
                 </div>
               </div>
@@ -138,8 +138,8 @@ function CartContent() {
 
             {/* Right Column: Order Summary & Proceed to Checkout */}
             <div className="lg:col-span-4">
-              <Card className="sticky top-24 border-rose-100/80 shadow-sm">
-                <CardHeader className="pb-4 border-b border-rose-50">
+              <Card className="sticky top-24 border-primary-100/80 shadow-sm">
+                <CardHeader className="pb-4 border-b border-primary-50">
                   <CardTitle className="text-lg font-bold text-neutral-900">
                     Order Summary
                   </CardTitle>
@@ -168,7 +168,7 @@ function CartContent() {
 
                   <div className="flex justify-between border-t border-dashed border-neutral-200 pt-3 text-base">
                     <span className="font-bold text-neutral-900">Total</span>
-                    <span className="text-xl font-extrabold text-rose-600">
+                    <span className="text-xl font-extrabold text-primary-600">
                       ${subtotal.toFixed(2)}
                     </span>
                   </div>
@@ -179,7 +179,7 @@ function CartContent() {
                     size="lg"
                     disabled={isEmpty}
                     onClick={() => router.push("/checkout")}
-                    className="w-full h-12 mt-2 bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm shadow-md shadow-rose-200 flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+                    className="w-full h-12 mt-2 bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm shadow-md shadow-primary-200 flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <span>Proceed to Checkout</span>
                     <ArrowRight className="h-4 w-4" />
@@ -233,7 +233,7 @@ function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemRowProps) {
         <div className="space-y-1 min-w-0">
           <Link
             href={`/products/${item.productId}`}
-            className="text-sm font-bold text-neutral-900 hover:text-rose-600 line-clamp-1 transition-colors"
+            className="text-sm font-bold text-neutral-900 hover:text-primary-600 line-clamp-1 transition-colors"
           >
             {item.name}
           </Link>
@@ -247,7 +247,7 @@ function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemRowProps) {
               </span>
             )}
           </div>
-          <p className="text-xs font-semibold text-rose-600">
+          <p className="text-xs font-semibold text-primary-600">
             ${item.price.toFixed(2)}
           </p>
         </div>

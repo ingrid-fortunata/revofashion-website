@@ -26,20 +26,20 @@ export function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
   const itemsCount = order.items?.reduce((acc, it) => acc + it.quantity, 0) || 0;
 
   return (
-    <div className="group rounded-2xl border border-neutral-200/80 bg-white shadow-xs hover:border-rose-200 hover:shadow-md transition-all duration-200 overflow-hidden">
+    <div className="group rounded-2xl border border-neutral-200/80 bg-white shadow-xs hover:border-primary-200 hover:shadow-md transition-all duration-200 overflow-hidden">
       {/* Header bar */}
       <div className="bg-neutral-50/70 border-b border-neutral-100 p-4 sm:px-6 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-neutral-200 text-rose-600 shadow-2xs group-hover:border-rose-300 transition-colors">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-neutral-200 text-primary-600 shadow-2xs group-hover:border-primary-300 transition-colors">
             <Package className="h-4 w-4" />
           </div>
           <div>
             <Link
               href={`/orders/${order.id}`}
-              className="text-sm font-bold text-neutral-900 hover:text-rose-600 transition-colors flex items-center gap-1"
+              className="text-sm font-bold text-neutral-900 hover:text-primary-600 transition-colors flex items-center gap-1"
             >
               Order #{order.id}
-              <ChevronRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-rose-600" />
+              <ChevronRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary-600" />
             </Link>
             <div className="flex items-center gap-1 text-[11px] text-neutral-500">
               <Clock className="h-3 w-3" />
@@ -66,7 +66,7 @@ export function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
             <span className="text-neutral-500">({order.recipient_phone})</span>
           </div>
           <div className="flex items-start gap-1.5">
-            <MapPin className="h-3.5 w-3.5 text-rose-600 shrink-0 mt-0.5" />
+            <MapPin className="h-3.5 w-3.5 text-primary-600 shrink-0 mt-0.5" />
             <span className="text-neutral-600 line-clamp-1">{order.shipping_address}</span>
           </div>
         </div>

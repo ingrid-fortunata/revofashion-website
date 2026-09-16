@@ -42,10 +42,10 @@ export function FeaturedProductsSection({
       {/* Section Header */}
       <div className="mb-8 flex flex-col items-center text-center">
         <Badge
-          variant="rose"
+          variant="primary"
           className="mb-2.5 gap-1.5 px-3 py-1 text-xs font-semibold shadow-2xs"
         >
-          <Sparkles className="h-3.5 w-3.5 text-rose-600" />
+          <Sparkles className="h-3.5 w-3.5 text-primary-600" />
           Featured Collection
         </Badge>
         <h2 className="text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl">
@@ -85,7 +85,7 @@ export function FeaturedProductsSection({
         <Link href="/products">
           <Button
             size="lg"
-            className="gap-2 px-8 font-semibold shadow-md shadow-rose-200/50 hover:shadow-lg transition-all"
+            className="gap-2 px-8 font-semibold shadow-md shadow-primary-200/50 hover:shadow-lg transition-all"
           >
             <span>View All Products</span>
             <ArrowRight className="h-4 w-4" />

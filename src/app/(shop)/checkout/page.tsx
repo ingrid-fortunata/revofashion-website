@@ -146,7 +146,7 @@ function CheckoutContent() {
   if (!mounted || items.length === 0) {
     return (
       <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center px-4 py-12">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-rose-300 border-t-rose-600" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary-300 border-t-primary-600" />
         <p className="mt-4 text-xs font-medium text-neutral-500">
           Loading checkout review...
         </p>
@@ -159,15 +159,15 @@ function CheckoutContent() {
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-neutral-500">
-          <Link href="/" className="hover:text-rose-600 transition-colors">
+          <Link href="/" className="hover:text-primary-600 transition-colors">
             Home
           </Link>
           <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <Link href="/cart" className="hover:text-rose-600 transition-colors">
+          <Link href="/cart" className="hover:text-primary-600 transition-colors">
             Shopping Cart
           </Link>
           <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <span className="font-semibold text-rose-600">Checkout</span>
+          <span className="font-semibold text-primary-600">Checkout</span>
         </nav>
 
         {/* Page Title */}

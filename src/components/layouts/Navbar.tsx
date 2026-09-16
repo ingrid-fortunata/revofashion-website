@@ -38,7 +38,7 @@ export function Navbar() {
   const isAdmin = user?.role === "admin" || user?.role === "superadmin";
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-rose-100/90 bg-white/95 backdrop-blur-md transition-all">
+    <nav className="sticky top-0 z-40 w-full border-b border-primary-100/90 bg-white/95 backdrop-blur-md transition-all">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <div className="flex items-center gap-8">
@@ -46,7 +46,7 @@ export function Navbar() {
             href="/"
             className="flex items-center gap-2 text-xl font-bold tracking-tight text-neutral-900 transition-opacity hover:opacity-85"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-rose-600 via-rose-500 to-pink-500 text-sm font-black text-white shadow-sm shadow-rose-200/60">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-primary-600 via-primary-500 to-primary-400 text-sm font-black text-white shadow-sm shadow-primary-200/60">
               RF
             </span>
             <span className="font-extrabold tracking-tight">RevoFashion</span>
@@ -58,8 +58,8 @@ export function Navbar() {
               href="/"
               className={`text-sm transition-colors ${
                 pathname === "/"
-                  ? "font-semibold text-rose-600"
-                  : "font-medium text-neutral-600 hover:text-rose-600"
+                  ? "font-semibold text-primary-600"
+                  : "font-medium text-neutral-600 hover:text-primary-600"
               }`}
             >
               Home
@@ -68,8 +68,8 @@ export function Navbar() {
               href="/products"
               className={`text-sm transition-colors ${
                 pathname.startsWith("/products")
-                  ? "font-semibold text-rose-600"
-                  : "font-medium text-neutral-600 hover:text-rose-600"
+                  ? "font-semibold text-primary-600"
+                  : "font-medium text-neutral-600 hover:text-primary-600"
               }`}
             >
               Products
@@ -78,8 +78,8 @@ export function Navbar() {
               href="/categories"
               className={`text-sm transition-colors ${
                 pathname.startsWith("/categories")
-                  ? "font-semibold text-rose-600"
-                  : "font-medium text-neutral-600 hover:text-rose-600"
+                  ? "font-semibold text-primary-600"
+                  : "font-medium text-neutral-600 hover:text-primary-600"
               }`}
             >
               Categories
@@ -94,12 +94,12 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="relative text-neutral-700 hover:text-rose-700 hover:bg-rose-50/80"
+              className="relative text-neutral-700 hover:text-primary-700 hover:bg-primary-50/80"
               aria-label="Shopping Cart"
             >
               <ShoppingBag className="h-5 w-5" />
               {totalCartCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-rose-600 text-white px-1 text-[10px] font-bold shadow-sm shadow-rose-200/50">
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-primary-600 text-white px-1 text-[10px] font-bold shadow-sm shadow-primary-200/50">
                   {totalCartCount}
                 </span>
               )}
@@ -136,7 +136,7 @@ export function Navbar() {
             <Button variant="ghost" size="icon" aria-label="Shopping Cart">
               <ShoppingBag className="h-5 w-5" />
               {totalCartCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-rose-600 text-white px-1 text-[9px] font-bold">
+                <span className="absolute -right-1 -top-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-primary-600 text-white px-1 text-[9px] font-bold">
                   {totalCartCount}
                 </span>
               )}
@@ -156,15 +156,15 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="border-b border-rose-100 bg-white px-4 py-4 md:hidden">
+        <div className="border-b border-primary-100 bg-white px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
               className={`text-sm py-1 transition-colors ${
                 pathname === "/"
-                  ? "font-semibold text-rose-600"
-                  : "font-medium text-neutral-700 hover:text-rose-600"
+                  ? "font-semibold text-primary-600"
+                  : "font-medium text-neutral-700 hover:text-primary-600"
               }`}
             >
               Home
@@ -174,8 +174,8 @@ export function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className={`text-sm py-1 transition-colors ${
                 pathname.startsWith("/products")
-                  ? "font-semibold text-rose-600"
-                  : "font-medium text-neutral-700 hover:text-rose-600"
+                  ? "font-semibold text-primary-600"
+                  : "font-medium text-neutral-700 hover:text-primary-600"
               }`}
             >
               Products
@@ -185,8 +185,8 @@ export function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className={`text-sm py-1 transition-colors ${
                 pathname.startsWith("/categories")
-                  ? "font-semibold text-rose-600"
-                  : "font-medium text-neutral-700 hover:text-rose-600"
+                  ? "font-semibold text-primary-600"
+                  : "font-medium text-neutral-700 hover:text-primary-600"
               }`}
             >
               Categories
@@ -194,11 +194,11 @@ export function Navbar() {
             <Link
               href="/cart"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1 flex items-center justify-between"
+              className="text-sm font-medium text-neutral-700 hover:text-primary-600 py-1 flex items-center justify-between"
             >
               <span>Shopping Cart</span>
               {totalCartCount > 0 && (
-                <Badge variant="rose">{totalCartCount}</Badge>
+                <Badge variant="primary">{totalCartCount}</Badge>
               )}
             </Link>
 
@@ -217,7 +217,7 @@ export function Navbar() {
               {mounted && isLoggedIn && user ? (
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-2.5 pb-2 border-b border-neutral-100">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-rose-600 to-pink-500 text-xs font-bold text-white shadow-sm shadow-rose-200">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-primary-600 to-primary-400 text-xs font-bold text-white shadow-sm shadow-primary-200">
                       {(user.username || "U").substring(0, 2).toUpperCase()}
                     </span>
                     <div className="flex flex-col min-w-0">
@@ -233,16 +233,16 @@ export function Navbar() {
                   <Link
                     href="/profile"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1.5 flex items-center gap-2"
+                    className="text-sm font-medium text-neutral-700 hover:text-primary-600 py-1.5 flex items-center gap-2"
                   >
-                    <User className="h-4 w-4 text-rose-500" />
+                    <User className="h-4 w-4 text-primary-500" />
                     <span>My Profile</span>
                   </Link>
 
                   <Link
                     href="/orders"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm font-medium text-neutral-700 hover:text-rose-600 py-1.5 flex items-center gap-2"
+                    className="text-sm font-medium text-neutral-700 hover:text-primary-600 py-1.5 flex items-center gap-2"
                   >
                     <ShoppingBag className="h-4 w-4 text-neutral-500" />
                     <span>My Orders</span>
