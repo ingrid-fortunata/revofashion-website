@@ -29,7 +29,7 @@ For quick evaluation of the customer storefront and the back-office admin portal
 | Role | Email | Password | Accessible Areas |
 | :--- | :--- | :--- | :--- |
 | **Admin** | `admin@revofashion.com` | `admin_password` | Full access to `/dashboard` (Catalog, Categories, Orders) & Storefront |
-| **Superadmin** | `superadmin@revofashion.com` | `superadmin_password` | Full system access across all storefront & admin features |
+| **Superadmin** | `superadmin@revofashion.com` | `superadmin_password` | Full system access across all storefront & admin features, including **User Management & RBAC** (`/dashboard/users`) |
 | **Customer** | `alice@example.com` | `alice_password` | Storefront browsing, Cart, Checkout, Order History (`/orders`), Profile |
 
 > 💡 *You can also create a brand-new customer account directly via [`/register`](https://revofashion-website.vercel.app/register).*
@@ -75,6 +75,13 @@ For quick evaluation of the customer storefront and the back-office admin portal
 - **Order Fulfillment & Status Transitions (`/dashboard/orders`)**:
   - Status filter tabs: quickly isolate orders that are *Pending*, *Processing*, *Shipped*, or *Delivered*.
   - Order status change modal enabling one-click order fulfillment updates that reflect immediately in customer order trackers.
+- **User Accounts & Role-Based Access Control (`/dashboard/users`)**:
+  - **Superadmin Guarded**: Strictly enforces role elevation boundaries; displays an informative security clearance banner when accessed by standard Admin accounts.
+  - **Account Metrics Overview**: Live KPI cards for Total Accounts, Admins & Staff, Active Regular Shoppers, and Deactivated accounts.
+  - **Search & Multi-Facet Filtering**: Real-time username and email filtering, role selection (`superadmin`, `admin`, `customer`), and account state filtering (`active`, `inactive`).
+  - **Create User Modal**: Account creation form supporting credential validation, instant RBAC role assignment, and active status configuration.
+  - **Edit User & Privileges Modal**: Pre-populated modal allowing Superadmins to update usernames, email addresses, assigned roles, and active statuses.
+  - **Account Deactivation & Activation Safeguards**: Dedicated confirmation dialog for toggling active account status, with self-protection preventing admins from locking out their own active session.
 
 ### 3. 🔐 Authentication & Profile Management
 - **Strict Client-Side Validation**:
@@ -157,6 +164,7 @@ RevoFashion/
 │   │   │   └── dashboard/
 │   │   │       ├── categories/  # Category management page
 │   │   │       ├── orders/      # Admin order fulfillment dashboard
+│   │   │       ├── users/       # User management & RBAC dashboard
 │   │   │       └── page.tsx     # Admin product inventory & metrics overview
 │   │   ├── (auth)/              # Authentication route group (/login, /register)
 │   │   ├── (shop)/              # Customer storefront route group
@@ -176,13 +184,13 @@ RevoFashion/
 │   │   ├── routes/              # Route guards (ProtectedRoute, PublicOnlyRoute)
 │   │   └── ui/                  # Atomic primitives (Button, Modal, Input, Badge, Skeleton)
 │   ├── features/
-│   │   ├── admin/               # Admin dashboards, inventory tables, and CRUD modals
+│   │   ├── admin/               # Admin dashboards (products, categories, orders, users), tables, and CRUD modals
 │   │   ├── auth/                # Login & register forms, auth hooks, and services
 │   │   ├── categories/          # Category services, hooks, and cards
 │   │   ├── products/            # Product catalog, carousels, cards, and query hooks
 │   │   └── profile/             # Profile forms and user update hooks
 │   ├── lib/
-│   │   ├── api/                 # Isomorphic HTTP client, interceptors, and error translators
+│   │   ├── api/                 # Isomorphic HTTP client, interceptors, error translators, and domain services (orders, users)
 │   │   ├── cookies.ts           # Server-safe JWT cookie helper
 │   │   └── toast.ts             # Centralized toast notification dispatcher
 │   ├── stores/
