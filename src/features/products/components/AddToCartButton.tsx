@@ -67,6 +67,7 @@ export function AddToCartButton({
         variant="outline"
         size={size}
         onClick={handleAction}
+        data-testid="login-to-buy-btn"
         className={className}
       >
         <LogIn className="h-4 w-4 text-primary-600" />
@@ -81,6 +82,7 @@ export function AddToCartButton({
         variant="outline"
         size={size}
         disabled
+        data-testid="out-of-stock-btn"
         className={`${getButtonClasses(false)} ${className}`}
       >
         Out of Stock
@@ -93,6 +95,7 @@ export function AddToCartButton({
       variant="default"
       size={size}
       onClick={handleAction}
+      data-testid="add-to-cart-btn"
       className={`${getButtonClasses(true)} ${className}`}
     >
       <ShoppingBag className="h-4 w-4" />

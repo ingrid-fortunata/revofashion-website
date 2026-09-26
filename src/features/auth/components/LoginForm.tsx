@@ -101,6 +101,7 @@ export function LoginForm() {
               autoComplete="username"
               placeholder="e.g. alice_smith or alice@example.com"
               value={identifier}
+              data-testid="login-identifier-input"
               onChange={(e) => {
                 setIdentifier(e.target.value);
                 if (fieldErrors.identifier) {
@@ -147,6 +148,7 @@ export function LoginForm() {
                 autoComplete="current-password"
                 placeholder="••••••••"
                 value={password}
+                data-testid="login-password-input"
                 onChange={(e) => {
                   setPassword(e.target.value);
                   if (fieldErrors.password) {
@@ -194,6 +196,7 @@ export function LoginForm() {
         <CardFooter className="flex flex-col gap-4">
           <Button
             type="submit"
+            data-testid="login-submit"
             className="w-full font-semibold gap-2 bg-primary-600 hover:bg-primary-700 text-white shadow-md shadow-primary-300/40 transition-all hover:scale-[1.01]"
             disabled={loginMutation.isPending}
           >

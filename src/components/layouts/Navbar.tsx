@@ -56,6 +56,7 @@ export function Navbar() {
           <div className="hidden md:flex md:items-center md:gap-6">
             <Link
               href="/"
+              data-testid="nav-home"
               className={`text-sm transition-colors ${
                 pathname === "/"
                   ? "font-semibold text-primary-600"
@@ -66,6 +67,7 @@ export function Navbar() {
             </Link>
             <Link
               href="/products"
+              data-testid="nav-products"
               className={`text-sm transition-colors ${
                 pathname.startsWith("/products")
                   ? "font-semibold text-primary-600"
@@ -76,6 +78,7 @@ export function Navbar() {
             </Link>
             <Link
               href="/categories"
+              data-testid="nav-categories"
               className={`text-sm transition-colors ${
                 pathname.startsWith("/categories")
                   ? "font-semibold text-primary-600"
@@ -90,7 +93,7 @@ export function Navbar() {
         {/* Desktop Action Icons */}
         <div className="hidden md:flex md:items-center md:gap-3">
           {/* Cart Icon & Badge */}
-          <Link href="/cart" className="relative">
+          <Link href="/cart" data-testid="nav-cart" className="relative">
             <Button
               variant="ghost"
               size="icon"
@@ -99,7 +102,10 @@ export function Navbar() {
             >
               <ShoppingBag className="h-5 w-5" />
               {totalCartCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-primary-600 text-white px-1 text-[10px] font-bold shadow-sm shadow-primary-200/50">
+                <span
+                  data-testid="cart-badge"
+                  className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-primary-600 text-white px-1 text-[10px] font-bold shadow-sm shadow-primary-200/50"
+                >
                   {totalCartCount}
                 </span>
               )}
@@ -108,7 +114,7 @@ export function Navbar() {
 
           {/* Admin Dashboard Link (if admin) */}
           {mounted && isLoggedIn && isAdmin && (
-            <Link href="/dashboard">
+            <Link href="/dashboard" data-testid="nav-admin">
               <Button variant="outline" size="sm" className="gap-1.5 text-xs font-semibold">
                 <LayoutDashboard className="h-3.5 w-3.5" />
                 Admin
@@ -120,7 +126,7 @@ export function Navbar() {
           {mounted && isLoggedIn && user ? (
             <UserDropdown user={user} onLogout={handleLogout} />
           ) : (
-            <Link href="/login">
+            <Link href="/login" data-testid="nav-login">
               <Button size="sm" className="gap-1.5 text-xs font-semibold">
                 <LogIn className="h-3.5 w-3.5" />
                 Sign In

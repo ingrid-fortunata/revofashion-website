@@ -96,6 +96,7 @@ export function ShippingAddressForm({
               type="text"
               placeholder="e.g. Alice Smith"
               value={formData.recipient_name}
+              data-testid="recipient-name-input"
               onChange={(e) => onChange("recipient_name", e.target.value)}
               disabled={disabled}
               error={!!errors.recipient_name}
@@ -123,6 +124,7 @@ export function ShippingAddressForm({
               type="tel"
               placeholder="e.g. +62 812-3456-7890"
               value={formData.recipient_phone}
+              data-testid="recipient-phone-input"
               onChange={(e) => onChange("recipient_phone", e.target.value)}
               disabled={disabled}
               error={!!errors.recipient_phone}
@@ -149,6 +151,7 @@ export function ShippingAddressForm({
             rows={3}
             placeholder="Enter your complete street name, house/apt unit, district, and city"
             value={formData.shipping_address}
+            data-testid="shipping-address-input"
             onChange={(e) => onChange("shipping_address", e.target.value)}
             disabled={disabled}
             className={`w-full rounded-md border bg-white px-3 py-2 text-sm shadow-xs transition-colors placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/60 focus-visible:border-primary-400 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 ${

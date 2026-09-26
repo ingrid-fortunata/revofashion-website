@@ -49,6 +49,7 @@ export function SearchBar({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           aria-label="Search products"
+          data-testid="search-input"
           className="h-11 w-full rounded-full border border-primary-100 bg-white/90 pl-10 pr-10 text-sm text-neutral-900 placeholder:text-neutral-400 shadow-xs backdrop-blur-xs transition-all duration-200 focus:border-primary-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-200/60"
         />
         {query && (
@@ -56,6 +57,7 @@ export function SearchBar({
             type="button"
             onClick={handleClear}
             aria-label="Clear search"
+            data-testid="clear-search-btn"
             className="absolute right-3 flex h-5 w-5 items-center justify-center rounded-full bg-neutral-200/80 text-neutral-600 transition-colors hover:bg-neutral-300 hover:text-neutral-900 cursor-pointer"
           >
             <X className="h-3 w-3" />

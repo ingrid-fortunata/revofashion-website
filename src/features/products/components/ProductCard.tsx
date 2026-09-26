@@ -80,6 +80,7 @@ export function ProductCard({
 
   return (
     <div
+      data-testid="product-card"
       className={`group relative flex flex-col overflow-hidden rounded-2xl border border-primary-100/80 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-100/40 ${className}`}
     >
       {/* Media & Carousel Container */}

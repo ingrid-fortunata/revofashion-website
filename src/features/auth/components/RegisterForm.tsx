@@ -122,6 +122,7 @@ export function RegisterForm() {
               autoComplete="username"
               placeholder="e.g. alice_smith"
               value={username}
+              data-testid="register-username-input"
               onChange={(e) => {
                 setUsername(e.target.value);
                 if (fieldErrors.username) {
@@ -165,6 +166,7 @@ export function RegisterForm() {
               autoComplete="email"
               placeholder="e.g. alice@example.com"
               value={email}
+              data-testid="register-email-input"
               onChange={(e) => {
                 setEmail(e.target.value);
                 if (fieldErrors.email) {
@@ -206,6 +208,7 @@ export function RegisterForm() {
                 autoComplete="new-password"
                 placeholder="At least 8 characters"
                 value={password}
+                data-testid="register-password-input"
                 onChange={(e) => {
                   setPassword(e.target.value);
                   if (fieldErrors.password) {
@@ -264,6 +267,7 @@ export function RegisterForm() {
                 autoComplete="new-password"
                 placeholder="Re-enter your password"
                 value={confirmPassword}
+                data-testid="register-confirm-password-input"
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
                   if (fieldErrors.confirmPassword) {
@@ -315,6 +319,7 @@ export function RegisterForm() {
         <CardFooter className="flex flex-col gap-4">
           <Button
             type="submit"
+            data-testid="register-submit"
             className="w-full font-semibold gap-2 bg-primary-600 hover:bg-primary-700 text-white shadow-md shadow-primary-300/40 transition-all hover:scale-[1.01]"
             disabled={registerMutation.isPending}
           >

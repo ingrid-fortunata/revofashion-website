@@ -71,7 +71,10 @@ export default async function HomePage() {
               <Sparkles className="h-3.5 w-3.5 text-primary-600" />
               Featured Collection
             </Badge>
-            <h2 className="text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl">
+            <h2
+              data-testid="featured-heading"
+              className="text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl"
+            >
               Curated Everyday Essentials
             </h2>
             <p className="mt-2 max-w-xl text-sm text-neutral-500">
@@ -95,7 +98,7 @@ export default async function HomePage() {
 
           {/* Centered View All Products Button */}
           <div className="mt-10 flex justify-center">
-            <Link href="/products">
+            <Link href="/products" data-testid="view-all-products-btn">
               <Button
                 size="lg"
                 className="gap-2 px-8 font-semibold shadow-md shadow-primary-200/50 hover:shadow-lg transition-all"

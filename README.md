@@ -252,6 +252,50 @@ Open [**`http://localhost:3000`**](http://localhost:3000) in your browser.
 | **Production Start** | `npm run start` | Runs the compiled production server |
 | **Linting** | `npm run lint` | Runs ESLint analysis across all TS/TSX source files |
 | **Type Check** | `npx tsc --noEmit` | Performs TypeScript type-checking without emitting files |
+| **E2E Tests (Live)** | `npm run test:e2e` | Runs complete Playwright E2E test suite against live Vercel URL |
+| **E2E Tests (UI)** | `npx playwright test --ui` | Opens interactive Playwright UI mode for live test debugging |
+| **E2E HTML Report** | `npm run test:e2e:report` | Opens the Playwright HTML test report |
+
+---
+
+## 🧪 End-to-End (E2E) Testing with Playwright
+
+The project includes an enterprise-grade automated Playwright test suite that verifies critical customer and administrative flows against the live production Vercel deployment:
+
+### Test Specs Breakdown (`tests/`)
+
+1. **`tests/global-setup.ts`**:
+   - Programmatically provisions or authenticates a test customer via the REST API (`POST /users` / `POST /auth/login`), stores `{ id, username, email }` in `localStorage`, attaches JWT session cookie, and writes the session to `playwright/.auth/user.json`.
+2. **`tests/navigation.spec.ts`**:
+   - First real Playwright test asserting homepage headings, navigating to Products, asserting URL changes, and refactored with `getByTestId()` locators.
+3. **`tests/register.spec.ts`**:
+   - Full form validation suite (empty fields, email regex, minimum password length, password confirmation mismatch, spaces in username) and successful registration flow.
+4. **`tests/auth.spec.ts`**:
+   - Customer and admin credential login flows, invalid credential feedback, session restoration, and role-based route protection guards (`/orders`, `/checkout`, `/dashboard`).
+5. **`tests/catalog.spec.ts`**:
+   - Homepage featured product showcase, product catalog grid, URL query live search (`/products?search=...`), and dynamic SEO metadata on product detail views (`/products/[id]`).
+6. **`tests/cart-checkout.spec.ts`**:
+   - Multi-page customer journey: catalog browsing -> add to cart -> empty cart checkout button disablement -> `localStorage` cart state persistence across page refresh -> shipping address entry -> order submission.
+7. **`tests/admin-crud.spec.ts`**:
+   - Complete back-office CRUD lifecycle: admin login -> create product with modal -> assert new table row -> edit product price -> assert updated price -> delete product with confirmation dialog -> verify row removal -> category management navigation.
+8. **`tests/api-mock.spec.ts`**:
+   - Network interception and API mocking using `page.route()` to demonstrate isolated client-side testing without live backend side effects.
+
+### Running the Tests
+
+```bash
+# Run the complete test suite against the live Vercel production deployment
+npm run test:e2e
+
+# Run with interactive UI runner
+npx playwright test --ui
+
+# Run against a local development server (http://localhost:3000)
+BASE_URL=http://localhost:3000 npm run test:e2e
+
+# View the generated HTML test report
+npm run test:e2e:report
+```
 
 ---
 

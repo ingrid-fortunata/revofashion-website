@@ -25,6 +25,7 @@ export function ConfirmOrderButton({
         size="lg"
         onClick={onClick}
         disabled={disabled || isLoading}
+        data-testid="confirm-order-btn"
         className="w-full h-12 bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm shadow-md shadow-primary-200 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isLoading ? (

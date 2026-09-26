@@ -49,13 +49,14 @@ function CheckoutContent() {
   const [formErrors, setFormErrors] = useState<ShippingFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [stockErrorMessage, setStockErrorMessage] = useState<string | null>(null);
+  const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
   // Precondition: If cart is empty after hydration, redirect to /cart
   useEffect(() => {
-    if (mounted && items.length === 0) {
+    if (mounted && items.length === 0 && !isOrderPlaced) {
       router.replace("/cart");
     }
-  }, [mounted, items.length, router]);
+  }, [mounted, items.length, router, isOrderPlaced]);
 
   const subtotal = mounted ? getSubtotal() : 0;
   const grandTotal = subtotal; // Complimentary delivery
@@ -110,7 +111,8 @@ function CheckoutContent() {
         items: orderItems,
       });
 
-      // 4. On Success: Clear cart, show success toast, and redirect to /orders
+      // 4. On Success: Mark order placed, clear cart, show success toast, and redirect to /orders
+      setIsOrderPlaced(true);
       clearCart();
       showToast.success(
         "Order placed successfully!",

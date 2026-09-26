@@ -74,6 +74,7 @@ function CartContent() {
               variant="outline"
               size="sm"
               onClick={clearCart}
+              data-testid="clear-cart-btn"
               className="text-xs text-neutral-600 hover:text-red-600 hover:border-red-200 self-start sm:self-auto cursor-pointer"
             >
               <Trash2 className="h-3.5 w-3.5 mr-1" />
@@ -168,7 +169,7 @@ function CartContent() {
 
                   <div className="flex justify-between border-t border-dashed border-neutral-200 pt-3 text-base">
                     <span className="font-bold text-neutral-900">Total</span>
-                    <span className="text-xl font-extrabold text-primary-600">
+                    <span data-testid="cart-subtotal" className="text-xl font-extrabold text-primary-600">
                       ${subtotal.toFixed(2)}
                     </span>
                   </div>
@@ -179,6 +180,7 @@ function CartContent() {
                     size="lg"
                     disabled={isEmpty}
                     onClick={() => router.push("/checkout")}
+                    data-testid="checkout-btn"
                     className="w-full h-12 mt-2 bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm shadow-md shadow-primary-200 flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <span>Proceed to Checkout</span>
