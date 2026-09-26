@@ -7,6 +7,7 @@ import {
   Package,
   Layers,
   ShoppingCart,
+  Users,
   ArrowLeft,
   LogOut,
   ChevronLeft,
@@ -34,6 +35,12 @@ const navigationItems = [
     label: "Orders",
     href: "/dashboard/orders",
     icon: ShoppingCart,
+    exact: false,
+  },
+  {
+    label: "Users",
+    href: "/dashboard/users",
+    icon: Users,
     exact: false,
   },
 ];

@@ -36,3 +36,35 @@ export interface ProfileFormData {
   email: string;
 }
 
+export interface UserFilterParams {
+  role?: UserRole;
+  is_active?: boolean;
+  search?: string;
+  page?: number;
+  per_page?: number;
+}
+
+export interface CreateUserPayload {
+  username: string;
+  email: string;
+  password: string;
+  role?: UserRole;
+  is_active?: boolean;
+}
+
+export interface UpdateUserPayload {
+  username?: string;
+  email?: string;
+  role?: UserRole;
+  is_active?: boolean;
+}
+
+export interface UserListResponse {
+  data: User[];
+  total?: number;
+  page?: number;
+  per_page?: number;
+  pages?: number;
+  message?: string;
+}
+
