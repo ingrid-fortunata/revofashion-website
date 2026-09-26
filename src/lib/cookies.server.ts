@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { TOKEN_COOKIE_KEY } from "./cookies";
+import { TOKEN_COOKIE_KEY, USER_ROLE_COOKIE_KEY } from "./cookies";
 
 /**
  * Reads the JWT auth token from the incoming request's cookies.
@@ -14,4 +14,14 @@ import { TOKEN_COOKIE_KEY } from "./cookies";
 export async function getServerToken(): Promise<string | null> {
   const cookieStore = await cookies();
   return cookieStore.get(TOKEN_COOKIE_KEY)?.value ?? null;
+}
+
+/**
+ * Reads the user role from the incoming request's cookies.
+ *
+ * SERVER-ONLY — safe to call from Server Components.
+ */
+export async function getServerUserRole(): Promise<string | null> {
+  const cookieStore = await cookies();
+  return cookieStore.get(USER_ROLE_COOKIE_KEY)?.value ?? null;
 }

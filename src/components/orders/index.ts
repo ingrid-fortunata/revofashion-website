@@ -5,3 +5,4 @@ export * from "./OrderCard";
 export * from "./CancelOrderModal";
 export * from "./OrderDetailsClientActions";
 export * from "./OrderInfiniteList";
+export * from "./OrderBreadcrumb";

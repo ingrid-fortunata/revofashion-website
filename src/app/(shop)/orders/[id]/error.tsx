@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { AlertTriangle, RotateCcw, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 export default function OrderDetailError({
   error,
@@ -12,9 +14,28 @@ export default function OrderDetailError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const router = useRouter();
+  const { user, isHydrated } = useAuthStore();
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     console.error("OrderDetail error boundary caught:", error);
   }, [error]);
+
+  const isAdmin =
+    mounted && isHydrated && (user?.role === "admin" || user?.role === "superadmin");
+  const backHref = isAdmin ? "/dashboard/orders" : "/orders";
+
+  const handleBack = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (typeof window !== "undefined" && window.document.referrer) {
+      const targetPath = isAdmin ? "/dashboard/orders" : "/orders";
+      if (window.document.referrer.includes(targetPath)) {
+        e.preventDefault();
+        router.back();
+      }
+    }
+  };
 
   return (
     <div className="min-h-[80vh] bg-neutral-50/50 flex items-center justify-center py-12">
@@ -39,7 +60,7 @@ export default function OrderDetailError({
               Try Again
             </Button>
             <Button asChild variant="outline" className="gap-2 border-neutral-300">
-              <Link href="/orders">
+              <Link href={backHref} onClick={handleBack}>
                 <ArrowLeft className="h-4 w-4" />
                 Back to Orders
               </Link>

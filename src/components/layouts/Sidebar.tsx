@@ -83,7 +83,7 @@ export function Sidebar({
           <div
             className={cn(
               "h-16 flex items-center border-b border-primary-100/90 transition-all",
-              showCompact ? "justify-center px-2" : "justify-between px-5"
+              showCompact ? "justify-center px-2" : "justify-between px-5",
             )}
           >
             <div className="flex items-center gap-2.5 min-w-0">
@@ -111,7 +111,7 @@ export function Sidebar({
                 onClick={onToggleCollapse}
                 className={cn(
                   "h-7 w-7 text-neutral-500 hover:text-primary-700 hover:bg-primary-50/80 rounded-lg",
-                  showCompact && "mt-1"
+                  showCompact && "mt-1",
                 )}
                 title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
                 aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -153,7 +153,9 @@ export function Sidebar({
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={() => isMobileDrawer && onCloseMobile && onCloseMobile()}
+                  onClick={() =>
+                    isMobileDrawer && onCloseMobile && onCloseMobile()
+                  }
                   title={showCompact ? item.label : undefined}
                   className={cn(
                     "flex items-center rounded-lg text-sm font-medium transition-all group relative",
@@ -162,7 +164,7 @@ export function Sidebar({
                       : "gap-3 px-3.5 py-2.5",
                     isActive
                       ? "bg-primary-600 text-white font-semibold shadow-sm shadow-primary-200/50"
-                      : "text-neutral-600 hover:text-primary-700 hover:bg-primary-50/80"
+                      : "text-neutral-600 hover:text-primary-700 hover:bg-primary-50/80",
                   )}
                 >
                   <Icon className="h-4 w-4 flex-shrink-0" />
@@ -181,26 +183,16 @@ export function Sidebar({
         </div>
 
         {/* Footer / Account Actions */}
-        <div className={cn("border-t border-primary-100/80", showCompact ? "p-2" : "p-4")}>
-          <Link href="/" onClick={() => isMobileDrawer && onCloseMobile && onCloseMobile()}>
-            <Button
-              variant="ghost"
-              size="sm"
-              className={cn(
-                "w-full text-xs text-neutral-600 hover:text-primary-700 hover:bg-primary-50/80",
-                showCompact ? "justify-center px-0 h-9" : "justify-start gap-2.5"
-              )}
-              title={showCompact ? "Back to Storefront" : undefined}
-            >
-              <ArrowLeft className="h-3.5 w-3.5 flex-shrink-0" />
-              {!showCompact && <span>Back to Storefront</span>}
-            </Button>
-          </Link>
-
+        <div
+          className={cn(
+            "border-t border-primary-100/80",
+            showCompact ? "p-2" : "p-4",
+          )}
+        >
           <div
             className={cn(
               "pt-2.5 mt-2 border-t border-primary-100/60 flex items-center",
-              showCompact ? "justify-center" : "justify-between px-1"
+              showCompact ? "justify-center" : "justify-between px-1",
             )}
           >
             {!showCompact && (
@@ -235,7 +227,7 @@ export function Sidebar({
       <aside
         className={cn(
           "hidden md:flex flex-col flex-shrink-0 border-r border-primary-100/90 bg-white h-screen sticky top-0 z-30 transition-[width] duration-300 ease-in-out",
-          isCollapsed ? "w-20" : "w-64"
+          isCollapsed ? "w-20" : "w-64",
         )}
       >
         {renderSidebarContent(false)}
@@ -254,7 +246,7 @@ export function Sidebar({
       <aside
         className={cn(
           "fixed top-0 bottom-0 left-0 z-50 w-72 bg-white flex flex-col justify-between md:hidden shadow-2xl transition-transform duration-300 ease-in-out",
-          isMobileOpen ? "translate-x-0" : "-translate-x-full"
+          isMobileOpen ? "translate-x-0" : "-translate-x-full",
         )}
         aria-label="Mobile Navigation"
       >

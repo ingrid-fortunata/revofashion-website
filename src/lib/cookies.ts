@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
  */
 
 export const TOKEN_COOKIE_KEY = "revofashion_token";
+export const USER_ROLE_COOKIE_KEY = "revofashion_role";
 
 const DEFAULT_COOKIE_OPTIONS: Cookies.CookieAttributes = {
   expires: 1, // 1 day
@@ -47,4 +48,37 @@ export function removeAuthToken(): void {
     return;
   }
   Cookies.remove(TOKEN_COOKIE_KEY, { path: "/" });
+}
+
+/**
+ * Retrieve the user role from cookies.
+ * Safe to call on both client and server (returns null on server).
+ */
+export function getUserRole(): string | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  return Cookies.get(USER_ROLE_COOKIE_KEY) || null;
+}
+
+/**
+ * Store the user role in cookies.
+ * Client-only safe guard.
+ */
+export function setUserRole(role: string): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+  Cookies.set(USER_ROLE_COOKIE_KEY, role, DEFAULT_COOKIE_OPTIONS);
+}
+
+/**
+ * Remove the user role from cookies.
+ * Client-only safe guard.
+ */
+export function removeUserRole(): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+  Cookies.remove(USER_ROLE_COOKIE_KEY, { path: "/" });
 }

@@ -33,18 +33,16 @@ export function AdminUserDashboard() {
   const [togglingUser, setTogglingUser] = useState<User | null>(null);
 
   // Fetch users via React Query if superadmin
-  const {
-    data: userData,
-    isLoading,
-  } = useUsersQuery(
+  const { data: userData, isLoading } = useUsersQuery(
     {
       page,
       per_page: pageSize,
       role: (role as UserRole) || undefined,
-      is_active: status === "active" ? true : status === "inactive" ? false : undefined,
+      is_active:
+        status === "active" ? true : status === "inactive" ? false : undefined,
       search: search.trim() || undefined,
     },
-    isSuperadmin
+    isSuperadmin,
   );
 
   const rawUsers = userData?.data || [];
@@ -57,7 +55,7 @@ export function AdminUserDashboard() {
       result = result.filter(
         (u) =>
           u.username.toLowerCase().includes(q) ||
-          u.email.toLowerCase().includes(q)
+          u.email.toLowerCase().includes(q),
       );
     }
     if (role) {
@@ -136,32 +134,14 @@ export function AdminUserDashboard() {
               Access Restricted to Superadministrators
             </h2>
             <p className="text-xs text-neutral-600 max-w-md mx-auto leading-relaxed">
-              You are currently signed in as <strong>{currentUser?.username || "Admin"}</strong> ({currentUser?.role}).
-              Per RevoFashion security architecture, managing user accounts, modifying RBAC roles, and altering account activation states require <strong>Superadmin</strong> privileges.
+              You are currently signed in as{" "}
+              <strong>{currentUser?.username || "Admin"}</strong> (
+              {currentUser?.role}). Per RevoFashion security on managing user
+              accounts requires <strong>Superadmin</strong> privileges.
             </p>
-          </div>
-
-          <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-200/80 text-left text-xs space-y-1.5 max-w-md mx-auto">
-            <p className="font-bold text-neutral-800 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-primary-600" />
-              Pre-Configured Seed Credentials:
-            </p>
-            <div className="text-[11px] text-neutral-600 space-y-1 pt-1 font-mono">
-              <p>Email: <span className="text-primary-700 font-semibold">superadmin@revofashion.com</span></p>
-              <p>Password: <span className="text-primary-700 font-semibold">superadmin_password</span></p>
-            </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={() => router.push("/dashboard")}
-              className="text-xs font-semibold h-9 px-4"
-            >
-              Back to Catalog
-            </Button>
             <Button
               type="button"
               size="sm"
@@ -195,16 +175,14 @@ export function AdminUserDashboard() {
             </span>
           </div>
           <p className="text-xs text-neutral-500 mt-1">
-            Oversee user accounts, assign system roles (Superadmin, Admin, Customer), and manage account activation states.
+            Oversee user accounts, assign system roles (Superadmin, Admin,
+            Customer), and manage account activation states.
           </p>
         </div>
       </div>
 
       {/* KPI Metrics Summary */}
-      <AdminUserMetrics
-        users={rawUsers}
-        totalCount={totalUsers}
-      />
+      <AdminUserMetrics users={rawUsers} totalCount={totalUsers} />
 
       {/* Filter and Action Toolbar */}
       <AdminUserToolbar
@@ -234,10 +212,7 @@ export function AdminUserDashboard() {
       />
 
       {/* Modals */}
-      <CreateUserModal
-        open={isCreateOpen}
-        onOpenChange={setIsCreateOpen}
-      />
+      <CreateUserModal open={isCreateOpen} onOpenChange={setIsCreateOpen} />
 
       <EditUserModal
         user={editingUser}

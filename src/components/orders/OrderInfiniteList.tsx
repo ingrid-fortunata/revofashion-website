@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { Order } from "@/types/order";
 import { OrderCard } from "./OrderCard";
 import { getOrders } from "@/lib/api/orders";
 import { CheckCircle2, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 interface OrderInfiniteListProps {
   initialOrders: Order[];
@@ -20,6 +22,15 @@ export function OrderInfiniteList({
   initialTotal,
   perPage = 5,
 }: OrderInfiniteListProps) {
+  const router = useRouter();
+  const { user, isHydrated } = useAuthStore();
+
+  useEffect(() => {
+    if (isHydrated && user && (user.role === "admin" || user.role === "superadmin")) {
+      router.replace("/dashboard/orders");
+    }
+  }, [isHydrated, user, router]);
+
   const [orders, setOrders] = useState<Order[]>(initialOrders);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(1 < initialPages);

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Package, ChevronRight, ShoppingBag } from "lucide-react";
-import { getServerToken } from "@/lib/cookies.server";
+import { getServerToken, getServerUserRole } from "@/lib/cookies.server";
 import { getOrders } from "@/lib/api/orders";
 import { OrderInfiniteList } from "@/components/orders";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,12 @@ export default async function OrdersPage() {
   // If unauthenticated on server, immediately redirect to login with return target
   if (!token) {
     redirect("/login?redirect=/orders");
+  }
+
+  // Admin and Superadmin users should manage orders from the admin dashboard
+  const userRole = await getServerUserRole();
+  if (userRole === "admin" || userRole === "superadmin") {
+    redirect("/dashboard/orders");
   }
 
   let orders: Order[] = [];

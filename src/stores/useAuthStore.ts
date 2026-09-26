@@ -1,7 +1,13 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { User } from "@/types/auth";
-import { getAuthToken, setAuthToken, removeAuthToken } from "@/lib/cookies";
+import {
+  getAuthToken,
+  setAuthToken,
+  removeAuthToken,
+  setUserRole,
+  removeUserRole,
+} from "@/lib/cookies";
 
 interface AuthState {
   user: User | null;
@@ -23,8 +29,11 @@ export const useAuthStore = create<AuthState>()(
       isHydrated: false,
 
       login: (user, token) => {
-        // Token is stored ONLY in Cookies
+        // Token and role are stored in Cookies
         setAuthToken(token);
+        if (user?.role) {
+          setUserRole(user.role);
+        }
         set({
           user,
           token,
@@ -33,8 +42,9 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
-        // Remove token from Cookies
+        // Remove token and role from Cookies
         removeAuthToken();
+        removeUserRole();
         set({
           user: null,
           token: null,
@@ -43,6 +53,9 @@ export const useAuthStore = create<AuthState>()(
       },
 
       updateUser: (partialUser) => {
+        if (partialUser.role) {
+          setUserRole(partialUser.role);
+        }
         set((state) => ({
           user: state.user ? { ...state.user, ...partialUser } : null,
         }));
@@ -67,8 +80,12 @@ export const useAuthStore = create<AuthState>()(
         if (cookieToken && state?.user) {
           state.token = cookieToken;
           state.isLoggedIn = true;
+          if (state.user.role) {
+            setUserRole(state.user.role);
+          }
         } else if (state) {
           // If no token exists in Cookies (or expired), clear auth state
+          removeUserRole();
           state.token = null;
           state.user = null;
           state.isLoggedIn = false;

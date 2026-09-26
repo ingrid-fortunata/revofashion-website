@@ -1,9 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import {
-  ChevronRight,
   MapPin,
   User,
   Phone,
@@ -11,13 +9,14 @@ import {
   ShieldCheck,
   Calendar,
 } from "lucide-react";
-import { getServerToken } from "@/lib/cookies.server";
+import { getServerToken, getServerUserRole } from "@/lib/cookies.server";
 import { getOrderById } from "@/lib/api/orders";
 import {
   OrderStatusBadge,
   OrderTimeline,
   OrderItemsTable,
   OrderDetailsClientActions,
+  OrderBreadcrumb,
 } from "@/components/orders";
 import { Order } from "@/types/order";
 
@@ -53,6 +52,7 @@ export default async function OrderDetailPage({
   }
 
   const token = await getServerToken();
+  const serverRole = await getServerUserRole();
 
   if (!token) {
     redirect(`/login?redirect=/orders/${id}`);
@@ -90,25 +90,13 @@ export default async function OrderDetailPage({
     <div className="min-h-[80vh] bg-neutral-50/50 pb-16 pt-6">
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
         {/* Breadcrumb Navigation */}
-        <nav
-          aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-xs text-neutral-500 print:hidden"
-        >
-          <Link href="/" className="hover:text-primary-600 transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <Link href="/orders" className="hover:text-primary-600 transition-colors">
-            Order History
-          </Link>
-          <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <span className="font-semibold text-primary-600">Order #{order.id}</span>
-        </nav>
+        <OrderBreadcrumb orderId={order.id} serverRole={serverRole} />
 
         {/* Top Action Bar (Back, Print, Cancel) */}
         <OrderDetailsClientActions
           orderId={order.id}
           status={order.status}
+          serverRole={serverRole}
         />
 
         {/* Order Header Summary Banner */}

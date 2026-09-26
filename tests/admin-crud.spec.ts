@@ -132,4 +132,35 @@ test.describe("Admin Product Management CRUD Lifecycle (tests/admin-crud.spec.ts
     const categoryTable = page.locator("table");
     await expect(categoryTable.first()).toBeVisible({ timeout: 10000 });
   });
+
+  test("Admin order detail: going back returns to /dashboard/orders", async ({ page }) => {
+    // 1. Navigate to admin orders dashboard
+    await page.goto("/dashboard/orders");
+    await expect(page).toHaveURL(/.*\/dashboard\/orders/);
+
+    const ordersTable = page.locator("table");
+    await expect(ordersTable.first()).toBeVisible({ timeout: 10000 });
+
+    // 2. Find any order link in the table and navigate
+    const viewOrderLink = page.locator('a[href^="/orders/"]').first();
+    const hasOrderLink = (await viewOrderLink.count()) > 0;
+
+    if (hasOrderLink) {
+      await viewOrderLink.click();
+      await expect(page).toHaveURL(/\/orders\/\d+/);
+
+      // 3. Verify 'Back to Orders' button directs to /dashboard/orders
+      const backBtn = page.getByTestId("back-to-orders-button").or(page.locator('a:has-text("Back to Orders")')).first();
+      await expect(backBtn).toBeVisible({ timeout: 10000 });
+      await expect(backBtn).toHaveAttribute("href", "/dashboard/orders");
+
+      // 4. Click 'Back to Orders' and verify returns to /dashboard/orders
+      await backBtn.click();
+      await expect(page).toHaveURL(/.*\/dashboard\/orders/);
+    }
+
+    // 5. Verify accessing /orders directly as admin redirects to /dashboard/orders
+    await page.goto("/orders");
+    await expect(page).toHaveURL(/.*\/dashboard\/orders/, { timeout: 10000 });
+  });
 });

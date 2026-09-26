@@ -51,4 +51,15 @@ export default defineConfig({
       },
     },
   ],
+
+  /* Run local server before tests when targeting localhost */
+  webServer:
+    process.env.BASE_URL && !process.env.BASE_URL.includes("localhost")
+      ? undefined
+      : {
+          command: "npm run start",
+          url: "http://localhost:3000",
+          reuseExistingServer: !process.env.CI,
+          timeout: 120000,
+        },
 });
