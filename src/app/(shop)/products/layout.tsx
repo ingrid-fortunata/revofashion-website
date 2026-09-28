@@ -1,6 +1,5 @@
 import React from "react";
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { Breadcrumb } from "@/components/common";
 
 export const metadata = {
   title: "Product Catalog | RevoFashion",
@@ -19,19 +18,13 @@ export default function ProductsLayout({
       <div className="border-b border-primary-100/70 bg-gradient-to-b from-primary-50/60 to-transparent py-8 sm:py-10">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
-          <nav
-            aria-label="Breadcrumbs"
-            className="flex items-center gap-1.5 text-xs text-neutral-500 mb-3"
-          >
-            <Link
-              href="/"
-              className="hover:text-primary-600 transition-colors"
-            >
-              Home
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5 text-neutral-400" />
-            <span className="font-semibold text-primary-700">Products</span>
-          </nav>
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Products", active: true },
+            ]}
+            className="mb-3"
+          />
 
           <h1 className="text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">
             Contemporary Collection

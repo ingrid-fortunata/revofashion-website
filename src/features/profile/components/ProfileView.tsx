@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { ChevronRight, RefreshCw, AlertCircle } from "lucide-react";
+import { RefreshCw, AlertCircle } from "lucide-react";
+import { Breadcrumb } from "@/components/common";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useProfileQuery } from "../hooks/useProfileQuery";
 import { ProfileSummaryCard } from "./ProfileSummaryCard";
@@ -26,16 +27,13 @@ export function ProfileView() {
     <main className="container mx-auto px-4 py-8 sm:py-12 max-w-5xl">
       {/* Page Header with Breadcrumb & Semantic Header */}
       <header className="mb-8 space-y-2">
-        <nav
-          aria-label="Breadcrumb"
-          className="flex items-center gap-1.5 text-xs text-neutral-400 font-medium mb-2"
-        >
-          <Link href="/" className="hover:text-primary-600 transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="h-3 w-3" />
-          <span className="text-neutral-700 font-semibold">My Profile</span>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "My Profile", active: true },
+          ]}
+          className="mb-2 text-neutral-400"
+        />
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

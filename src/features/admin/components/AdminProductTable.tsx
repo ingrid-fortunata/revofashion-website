@@ -13,7 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Product } from "@/types/product";
 import { Category } from "@/types/category";
-import { Edit, Trash2, ChevronLeft, ChevronRight, PackageOpen } from "lucide-react";
+import { Edit, Trash2, PackageOpen } from "lucide-react";
+import { EmptyState, TableSkeleton, Pagination } from "@/components/common";
 
 interface AdminProductTableProps {
   products: Product[];
@@ -48,33 +49,16 @@ export function AdminProductTable({
   }, [categories]);
 
   if (isLoading) {
-    return (
-      <div className="bg-white rounded-xl border border-primary-100/80 shadow-xs shadow-primary-100/20 overflow-hidden">
-        <div className="p-4 space-y-3">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="h-14 bg-neutral-100/70 rounded-lg animate-pulse"
-            />
-          ))}
-        </div>
-      </div>
-    );
+    return <TableSkeleton rows={6} />;
   }
 
   if (products.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-primary-100/80 p-12 text-center shadow-xs shadow-primary-100/20">
-        <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center text-primary-400 mx-auto mb-3">
-          <PackageOpen className="w-6 h-6" />
-        </div>
-        <h3 className="text-sm font-bold text-neutral-800">
-          No Products Found
-        </h3>
-        <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
-          No products match your current search or filter criteria. Try adjusting the filters or add a new product.
-        </p>
-      </div>
+      <EmptyState
+        icon={PackageOpen}
+        title="No Products Found"
+        description="No products match your current search or filter criteria. Try adjusting the filters or add a new product."
+      />
     );
   }
 
@@ -252,94 +236,15 @@ export function AdminProductTable({
       </div>
 
       {/* Pagination Footer */}
-      {totalPages > 1 && (
-        <div className="px-6 py-3 border-t border-primary-100/80 bg-primary-50/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
-          <div>
-            Showing{" "}
-            <strong>
-              {(currentPage - 1) * pageSize + 1}–
-              {Math.min(currentPage * pageSize, totalProducts)}
-            </strong>{" "}
-            of <strong>{totalProducts}</strong> products
-          </div>
-
-          <div className="flex items-center gap-1">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              disabled={currentPage <= 1}
-              onClick={() => onPageChange(currentPage - 1)}
-              className="h-8 px-2.5 text-xs gap-1 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
-            >
-              <ChevronLeft className="w-3.5 h-3.5" />
-              Previous
-            </Button>
-
-            <div className="flex items-center gap-1 px-1">
-              {[...Array(totalPages)].map((_, idx) => {
-                const pageNum = idx + 1;
-                // Show first, last, and pages adjacent to current
-                if (
-                  pageNum === 1 ||
-                  pageNum === totalPages ||
-                  Math.abs(pageNum - currentPage) <= 1
-                ) {
-                  return (
-                    <Button
-                      key={pageNum}
-                      type="button"
-                      variant={pageNum === currentPage ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => onPageChange(pageNum)}
-                      className={`h-8 w-8 p-0 text-xs font-semibold ${
-                        pageNum === currentPage
-                          ? "bg-primary-600 text-white shadow-sm shadow-primary-200/50 hover:bg-primary-700"
-                          : "text-neutral-700 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
-                      }`}
-                    >
-                      {pageNum}
-                    </Button>
-                  );
-                }
-                if (
-                  pageNum === 2 &&
-                  currentPage > 3
-                ) {
-                  return (
-                    <span key="dots-start" className="px-1 text-neutral-400">
-                      ...
-                    </span>
-                  );
-                }
-                if (
-                  pageNum === totalPages - 1 &&
-                  currentPage < totalPages - 2
-                ) {
-                  return (
-                    <span key="dots-end" className="px-1 text-neutral-400">
-                      ...
-                    </span>
-                  );
-                }
-                return null;
-              })}
-            </div>
-
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              disabled={currentPage >= totalPages}
-              onClick={() => onPageChange(currentPage + 1)}
-              className="h-8 px-2.5 text-xs gap-1 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
-            >
-              Next
-              <ChevronRight className="w-3.5 h-3.5" />
-            </Button>
-          </div>
-        </div>
-      )}
+      <Pagination
+        page={currentPage}
+        pages={totalPages}
+        onPageChange={onPageChange}
+        totalCount={totalProducts}
+        pageSize={pageSize}
+        itemName="products"
+        variant="table"
+      />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { Search, X, Plus, RotateCcw } from "lucide-react";
+import { Plus, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SearchInput } from "@/components/common";
 
 interface AdminUserToolbarProps {
   search: string;
@@ -34,25 +35,12 @@ export function AdminUserToolbar({
       {/* Top Filter and Actions Row */}
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
         {/* Search Bar */}
-        <div className="relative flex-1 min-w-[240px]">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
-          <input
-            type="text"
+        <div className="flex-1 min-w-[240px]">
+          <SearchInput
             placeholder="Search by username or email..."
             value={search}
-            onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-9 pr-9 py-2 text-xs rounded-lg border border-neutral-300 bg-white placeholder:text-neutral-400 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500"
+            onChange={onSearchChange}
           />
-          {search && (
-            <button
-              type="button"
-              onClick={() => onSearchChange("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-primary-700 cursor-pointer"
-              title="Clear search"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
-          )}
         </div>
 
         {/* Filter Controls Group */}

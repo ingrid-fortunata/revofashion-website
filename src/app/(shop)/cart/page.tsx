@@ -18,6 +18,7 @@ import {
 import { ProtectedRoute } from "@/components/routes";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Breadcrumb, EmptyState } from "@/components/common";
 import { useCartStore } from "@/stores/useCartStore";
 import { CartItem } from "@/types/cart";
 
@@ -48,13 +49,13 @@ function CartContent() {
     <div className="min-h-[80vh] bg-neutral-50/50 pb-16 pt-6">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-neutral-500">
-          <Link href="/" className="hover:text-primary-600 transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <span className="font-semibold text-primary-600">Shopping Cart</span>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Shopping Cart", active: true },
+          ]}
+          className="mb-6"
+        />
 
         {/* Page Title */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -85,25 +86,22 @@ function CartContent() {
 
         {/* Empty State */}
         {isEmpty ? (
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-primary-200 bg-white py-16 px-4 text-center shadow-xs">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 text-primary-600">
-              <ShoppingBag className="h-8 w-8" />
-            </div>
-            <h3 className="mt-4 text-lg font-bold text-neutral-900">
-              Your bag is empty
-            </h3>
-            <p className="mt-1 max-w-sm text-sm text-neutral-500">
-              Explore our contemporary collections and find pieces tailored for your style.
-            </p>
-            <div className="mt-6 flex gap-3">
-              <Button asChild variant="default" size="default">
-                <Link href="/products">Browse Products</Link>
-              </Button>
-              <Button asChild variant="outline" size="default">
-                <Link href="/categories">View Categories</Link>
-              </Button>
-            </div>
-          </div>
+          <EmptyState
+            icon={ShoppingBag}
+            title="Your bag is empty"
+            description="Explore our contemporary collections and find pieces tailored for your style."
+            action={
+              <div className="flex gap-3 justify-center">
+                <Button asChild variant="default" size="default">
+                  <Link href="/products">Browse Products</Link>
+                </Button>
+                <Button asChild variant="outline" size="default">
+                  <Link href="/categories">View Categories</Link>
+                </Button>
+              </div>
+            }
+            className="rounded-2xl border border-dashed border-primary-200 py-16"
+          />
         ) : (
           /* Cart Grid */
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">

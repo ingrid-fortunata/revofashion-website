@@ -20,9 +20,8 @@ import {
   ShieldCheck,
   Shield,
   User as UserIcon,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
+import { EmptyState, TableSkeleton, Pagination } from "@/components/common";
 import { useAuthStore } from "@/stores/useAuthStore";
 
 interface AdminUserTableProps {
@@ -51,33 +50,16 @@ export function AdminUserTable({
   const { user: currentUser } = useAuthStore();
 
   if (isLoading) {
-    return (
-      <div className="bg-white rounded-xl border border-primary-100/80 shadow-xs shadow-primary-100/20 overflow-hidden">
-        <div className="p-4 space-y-3">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="h-14 bg-neutral-100/70 rounded-lg animate-pulse"
-            />
-          ))}
-        </div>
-      </div>
-    );
+    return <TableSkeleton rows={6} />;
   }
 
   if (users.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-primary-100/80 p-12 text-center shadow-xs shadow-primary-100/20">
-        <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center text-primary-400 mx-auto mb-3">
-          <Users className="w-6 h-6" />
-        </div>
-        <h3 className="text-sm font-bold text-neutral-800">
-          No Users Found
-        </h3>
-        <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
-          No user accounts match your search or filter criteria. Try adjusting the query or role filter.
-        </p>
-      </div>
+      <EmptyState
+        icon={Users}
+        title="No Users Found"
+        description="No user accounts match your search or filter criteria. Try adjusting the query or role filter."
+      />
     );
   }
 
@@ -248,90 +230,15 @@ export function AdminUserTable({
       </div>
 
       {/* Pagination Controls */}
-      {totalPages > 1 && (
-        <div className="p-4 border-t border-primary-100/80 bg-neutral-50/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
-          <div>
-            Showing{" "}
-            <strong>
-              {Math.min((currentPage - 1) * pageSize + 1, totalUsers)}
-            </strong>{" "}
-            to{" "}
-            <strong>
-              {Math.min(currentPage * pageSize, totalUsers)}
-            </strong>{" "}
-            of <strong>{totalUsers}</strong> users
-          </div>
-
-          <div className="flex items-center gap-1.5">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              disabled={currentPage <= 1}
-              onClick={() => onPageChange(currentPage - 1)}
-              className="h-8 px-2.5 text-xs gap-1 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
-            >
-              <ChevronLeft className="w-3.5 h-3.5" />
-              Previous
-            </Button>
-
-            <div className="flex items-center gap-1">
-              {[...Array(totalPages)].map((_, idx) => {
-                const pageNum = idx + 1;
-                if (
-                  pageNum === 1 ||
-                  pageNum === totalPages ||
-                  Math.abs(pageNum - currentPage) <= 1
-                ) {
-                  return (
-                    <Button
-                      key={pageNum}
-                      type="button"
-                      variant={pageNum === currentPage ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => onPageChange(pageNum)}
-                      className={`h-8 w-8 p-0 text-xs font-semibold ${
-                        pageNum === currentPage
-                          ? "bg-primary-600 text-white shadow-sm shadow-primary-200/50 hover:bg-primary-700"
-                          : "text-neutral-700 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
-                      }`}
-                    >
-                      {pageNum}
-                    </Button>
-                  );
-                }
-                if (pageNum === 2 && currentPage > 3) {
-                  return (
-                    <span key="dots-start" className="px-1 text-neutral-400">
-                      ...
-                    </span>
-                  );
-                }
-                if (pageNum === totalPages - 1 && currentPage < totalPages - 2) {
-                  return (
-                    <span key="dots-end" className="px-1 text-neutral-400">
-                      ...
-                    </span>
-                  );
-                }
-                return null;
-              })}
-            </div>
-
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              disabled={currentPage >= totalPages}
-              onClick={() => onPageChange(currentPage + 1)}
-              className="h-8 px-2.5 text-xs gap-1 border-primary-200/70 hover:bg-primary-50 hover:text-primary-700"
-            >
-              Next
-              <ChevronRight className="w-3.5 h-3.5" />
-            </Button>
-          </div>
-        </div>
-      )}
+      <Pagination
+        page={currentPage}
+        pages={totalPages}
+        onPageChange={onPageChange}
+        totalCount={totalUsers}
+        pageSize={pageSize}
+        itemName="users"
+        variant="table"
+      />
     </div>
   );
 }

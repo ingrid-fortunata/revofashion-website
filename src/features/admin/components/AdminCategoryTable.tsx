@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Category } from "@/types/category";
 import { Edit, Trash2, Layers, FolderOpen } from "lucide-react";
+import { EmptyState, TableSkeleton } from "@/components/common";
 
 interface AdminCategoryTableProps {
   categories: Category[];
@@ -27,29 +28,16 @@ export function AdminCategoryTable({
   onDelete,
 }: AdminCategoryTableProps) {
   if (isLoading) {
-    return (
-      <div className="bg-white rounded-xl border border-primary-100/80 shadow-xs shadow-primary-100/20 overflow-hidden p-4 space-y-3">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="h-12 bg-neutral-100/70 rounded-lg animate-pulse"
-          />
-        ))}
-      </div>
-    );
+    return <TableSkeleton rows={5} rowHeight="h-12" />;
   }
 
   if (categories.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-primary-100/80 p-12 text-center shadow-xs shadow-primary-100/20">
-        <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center text-primary-400 mx-auto mb-3">
-          <FolderOpen className="w-6 h-6" />
-        </div>
-        <h3 className="text-sm font-bold text-neutral-800">No Categories Found</h3>
-        <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
-          No categories match your criteria. Create a new category using the button above.
-        </p>
-      </div>
+      <EmptyState
+        icon={FolderOpen}
+        title="No Categories Found"
+        description="No categories match your criteria. Create a new category using the button above."
+      />
     );
   }
 

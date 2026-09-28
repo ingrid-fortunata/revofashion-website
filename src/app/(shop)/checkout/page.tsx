@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight, AlertCircle, ShoppingBag } from "lucide-react";
+import { AlertCircle, ShoppingBag } from "lucide-react";
 import { ProtectedRoute } from "@/components/routes";
+import { Breadcrumb } from "@/components/common";
 import {
   ShippingAddressForm,
   validateShippingForm,
@@ -160,17 +161,14 @@ function CheckoutContent() {
     <div className="min-h-[80vh] bg-neutral-50/50 pb-16 pt-6">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-neutral-500">
-          <Link href="/" className="hover:text-primary-600 transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <Link href="/cart" className="hover:text-primary-600 transition-colors">
-            Shopping Cart
-          </Link>
-          <ChevronRight className="h-3 w-3 text-neutral-400" />
-          <span className="font-semibold text-primary-600">Checkout</span>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Shopping Cart", href: "/cart" },
+            { label: "Checkout", active: true },
+          ]}
+          className="mb-6"
+        />
 
         {/* Page Title */}
         <div className="mb-8">
