@@ -187,6 +187,8 @@ RevoFashion/
 │   │   ├── admin/               # Admin dashboards (products, categories, orders, users), tables, and CRUD modals
 │   │   ├── auth/                # Login & register forms, auth hooks, and services
 │   │   ├── categories/          # Category services, hooks, and cards
+│   │   ├── checkout/            # Checkout form, order review, payment confirmation, and services
+│   │   ├── orders/              # Order listing, timeline, detail cards, status badges, and services
 │   │   ├── products/            # Product catalog, carousels, cards, and query hooks
 │   │   └── profile/             # Profile forms and user update hooks
 │   ├── lib/

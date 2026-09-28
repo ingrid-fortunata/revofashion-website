@@ -10,14 +10,14 @@ import {
   Calendar,
 } from "lucide-react";
 import { getServerToken, getServerUserRole } from "@/lib/cookies.server";
-import { getOrderById } from "@/lib/api/orders";
 import {
+  getOrderById,
   OrderStatusBadge,
   OrderTimeline,
   OrderItemsTable,
   OrderDetailsClientActions,
   OrderBreadcrumb,
-} from "@/components/orders";
+} from "@/features/orders";
 import { Order } from "@/types/order";
 
 interface OrderDetailPageProps {

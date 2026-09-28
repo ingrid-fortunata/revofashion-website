@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Order } from "@/types/order";
 import { OrderCard } from "./OrderCard";
-import { getOrders } from "@/lib/api/orders";
+import { getOrders } from "../services/order.service";
 import { CheckCircle2, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/stores/useAuthStore";

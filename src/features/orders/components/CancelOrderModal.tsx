@@ -11,7 +11,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { cancelOrder } from "@/lib/api/orders";
+import { cancelOrder } from "../services/order.service";
 import { showToast } from "@/lib/toast";
 import { OrderStatus } from "@/types/order";
 import { AlertTriangle, Ban } from "lucide-react";

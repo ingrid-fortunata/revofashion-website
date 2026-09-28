@@ -12,10 +12,10 @@ import {
   ShippingFormErrors,
   CheckoutOrderReview,
   ConfirmOrderButton,
-} from "@/components/checkout";
+} from "@/features/checkout";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useCartStore } from "@/stores/useCartStore";
-import { createOrder } from "@/lib/api/orders";
+import { createOrder } from "@/features/orders";
 import { showToast } from "@/lib/toast";
 import { ApiError } from "@/types/api";
 import { CreateOrderItemPayload } from "@/types/order";

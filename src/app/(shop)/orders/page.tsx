@@ -4,8 +4,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Package, ChevronRight, ShoppingBag } from "lucide-react";
 import { getServerToken, getServerUserRole } from "@/lib/cookies.server";
-import { getOrders } from "@/lib/api/orders";
-import { OrderInfiniteList } from "@/components/orders";
+import { OrderInfiniteList, getOrders } from "@/features/orders";
 import { Button } from "@/components/ui/button";
 import { Order } from "@/types/order";
 
