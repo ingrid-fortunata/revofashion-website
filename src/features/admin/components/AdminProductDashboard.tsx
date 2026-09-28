@@ -32,7 +32,6 @@ export function AdminProductDashboard() {
   const {
     data: productData,
     isLoading,
-    isFetching,
   } = useQuery({
     queryKey: [
       "admin-products",

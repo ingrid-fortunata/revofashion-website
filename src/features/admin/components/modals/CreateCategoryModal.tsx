@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { categoryService } from "@/features/products";
 import { showToast } from "@/lib/toast";
+import { ApiError } from "@/types/api";
 import { Plus, Loader2, AlertCircle } from "lucide-react";
 
 interface CreateCategoryModalProps {
@@ -66,15 +67,15 @@ export function CreateCategoryModal({
       showToast.success(`Category "${trimmedName}" created successfully!`);
       resetForm();
       onOpenChange(false);
-    } catch (err: any) {
-      const status = err?.status || err?.response?.status;
-      const message =
-        status === 409
-          ? "Category name already exists."
-          : err?.message || "Failed to create category. Please check your inputs.";
+    } catch (err: unknown) {
+      let message = "Failed to create category. Please check your inputs.";
+      if (err instanceof ApiError) {
+        message = err.message;
+      } else if (err instanceof Error) {
+        message = err.message;
+      }
 
       setGeneralError(message);
-      showToast.error(message);
     } finally {
       setIsSubmitting(false);
     }

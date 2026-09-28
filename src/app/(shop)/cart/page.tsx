@@ -13,7 +13,6 @@ import {
   ShieldCheck,
   Truck,
   Sparkles,
-  ChevronRight,
 } from "lucide-react";
 import { ProtectedRoute } from "@/components/routes";
 import { Button } from "@/components/ui/button";

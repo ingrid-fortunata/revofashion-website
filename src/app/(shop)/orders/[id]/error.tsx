@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AlertTriangle, RotateCcw, ArrowLeft } from "lucide-react";
@@ -16,15 +16,13 @@ export default function OrderDetailError({
 }) {
   const router = useRouter();
   const { user, isHydrated } = useAuthStore();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     console.error("OrderDetail error boundary caught:", error);
   }, [error]);
 
   const isAdmin =
-    mounted && isHydrated && (user?.role === "admin" || user?.role === "superadmin");
+    isHydrated && (user?.role === "admin" || user?.role === "superadmin");
   const backHref = isAdmin ? "/dashboard/orders" : "/orders";
 
   const handleBack = (e: React.MouseEvent<HTMLAnchorElement>) => {

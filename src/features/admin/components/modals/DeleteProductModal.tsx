@@ -7,6 +7,7 @@ import { ConfirmDialog } from "@/components/common";
 import { productService } from "@/features/products";
 import { showToast } from "@/lib/toast";
 import { Product } from "@/types/product";
+import { ApiError } from "@/types/api";
 
 interface DeleteProductModalProps {
   product: Product | null;
@@ -48,15 +49,18 @@ export function DeleteProductModal({
 
       showToast.success(`Product "${product.name}" deleted successfully.`);
       onOpenChange(false);
-    } catch (err: any) {
-      // Catch active order conflict (409/400) or general errors
-      const errorMessage =
-        err?.message ||
-        err?.response?.data?.message ||
-        "Cannot delete product with active orders or associated data.";
+    } catch (err: unknown) {
+      // Extract backend error message directly as per docs/guideline/error_codes.md
+      let errorMessage = "Cannot delete product with active orders or associated data.";
+
+      if (err instanceof ApiError) {
+        // Backend returns: { "error_code": "PRODUCT_CONFLICT", "message": "..." }
+        errorMessage = err.message;
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
 
       setConflictError(errorMessage);
-      showToast.error(errorMessage);
     } finally {
       setIsDeleting(false);
     }

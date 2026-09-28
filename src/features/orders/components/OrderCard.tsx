@@ -26,7 +26,10 @@ export function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
   const itemsCount = order.items?.reduce((acc, it) => acc + it.quantity, 0) || 0;
 
   return (
-    <div className="group rounded-2xl border border-neutral-200/80 bg-white shadow-xs hover:border-primary-200 hover:shadow-md transition-all duration-200 overflow-hidden">
+    <div
+      data-testid={`order-card-${order.id}`}
+      className="group rounded-2xl border border-neutral-200/80 bg-white shadow-xs hover:border-primary-200 hover:shadow-md transition-all duration-200 overflow-hidden"
+    >
       {/* Header bar */}
       <div className="bg-neutral-50/70 border-b border-neutral-100 p-4 sm:px-6 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
@@ -36,6 +39,7 @@ export function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
           <div>
             <Link
               href={`/orders/${order.id}`}
+              data-testid={`order-link-${order.id}`}
               className="text-sm font-bold text-neutral-900 hover:text-primary-600 transition-colors flex items-center gap-1"
             >
               Order #{order.id}
@@ -126,7 +130,13 @@ export function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
             )}
           </div>
 
-          <Button asChild variant="default" size="sm" className="ml-auto text-xs font-semibold gap-1.5 bg-neutral-900 hover:bg-neutral-800 text-white">
+          <Button
+            asChild
+            variant="default"
+            size="sm"
+            data-testid={`view-order-btn-${order.id}`}
+            className="ml-auto text-xs font-semibold gap-1.5 bg-neutral-900 hover:bg-neutral-800 text-white"
+          >
             <Link href={`/orders/${order.id}`}>
               <Eye className="h-3.5 w-3.5" />
               View Order Details

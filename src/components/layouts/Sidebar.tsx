@@ -8,7 +8,6 @@ import {
   Layers,
   ShoppingCart,
   Users,
-  ArrowLeft,
   LogOut,
   ChevronLeft,
   ChevronRight,

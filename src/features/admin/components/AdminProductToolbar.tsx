@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Plus, Filter, RotateCcw } from "lucide-react";
+import { Plus, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchInput } from "@/components/common";
 import { useCategoriesQuery } from "@/features/products";

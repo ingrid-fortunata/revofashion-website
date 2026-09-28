@@ -32,18 +32,21 @@ export function OrderInfiniteList({
   }, [isHydrated, user, router]);
 
   const [orders, setOrders] = useState<Order[]>(initialOrders);
+  const [totalOrders, setTotalOrders] = useState(initialTotal);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(1 < initialPages);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
 
   const sentinelRef = useRef<HTMLDivElement>(null);
+  const isFetchingRef = useRef(false);
 
   const [prevInitialOrders, setPrevInitialOrders] = useState(initialOrders);
 
   if (prevInitialOrders !== initialOrders) {
     setPrevInitialOrders(initialOrders);
     setOrders(initialOrders);
+    setTotalOrders(initialTotal);
     setPage(1);
     setHasMore(1 < initialPages);
   }
@@ -57,10 +60,11 @@ export function OrderInfiniteList({
     );
   }, []);
 
-  // Fetch next page of orders
+  // Fetch next page of orders with concurrency safety
   const loadNextPage = useCallback(async () => {
-    if (isLoadingMore || !hasMore) return;
+    if (isFetchingRef.current || isLoadingMore || !hasMore) return;
 
+    isFetchingRef.current = true;
     setIsLoadingMore(true);
     setLoadError(null);
 
@@ -81,12 +85,17 @@ export function OrderInfiniteList({
         });
       }
 
+      if (res.total !== undefined) {
+        setTotalOrders(res.total);
+      }
+
       setPage(nextPage);
       setHasMore(nextPage < res.pages);
     } catch (error) {
       console.error("Failed to load more orders:", error);
       setLoadError("Unable to load additional orders. Please try again.");
     } finally {
+      isFetchingRef.current = false;
       setIsLoadingMore(false);
     }
   }, [page, perPage, hasMore, isLoadingMore]);
@@ -120,7 +129,7 @@ export function OrderInfiniteList({
   return (
     <div className="space-y-6">
       {/* List of Order Cards */}
-      <div className="space-y-6">
+      <div className="space-y-6" data-testid="orders-list">
         {orders.map((order) => (
           <OrderCard
             key={order.id}
@@ -131,9 +140,16 @@ export function OrderInfiniteList({
       </div>
 
       {/* Sentinel & Infinite Loading Indicator */}
-      <div ref={sentinelRef} className="pt-2">
+      <div
+        ref={sentinelRef}
+        data-testid="orders-sentinel"
+        className="min-h-[24px] w-full pt-2"
+      >
         {isLoadingMore && (
-          <div className="flex flex-col items-center justify-center py-6 gap-2 text-neutral-500">
+          <div
+            data-testid="orders-loading-more"
+            className="flex flex-col items-center justify-center py-6 gap-2 text-neutral-500"
+          >
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary-300 border-t-primary-600" />
             <span className="text-xs font-medium">Loading earlier orders...</span>
           </div>
@@ -147,6 +163,7 @@ export function OrderInfiniteList({
               variant="outline"
               size="sm"
               onClick={loadNextPage}
+              data-testid="retry-load-orders-btn"
               className="text-xs gap-1.5 border-red-300 text-red-800 hover:bg-red-100"
             >
               <RotateCcw className="h-3 w-3" />
@@ -157,9 +174,15 @@ export function OrderInfiniteList({
 
         {/* End of History Message */}
         {!hasMore && orders.length > 0 && (
-          <div className="flex items-center justify-center gap-2 py-8 text-xs text-neutral-400">
+          <div
+            data-testid="orders-end-of-history"
+            className="flex items-center justify-center gap-2 py-8 text-xs text-neutral-400"
+          >
             <CheckCircle2 className="h-4 w-4 text-neutral-400" />
-            <span>You&apos;ve reached the end of your order history ({initialTotal} orders)</span>
+            <span>
+              You&apos;ve reached the end of your order history ({totalOrders}{" "}
+              {totalOrders === 1 ? "order" : "orders"})
+            </span>
           </div>
         )}
       </div>

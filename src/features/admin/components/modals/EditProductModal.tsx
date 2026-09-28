@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   Dialog,
@@ -16,6 +16,7 @@ import { useCategoriesQuery } from "@/features/products";
 import { productService } from "@/features/products";
 import { showToast } from "@/lib/toast";
 import { Product, ProductGender, ProductSize } from "@/types/product";
+import { ApiError } from "@/types/api";
 import { Edit3, Loader2, AlertCircle } from "lucide-react";
 
 interface EditProductModalProps {
@@ -48,32 +49,32 @@ export function EditProductModal({
   const [imageUrl, setImageUrl] = useState("");
   const [isActive, setIsActive] = useState(true);
 
+  const [prevProduct, setPrevProduct] = useState(product);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [generalError, setGeneralError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Sync state whenever selected product changes
-  useEffect(() => {
-    if (product) {
-      setName(product.name || "");
-      setCategoryId(product.category_id ? product.category_id.toString() : "");
-      setPrice(product.price ? product.price.toString() : "");
-      setStock(product.stock !== undefined ? product.stock.toString() : "0");
-      setSize(product.size || "Free Size");
-      setGender(product.gender || "Unisex");
-      setColor(product.color || "");
-      setMaterial(product.material || "");
-      setSku(product.sku || "");
-      setDescription(product.description || "");
-      setImageUrl(
-        product.primary_image ||
-          (product.images && product.images.length > 0 ? product.images[0].image_base64 : "")
-      );
-      setIsActive(product.is_active !== undefined ? product.is_active : true);
-      setErrors({});
-      setGeneralError(null);
-    }
-  }, [product]);
+  // Sync state during render when selected product changes (React 19 pattern)
+  if (prevProduct !== product) {
+    setPrevProduct(product);
+    setName(product?.name || "");
+    setCategoryId(product?.category_id ? product.category_id.toString() : "");
+    setPrice(product?.price ? product.price.toString() : "");
+    setStock(product?.stock !== undefined ? product.stock.toString() : "0");
+    setSize(product?.size || "Free Size");
+    setGender(product?.gender || "Unisex");
+    setColor(product?.color || "");
+    setMaterial(product?.material || "");
+    setSku(product?.sku || "");
+    setDescription(product?.description || "");
+    setImageUrl(
+      product?.primary_image ||
+        (product?.images && product.images.length > 0 ? product.images[0].image_base64 : "")
+    );
+    setIsActive(product?.is_active !== undefined ? product.is_active : true);
+    setErrors({});
+    setGeneralError(null);
+  }
 
   const validate = (): boolean => {
     const errs: Record<string, string> = {};
@@ -134,10 +135,14 @@ export function EditProductModal({
 
       showToast.success(`Product "${name}" updated successfully!`);
       onOpenChange(false);
-    } catch (err: any) {
-      const msg = err?.message || "Failed to update product. Please check your inputs.";
+    } catch (err: unknown) {
+      let msg = "Failed to update product. Please check your inputs.";
+      if (err instanceof ApiError) {
+        msg = err.message;
+      } else if (err instanceof Error) {
+        msg = err.message;
+      }
       setGeneralError(msg);
-      showToast.error(msg);
     } finally {
       setIsSubmitting(false);
     }

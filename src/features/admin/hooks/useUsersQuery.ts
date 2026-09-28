@@ -40,9 +40,6 @@ export function useCreateUserMutation() {
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
       showToast.success(`User "${res.data.username}" created successfully!`);
     },
-    onError: (err) => {
-      showToast.error(err);
-    },
   });
 }
 
@@ -58,9 +55,6 @@ export function useUpdateUserMutation() {
     onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
       showToast.success(`User "${res.data.username}" updated successfully!`);
-    },
-    onError: (err) => {
-      showToast.error(err);
     },
   });
 }
@@ -78,9 +72,6 @@ export function useToggleUserStatusMutation() {
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
       const action = vars.isActive ? "activated" : "deactivated";
       showToast.success(`User "${vars.username}" has been ${action}.`);
-    },
-    onError: (err) => {
-      showToast.error(err);
     },
   });
 }

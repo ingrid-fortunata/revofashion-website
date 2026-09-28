@@ -6,6 +6,7 @@ import { ConfirmDialog } from "@/components/common";
 import { categoryService } from "@/features/products";
 import { showToast } from "@/lib/toast";
 import { Category } from "@/types/category";
+import { ApiError } from "@/types/api";
 
 interface DeleteCategoryModalProps {
   category: Category | null;
@@ -46,15 +47,18 @@ export function DeleteCategoryModal({
 
       showToast.success(`Category "${category.name}" deleted successfully.`);
       onOpenChange(false);
-    } catch (err: any) {
-      const status = err?.status || err?.response?.status;
-      const errorMessage =
-        status === 409 || err?.message?.toLowerCase().includes("product")
-          ? "Cannot delete category with linked products."
-          : err?.message || "Failed to delete category.";
+    } catch (err: unknown) {
+      // Extract backend error message directly as per docs/guideline/error_codes.md
+      let errorMessage = "Cannot delete category with linked products.";
+
+      if (err instanceof ApiError) {
+        // Backend returns: { "error_code": "CATEGORY_CONFLICT", "message": "..." }
+        errorMessage = err.message;
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
 
       setConflictError(errorMessage);
-      showToast.error(errorMessage);
     } finally {
       setIsDeleting(false);
     }

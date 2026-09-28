@@ -21,12 +21,12 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
         title="No Categories Available"
         description="Our fashion categories are currently being refreshed. Explore our full catalog in the meantime."
         action={
-          <Link href="/products">
-            <Button className="gap-2 font-semibold">
+          <Button asChild className="gap-2 font-semibold">
+            <Link href="/products">
               <span>Browse All Products</span>
               <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         }
         className="rounded-3xl border border-primary-100/90 bg-primary-50/40 my-6"
       />

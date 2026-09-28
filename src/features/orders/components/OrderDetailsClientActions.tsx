@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { OrderStatus } from "@/types/order";
@@ -22,14 +22,8 @@ export function OrderDetailsClientActions({
 }: OrderDetailsClientActionsProps) {
   const router = useRouter();
   const { user, isHydrated } = useAuthStore();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const effectiveRole =
-    mounted && isHydrated && user?.role ? user.role : serverRole;
+  const effectiveRole = isHydrated && user?.role ? user.role : serverRole;
   const isAdmin = effectiveRole === "admin" || effectiveRole === "superadmin";
   const isCancellable = status === "pending" || status === "paid";
 

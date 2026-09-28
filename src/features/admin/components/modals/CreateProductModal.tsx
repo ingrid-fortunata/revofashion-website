@@ -16,6 +16,7 @@ import { useCategoriesQuery } from "@/features/products";
 import { productService } from "@/features/products";
 import { showToast } from "@/lib/toast";
 import { ProductGender, ProductSize } from "@/types/product";
+import { ApiError } from "@/types/api";
 import { Plus, Loader2, AlertCircle } from "lucide-react";
 
 interface CreateProductModalProps {
@@ -129,10 +130,14 @@ export function CreateProductModal({
       showToast.success(`Product "${name}" created successfully!`);
       resetForm();
       onOpenChange(false);
-    } catch (err: any) {
-      const msg = err?.message || "Failed to create product. Please check your inputs.";
+    } catch (err: unknown) {
+      let msg = "Failed to create product. Please check your inputs.";
+      if (err instanceof ApiError) {
+        msg = err.message;
+      } else if (err instanceof Error) {
+        msg = err.message;
+      }
       setGeneralError(msg);
-      showToast.error(msg);
     } finally {
       setIsSubmitting(false);
     }

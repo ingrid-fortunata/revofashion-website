@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { RefreshCw, AlertCircle } from "lucide-react";
 import { Breadcrumb } from "@/components/common";
 import { useAuthStore } from "@/stores/useAuthStore";

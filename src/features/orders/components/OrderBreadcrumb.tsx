@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Breadcrumb } from "@/components/common";
 import { useAuthStore } from "@/stores/useAuthStore";
 
@@ -11,14 +11,8 @@ export interface OrderBreadcrumbProps {
 
 export function OrderBreadcrumb({ orderId, serverRole }: OrderBreadcrumbProps) {
   const { user, isHydrated } = useAuthStore();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const effectiveRole =
-    mounted && isHydrated && user?.role ? user.role : serverRole;
+  const effectiveRole = isHydrated && user?.role ? user.role : serverRole;
   const isAdmin = effectiveRole === "admin" || effectiveRole === "superadmin";
 
   return (

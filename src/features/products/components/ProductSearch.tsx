@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SearchInput, type SearchInputProps } from "@/components/common/SearchInput";
+import { SearchInput } from "@/components/common/SearchInput";
 
 export interface ProductSearchProps {
   value: string;

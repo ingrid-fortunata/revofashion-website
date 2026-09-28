@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   Dialog,
@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { categoryService } from "@/features/products";
 import { showToast } from "@/lib/toast";
 import { Category } from "@/types/category";
+import { ApiError } from "@/types/api";
 import { Edit3, Loader2, AlertCircle } from "lucide-react";
 
 interface EditCategoryModalProps {
@@ -28,23 +29,26 @@ export function EditCategoryModal({
   onOpenChange,
 }: EditCategoryModalProps) {
   const queryClient = useQueryClient();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [isActive, setIsActive] = useState(true);
+  const [prevCategory, setPrevCategory] = useState(category);
+  const [name, setName] = useState(category?.name || "");
+  const [description, setDescription] = useState(category?.description || "");
+  const [isActive, setIsActive] = useState(
+    category?.is_active !== undefined ? category.is_active : true
+  );
 
   const [nameError, setNameError] = useState<string | null>(null);
   const [generalError, setGeneralError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    if (category) {
-      setName(category.name || "");
-      setDescription(category.description || "");
-      setIsActive(category.is_active !== undefined ? category.is_active : true);
-      setNameError(null);
-      setGeneralError(null);
-    }
-  }, [category]);
+  // Sync state during render when selected category changes (React 19 pattern)
+  if (prevCategory !== category) {
+    setPrevCategory(category);
+    setName(category?.name || "");
+    setDescription(category?.description || "");
+    setIsActive(category?.is_active !== undefined ? category.is_active : true);
+    setNameError(null);
+    setGeneralError(null);
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,15 +73,15 @@ export function EditCategoryModal({
       await queryClient.invalidateQueries({ queryKey: ["categories"] });
       showToast.success(`Category "${trimmedName}" updated successfully!`);
       onOpenChange(false);
-    } catch (err: any) {
-      const status = err?.status || err?.response?.status;
-      const message =
-        status === 409
-          ? "Category name already exists."
-          : err?.message || "Failed to update category. Please check your inputs.";
+    } catch (err: unknown) {
+      let message = "Failed to update category. Please check your inputs.";
+      if (err instanceof ApiError) {
+        message = err.message;
+      } else if (err instanceof Error) {
+        message = err.message;
+      }
 
       setGeneralError(message);
-      showToast.error(message);
     } finally {
       setIsSubmitting(false);
     }

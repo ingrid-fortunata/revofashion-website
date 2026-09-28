@@ -45,7 +45,7 @@ export function AdminUserDashboard() {
     isSuperadmin,
   );
 
-  const rawUsers = userData?.data || [];
+  const rawUsers = useMemo(() => userData?.data || [], [userData?.data]);
 
   // Client-side filtering fallback for maximum responsiveness
   const filteredUsers = useMemo(() => {

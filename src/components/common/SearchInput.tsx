@@ -31,12 +31,14 @@ export function SearchInput({
   ...restProps
 }: SearchInputProps) {
   const [internalValue, setInternalValue] = useState(value);
+  const [prevValue, setPrevValue] = useState(value);
   const isFirstMount = useRef(true);
 
-  // Sync internal state with external value changes
-  useEffect(() => {
+  // Sync internal state with external value changes during render (React 19 pattern)
+  if (prevValue !== value) {
+    setPrevValue(value);
     setInternalValue(value);
-  }, [value]);
+  }
 
   // Handle debounce if specified
   useEffect(() => {

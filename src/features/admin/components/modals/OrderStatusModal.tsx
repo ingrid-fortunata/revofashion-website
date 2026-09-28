@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   Dialog,
@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { updateOrderStatus } from "@/lib/api/orders";
 import { showToast } from "@/lib/toast";
 import { Order, OrderStatus } from "@/types/order";
+import { ApiError } from "@/types/api";
 import {
   Truck,
   CheckCircle,
@@ -57,23 +58,28 @@ export function OrderStatusModal({
 }: OrderStatusModalProps) {
   const queryClient = useQueryClient();
 
-  const [selectedStatus, setSelectedStatus] = useState<OrderStatus | "">("");
-  const [trackingNumber, setTrackingNumber] = useState("");
-  const [cancellationReason, setCancellationReason] = useState("");
+  const [prevOrder, setPrevOrder] = useState(order);
+  const [selectedStatus, setSelectedStatus] = useState<OrderStatus | "">(
+    order ? VALID_TRANSITIONS[order.status]?.[0] || "" : ""
+  );
+  const [trackingNumber, setTrackingNumber] = useState(order?.tracking_number || "");
+  const [cancellationReason, setCancellationReason] = useState(
+    order?.cancellation_reason || ""
+  );
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const allowedTransitions = order ? VALID_TRANSITIONS[order.status] || [] : [];
   const isTerminal = allowedTransitions.length === 0;
 
-  useEffect(() => {
-    if (order) {
-      setSelectedStatus(allowedTransitions[0] || "");
-      setTrackingNumber(order.tracking_number || "");
-      setCancellationReason(order.cancellation_reason || "");
-      setError(null);
-    }
-  }, [order]);
+  // Sync state during render when selected order changes (React 19 pattern)
+  if (prevOrder !== order) {
+    setPrevOrder(order);
+    setSelectedStatus(allowedTransitions[0] || "");
+    setTrackingNumber(order?.tracking_number || "");
+    setCancellationReason(order?.cancellation_reason || "");
+    setError(null);
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,10 +116,14 @@ export function OrderStatusModal({
         `Order #${order.id} status updated to ${selectedStatus.toUpperCase()}.`
       );
       onOpenChange(false);
-    } catch (err: any) {
-      const msg = err?.message || "Failed to update order status. Please try again.";
+    } catch (err: unknown) {
+      let msg = "Failed to update order status. Please try again.";
+      if (err instanceof ApiError) {
+        msg = err.message;
+      } else if (err instanceof Error) {
+        msg = err.message;
+      }
       setError(msg);
-      showToast.error(msg);
     } finally {
       setIsSubmitting(false);
     }

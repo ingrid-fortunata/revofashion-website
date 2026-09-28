@@ -85,7 +85,6 @@ export function CancelOrderModal({
           ? err.message
           : "Failed to cancel order. Please try again or contact support.";
       setError(message);
-      showToast.error("Cancellation Failed", message);
     } finally {
       setIsSubmitting(false);
     }
